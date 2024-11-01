@@ -5,6 +5,8 @@ order: 4
 ---
 # Asif Nawaz Minhas | Security Engineer / Penetration tester
 
+Just another penetration tester / security researcher from the Netherlands :)
+
 ## Certifications
 - OffSec Certified Professional (OSCP)
 - Certified Information Systems Security Professional (CISSP) 
