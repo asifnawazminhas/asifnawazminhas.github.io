@@ -13,7 +13,7 @@ order: 4
 - Certified Red Team Professional (CRTP)   
 - Certified Ethical Hacker (CEH)
 
-## Vulnerability Disclosure Achievements
+### Vulnerability Disclosure Achievements
 
 - Researcher Hall of Fame (All Time) - WordFence [2023]
 - Hall of Fame + Letter of Appreciation NASA [2023]
