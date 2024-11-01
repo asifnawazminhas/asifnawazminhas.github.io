@@ -15,17 +15,17 @@ order: 4
 
 ## Vulnerability Disclosure Achievements
 
-• Researcher Hall of Fame (All Time) - WordFence [2023]
-• Hall of Fame + Letter of Appreciation NASA [2023]
-• openbugbounty top VIP security researcher of the week [2023]
-• Hall of Fame United Nations [2024]
-• Wall of Fame Dutch Public Broadcast (NPO) [2024]
-• Hall of Fame University of Applied Sciences InHolland [2024]
-• Hall of Fame University of Applied Sciences Fontys [2024]
-• Hall of Fame Information security service association of Dutch municipalities [2024]
-• Hall of Fame Schiphol Amsterdam Airport [2024]
-• Hall of Fame WHO: World Health Organization [2024]
-• Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
+- Researcher Hall of Fame (All Time) - WordFence [2023]
+- Hall of Fame + Letter of Appreciation NASA [2023]
+- openbugbounty top VIP security researcher of the week [2023]
+- Hall of Fame United Nations [2024]
+- Wall of Fame Dutch Public Broadcast (NPO) [2024]
+- Hall of Fame University of Applied Sciences InHolland [2024]
+- Hall of Fame University of Applied Sciences Fontys [2024]
+- Hall of Fame Information security service association of Dutch municipalities [2024]
+- Hall of Fame Schiphol Amsterdam Airport [2024]
+- Hall of Fame WHO: World Health Organization [2024]
+- Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
 
 > Feel free to reach out if you want to connect on LinkedIn.
 {: .prompt-tip }
