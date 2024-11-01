@@ -1,0 +1,13 @@
+---
+title: What is AD?
+date: 2024-11-01 10:10:00 +0700
+categories: [Active-directory]
+tags: [AD, Active-directory]
+pin: false
+---
+
+# Definition / Background
+
+Active Directory (AD) is like a big address book and security system for a business's computer network. 
+It was created by Microsoft to help organizations manage users, computers, and resources like printers or file shares, all from one central place.
+
