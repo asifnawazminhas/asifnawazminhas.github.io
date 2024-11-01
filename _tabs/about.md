@@ -3,9 +3,9 @@
 icon: fas fa-info-circle
 order: 4
 ---
-# Asif Nawaz Minhas | Security Engineer / Penetration tester
+# Asif Nawaz Minhas | Penetration tester
 
-Just another penetration tester / security researcher from the Netherlands :)
+Just a passionate penetration tester and security researcher from the Netherlands, driven to tackle global security challenges and make the digital world a safer place for everyone.
 
 ## Certifications
 - OffSec Certified Professional (OSCP)
