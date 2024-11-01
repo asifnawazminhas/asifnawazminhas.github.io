@@ -10,7 +10,7 @@ order: 4
 - Certified Information Systems Security Professional (CISSP) 
 - OffSec Web Assessor (OSWA)
 - Certified Information Security Manager (CISM)
-- Certified Red Team Professional (CRTP)-   
+- Certified Red Team Professional (CRTP)   
 - Certified Ethical Hacker (CEH)
 
 ## Vulnerability Disclosure Achievements
