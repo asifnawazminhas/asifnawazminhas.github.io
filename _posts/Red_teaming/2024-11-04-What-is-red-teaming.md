@@ -47,8 +47,6 @@ In summary, a red teaming exercise is not a one-size-fits-all approach; it’s a
 
 At its core, red teaming is a hands-on, custom approach to security that dives deeper than typical assessments. It’s all about understanding the real threats an organization might face and tailoring the testing to its unique setup, assets, and challenges. Red teaming offers meaningful insights—not just on where vulnerabilities lie, but on how well the organization can respond when it counts. By focusing on realistic scenarios, it helps build a stronger, more resilient defense against the kinds of attacks that are most likely to happen. For any organization committed to staying ahead of security risks, red teaming is an essential step in taking control of its defenses
 
-> Red `{% highlight %}` teaming  is a cybersecurity practice that simulates attacks on a system to identify vulnerabilities and improve security. It involves professionals with diverse backgrounds, who try to exploit weaknesses in a system, just as a malicious attacker would. By exposing vulnerabilities through red teaming, organizations can take proactive steps to strengthen their security posture and protect their valuable assets.
-
 > Red teaming  is a cybersecurity practice that simulates attacks on a system to identify vulnerabilities and improve security. It involves professionals with diverse backgrounds, who try to exploit weaknesses in a system, just as a malicious attacker would. By exposing vulnerabilities through red teaming, organizations can take proactive steps to strengthen their security posture and protect their valuable assets.
 {: .prompt-tip }
 
