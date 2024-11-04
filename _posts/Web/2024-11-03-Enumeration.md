@@ -21,10 +21,12 @@ For enumeration of an target web application you can use:
 
 However, you can also try to add the following paths after the webroot:
 
-/index.php
-/index.asp
-/index.jsp
-/index.html and see how the web page reacts when you add these paths.
+- /index.php
+- /index.asp
+- /index.jsp
+- /index.html
+
+  and see how the web page reacts when you add these paths.
 
 ### Benefits
 
