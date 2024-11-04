@@ -49,6 +49,9 @@ At its core, red teaming is a hands-on, custom approach to security that dives d
 
 > Red `{% highlight %}` teaming  is a cybersecurity practice that simulates attacks on a system to identify vulnerabilities and improve security. It involves professionals with diverse backgrounds, who try to exploit weaknesses in a system, just as a malicious attacker would. By exposing vulnerabilities through red teaming, organizations can take proactive steps to strengthen their security posture and protect their valuable assets.
 
+> Red teaming  is a cybersecurity practice that simulates attacks on a system to identify vulnerabilities and improve security. It involves professionals with diverse backgrounds, who try to exploit weaknesses in a system, just as a malicious attacker would. By exposing vulnerabilities through red teaming, organizations can take proactive steps to strengthen their security posture and protect their valuable assets.
+{: .prompt-tip }
+
 In a typical red team exercise, the red team works alongside with a blue team, which is responsible for defending the system. The blue team uses a variety of tools and techniques to detect and respond to attacks. A third team, often called the white team, oversees the entire exercise and ensures that it is conducted ethically and responsibly and during escalation(s), they act as mediators, providing guidance, approving critical actions, and ensuring that the exercise stays within defined boundaries.
 
 By working together, the red, blue, and white teams can help organizations identify and address security weaknesses before they can be exploited by real-world attackers. . 
