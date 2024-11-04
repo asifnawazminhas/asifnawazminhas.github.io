@@ -33,7 +33,5 @@ By examining 404 error pages, you can gather hints about server configurations, 
 
 ### Conclusion
 
-Conclusion
-
 Both Wappalyzer and 404 error page analysis offer distinct advantages that make them valuable tools in web application enumeration. Starting with Wappalyzer allows you to get a quick sense of the technology stack, while 404 error page analysis provides deeper insights into backend configurations and potential misconfigurations. Together, these tools help create a comprehensive picture of the application’s architecture, allowing you to proceed with an informed and responsible approach to testing. By leveraging both tools, you can enhance your enumeration process, ensuring you identify the most relevant vulnerabilities and make your assessment as effective as possible.
 
