@@ -16,8 +16,9 @@ Effective enumeration is the first step in assessing a target web application’
 
 For enumeration of an target web application you can use:
 
-- <https://www.wappalyzer.com/>
-- <https://0xdf.gitlab.io/cheatsheets/404>
+- <a href="https://www.wappalyzer.com/" target="_blank">Wappalyzer</a>  
+- <a href="https://0xdf.gitlab.io/cheatsheets/404" target="_blank">404 Cheatsheet</a>
+
 
 However, you can also try to add the following paths after the webroot:
 
