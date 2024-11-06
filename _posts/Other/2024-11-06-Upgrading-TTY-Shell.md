@@ -5,12 +5,13 @@ categories: [Other]
 tags: [Other, tty-shell, autocomplete]
 pin: false
 ---
+## Upgrading an autocomplete TTY shell on Linux and Windows: a guide for pentesters
 
-## Introduction
+### Introduction
 
 When working with command-line interfaces on compromised machines, it is common to be limited to basic TTY shells that lack essential features like autocomplete and history. Upgrading these shells can significantly improve usability and efficiency during post-exploitation. This guide covers methods to upgrade TTY shells on both Linux and Windows targets to provide functionalities such as command history and tab completion, making them easier to work with.
 
-## Verify installed language(s)
+### Verify installed language(s)
 
 Before attempting to upgrade or interact with shells, it's important to verify which interpreters and shells are available on the target system. This helps determine the best approach to proceed. Here's how to check which interpreters or shells are installed:
 ```shell
@@ -31,7 +32,7 @@ where python    # Equivalent to 'which' in Windows
 where python3
 where bash
 ```
-## Examples
+### Examples
 
 ```bash
 python3 -c 'import pty;pty.spawn("/bin/bash")';
