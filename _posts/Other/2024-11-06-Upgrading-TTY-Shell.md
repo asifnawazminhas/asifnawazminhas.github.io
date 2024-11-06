@@ -60,8 +60,8 @@ perl —e 'exec "/bin/sh";'
 ruby: exec "/bin/sh"
 ```
 
-```shell
 # if python isn't installed, then use:
+```shell
 script /dev/null -c bash
 /usr/bin/script -qc /bin/bash /dev/null
 ```
