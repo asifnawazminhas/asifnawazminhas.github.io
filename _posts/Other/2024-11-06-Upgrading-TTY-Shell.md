@@ -13,7 +13,7 @@ When working with command-line interfaces on compromised machines, it is common 
 ## Verify installed language(s)
 
 Before attempting to upgrade or interact with shells, it's important to verify which interpreters and shells are available on the target system. This helps determine the best approach to proceed. Here's how to check which interpreters or shells are installed:
-
+```shell
 # Check if Python is installed and its location
 which python    # Output will show the path if Python 2.x is installed
 
@@ -30,7 +30,7 @@ which pwsh      # This shows if PowerShell Core is available on Linux
 where python    # Equivalent to 'which' in Windows
 where python3
 where bash
-
+```
 ## Examples
 
 ```bash
