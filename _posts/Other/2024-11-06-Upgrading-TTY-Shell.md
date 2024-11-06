@@ -5,6 +5,7 @@ categories: [Other]
 tags: [Other, tty-shell, autocomplete]
 pin: false
 ---
+
 ## Upgrading an autocomplete TTY shell on Linux and Windows: a guide for pentesters
 
 ### Introduction
