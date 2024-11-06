@@ -4,6 +4,7 @@ date: 2024-11-06 10:10:00 +0700
 categories: [Other]
 tags: [Other, tty-shell, autocomplete]
 pin: false
+description: Upgrading TTY Shell
 ---
 
 ## Upgrading an autocomplete TTY shell on Linux and Windows: a guide for pentesters
