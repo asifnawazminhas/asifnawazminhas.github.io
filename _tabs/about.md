@@ -29,5 +29,5 @@ Just a passionate penetration tester and security researcher from the Netherland
 - Hall of Fame WHO: World Health Organization [2024]
 - Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
 
-> Feel free to reach out if you want to connect on LinkedIn.
+> Feel free to reach out if you want to connect on [LinkedIn]([https://www.linkedin.com/in/your-profile](https://nl.linkedin.com/in/asifminhasnl)).
 {: .prompt-tip }
