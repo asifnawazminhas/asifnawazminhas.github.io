@@ -120,9 +120,14 @@ stty raw -echo; (stty size; cat) | nc -lvnp 9001
 To have autocomplete on a Linux machine, you can also use:
 
 - <a href="https://github.com/brightio/penelope" target="_blank">penelope</a>
+
 ```shell
 # Clone the repo, go to the directory and use the command:
 ./penelope.py 5555 -i eth0
 
 # For more guidance, go to the repo.
 ```
+
+### Conclusion
+
+Upgrading to a TTY shell with autocomplete makes working on target systems much easier for pentesters. It helps you type commands faster, find past commands quickly, and move around more efficiently. This saves time and reduces mistakes, making the job smoother and simpler. Whether you’re working on Linux or Windows, having an upgraded shell makes interacting with the system more comfortable and productive.
