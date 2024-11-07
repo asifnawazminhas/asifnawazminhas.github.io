@@ -1,11 +1,10 @@
 ---
+layout: tools
 icon: fas fa-gears
 order: 4
 ---
 
-## Useful Tools for Cybersecurity and Red teaming
-
-## Useful Tools and Resources for Cybersecurity and AI
+## Useful Tools for Cybersecurity, Red teaming & AI
 
 Here are some highly recommended tools and resources for various cybersecurity, red teaming, purple teaming, and AI-related needs:
 
