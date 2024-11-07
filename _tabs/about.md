@@ -7,6 +7,14 @@ order: 4
 
 Just a passionate penetration tester and security researcher from the Netherlands, driven to tackle global security challenges and make the digital world a safer place for everyone.
 
+## 🎓 Academic Background
+
+- **Master’s Degree:** Information Security <br>
+  **University:** Royal Halloway, University of London, 2016-2020
+
+- **Bachelor’s Degree:** Information Technology <br>
+  **University:** Windesheim University of Applied Sciences, 2008-2011  
+
 ## Certifications
 - OffSec Certified Professional (OSCP)
 - Certified Information Systems Security Professional (CISSP) 
@@ -28,6 +36,8 @@ Just a passionate penetration tester and security researcher from the Netherland
 - Hall of Fame Schiphol Amsterdam Airport [2024]
 - Hall of Fame WHO: World Health Organization [2024]
 - Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
+
+  ## 📬 Contact Information
 
 > Feel free to reach out if you want to connect on <a href="https://nl.linkedin.com/in/asifminhasnl" target="_blank">LinkedIn</a>
 {: .prompt-tip }
