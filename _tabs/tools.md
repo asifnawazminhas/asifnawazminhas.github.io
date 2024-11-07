@@ -1,10 +1,9 @@
 ---
-layout: tools
 icon: fas fa-gears
 order: 4
 ---
 
-## Useful Tools for Cybersecurity, Red teaming & AI
+### Useful Tools for Cybersecurity, Red teaming & AI
 
 Here are some highly recommended tools and resources for various cybersecurity, red teaming, purple teaming, and AI-related needs:
 
@@ -24,6 +23,6 @@ Here are some highly recommended tools and resources for various cybersecurity, 
 - <a href="https://redteam.guide/docs/Templates/report_template/" target="_blank">Red Team Guide - Report Template</a>
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>
 
-### AI and Red/Purple Teaming Resources:
+## AI and Red/Purple Teaming Resources:
 - <a href="https://chatgpt.com/g/g-RUHY05lkN-rt-red-teaming" target="_blank">Red Teaming - ChatGPT</a>
 - <a href="https://chatgpt.com/g/g-k11N973rt-pt-purple-teaming-cyber-defense-and-offensive" target="_blank">Purple Teaming: Cyber Defense and Offensive AI - ChatGPT</a>
