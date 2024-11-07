@@ -3,7 +3,7 @@
 icon: fas fa-info-circle
 order: 4
 ---
-# Asif Nawaz Minhas | Penetration tester
+# Asif Nawaz Minhas | Penetration tester with passion for red teaming and AI
 
 Just a passionate penetration tester and security researcher from the Netherlands, driven to tackle global security challenges and make the digital world a safer place for everyone.
 
