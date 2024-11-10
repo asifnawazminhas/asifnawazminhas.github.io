@@ -29,7 +29,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 
 - <a href="https://www.wordfence.com/threat-intel/vulnerabilities/researchers/asif-nawaz-minhas" target="_blank">Researcher Hall of Fame (All Time) - WordFence [2023]</a>
 - <a href="https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames" target="_blank">Hall of Fame + Letter of Appreciation NASA [2023]</a>
-- openbugbounty top VIP security researcher of the week [2023]
+- <a href="https://www.openbugbounty.org/researchers/ethicaldudeNL/" target="_blank">OpenBugBounty Top VIP Security Researcher of the Week [2023]</a>
 - <a href="https://unite.un.org/content/hall-fame/list" target="_blank">Hall of Fame United Nations [2024]</a>
 - <a href="https://npo.nl/overnpo/privacy-en-security/responsible-disclosure" target="_blank">Wall of Fame Dutch Public Broadcast (NPO) [2024]</a>
 - <a href="https://www.inholland.nl/responsible-disclosure/#Wall_of_Fame" target="_blank">Hall of Fame University of Applied Sciences InHolland [2024]</a>
