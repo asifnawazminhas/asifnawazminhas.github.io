@@ -10,7 +10,8 @@ Just a passionate penetration tester and security researcher from the Netherland
 ## 🎓 Academic Background
 
 - **Master’s Degree:** Information Security <br>
-  **University:** Royal Halloway, University of London, 2016-2020
+**University:** <a href="https://stories.london.ac.uk/uolgrad2022/postgraduate-computing/" target="_blank">Royal Holloway, University of London, 2016-2020</a>
+
 
 - **Bachelor’s Degree:** Information Technology <br>
   **University:** Windesheim University of Applied Sciences, 2008-2011  
