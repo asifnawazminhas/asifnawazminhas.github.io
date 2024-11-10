@@ -16,12 +16,13 @@ Just a passionate penetration tester and security researcher from the Netherland
   **University:** Windesheim University of Applied Sciences, 2008-2011  
 
 ## Certifications
-- OffSec Certified Professional (OSCP)
-- Certified Information Systems Security Professional (CISSP) 
-- OffSec Web Assessor (OSWA)
-- Certified Information Security Manager (CISM)
-- Certified Red Team Professional (CRTP)   
-- Certified Ethical Hacker (CEH)
+- <a href="https://www.credential.net/0f2a3465-2fa6-4402-b526-6f372b35bd93?trk=public_profile_see-credential#acc.Bnhq091G" target="_blank">OffSec Certified Professional (OSCP)</a>
+- <a href="https://my.isc2.org/s/MemberVerification?LastName=Minhas&MemberNumber=627497&trk=public_profile_see-credential" target="_blank">Certified Information Systems Security Professional (CISSP)</a>
+- <a href="https://www.credential.net/d354e55c-d333-4347-9ddf-5e9d44cca4c4?trk=public_profile_see-credential#acc.YxfV3PiU" target="_blank">OffSec Web Assessor (OSWA)</a>
+- <a href="https://www.credly.com/badges/b75ea7b9-55ff-4f43-a526-9077388491b6/public_url?trk=public_profile_see-credential" target="_blank">Certified Information Security Manager (CISM)</a>
+- <a href="https://www.credential.net/91d1ae8c-1040-4530-a0dc-fe0352e003e9#gs.heo06q" target="_blank">Certified Red Team Professional (CRTP)</a>
+- <a href="https://aspen.eccouncil.org/VerifyBadge?type=certification&a=2lRukjKr7UUZduuSqj0TbmTVi+5o1PGgbCuiL97m6ug=&trk=public_profile_see-credential" target="_blank">Certified Ethical Hacker (CEH)</a>
+
 
 ### Vulnerability Disclosure Achievements
 
