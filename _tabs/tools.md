@@ -38,6 +38,7 @@ Here are some highly recommended tools and resources for various cybersecurity, 
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>
 - <a href="https://book.jorianwoltjer.com/" target="_blank">Practical CTF by Jorian Woltjer</a>
 - <a href="https://book.hacktricks.xyz/" target="_blank">Hacktricks</a>
+- <a href="https://www.thehacker.recipes/" target="_blank">The hacker recipes</a>
 
 
 ## AI and Red/Purple Teaming Resources:
