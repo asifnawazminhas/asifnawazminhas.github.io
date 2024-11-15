@@ -10,6 +10,7 @@ Here are some highly recommended tools and resources for various cybersecurity, 
 - <a href="https://arttoolkit.github.io/" target="_blank">Art Toolkit</a>
 - <a href="https://www.revshells.com/" target="_blank">RevShells</a>
 - <a href="https://ippsec.rocks/?#" target="_blank">IppSec Rocks</a>
+- <a href="https://0xdf.gitlab.io/" target="_blank">)0xdf hacks stuff</a>
 - <a href="https://carbon.now.sh/" target="_blank">Carbon</a>
 - <a href="https://exploit-notes.hdks.org/" target="_blank">Exploit Notes</a>
 - <a href="https://sitereport.netcraft.com/" target="_blank">Netcraft Site Report</a>
