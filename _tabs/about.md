@@ -40,6 +40,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.unesco.org/en/vulnerability-disclosure" target="_blank">Hall of Fame Unesco</a>
 - <a href="https://www.uwv.nl/en/about-this-site/vulnerability-disclosure-policy/hall-of-fame" target="_blank">Hall of Fame UWV</a>
 
+- I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
 - Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
 
   ## 📬 Contact Information
