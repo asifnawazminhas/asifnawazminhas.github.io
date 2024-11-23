@@ -11,8 +11,6 @@ Here are some highly recommended tools and resources for various cybersecurity, 
 
 - <a href="https://arttoolkit.github.io/" target="_blank">Art Toolkit</a>
 - <a href="https://www.revshells.com/" target="_blank">RevShells</a>
-- <a href="https://ippsec.rocks/?#" target="_blank">IppSec Rocks</a>
-- <a href="https://0xdf.gitlab.io/" target="_blank">0xdf hacks stuff</a>
 - <a href="https://carbon.now.sh/" target="_blank">Carbon</a>
 - <a href="https://exploit-notes.hdks.org/" target="_blank">Exploit Notes</a>
 - <a href="https://sitereport.netcraft.com/" target="_blank">Netcraft Site Report</a>
@@ -27,6 +25,9 @@ Here are some highly recommended tools and resources for various cybersecurity, 
 
 ## Documentation / Guides 
 
+- <a href="https://ippsec.rocks/?#" target="_blank">IppSec Rocks</a>
+- <a href="https://0xdf.gitlab.io/" target="_blank">0xdf hacks stuff</a>
+- <a href="https://vuln.dev/" target="_blank">Vulnlabs</a>
 - <a href="https://dmcxblue.gitbook.io/red-team-notes-2-0" target="_blank">Red Team Notes 2.0</a>
 - <a href="https://redteam.guide/docs/Templates/report_template/" target="_blank">Red Team Guide - Report Template</a>
 - <a href="https://embracethered.com/blog/index.html" target="_blank">Embracethered</a>
