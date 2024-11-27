@@ -25,7 +25,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://aspen.eccouncil.org/VerifyBadge?type=certification&a=2lRukjKr7UUZduuSqj0TbmTVi+5o1PGgbCuiL97m6ug=&trk=public_profile_see-credential" target="_blank">Certified Ethical Hacker (CEH)</a>
 
 ## Challenges
-- <a href="https://promptairlines.com/certificate/qeIo9"> target="_blank">AI Security Certificate: Prompt Airlines by WIZ</a>
+- <a href="https://promptairlines.com/certificate/qeIo9" target="_blank">AI Security Certificate: Prompt Airlines by WIZ</a>
 
 ### Vulnerability Disclosure Achievements
 
