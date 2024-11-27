@@ -46,9 +46,8 @@ Here are some highly recommended tools and resources for various cybersecurity, 
 - <a href="https://chatgpt.com/g/g-RUHY05lkN-rt-red-teaming" target="_blank">Red Teaming - ChatGPT</a>
 - <a href="https://chatgpt.com/g/g-k11N973rt-pt-purple-teaming-cyber-defense-and-offensive" target="_blank">Purple Teaming: Cyber Defense and Offensive AI - ChatGPT</a>
 - <a href="https://github.com/Azure/PyRIT" target="_blank">Azure Pyrit</a>
-- <a href="https://gandalf.lakera.ai/baseline" target="_blank">Gandalf game</a>
 - <a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank">Awesome LLM</a>
-- <a href="https://gandalf.lakera.ai/intro" target="_blank">Gandalf AI</a>
+- <a href="https://gandalf.lakera.ai/baseline" target="_blank">Gandalf game</a>
 - <a href="https://promptairlines.com/" target="_blank">promptairlines</a>
 - <a href="https://gpa.43z.one/" target="_blank">GPT Prompt Attack</a>
 - <a href="https://gpt.43z.one/" target="_blank">GTP Game</a>
