@@ -24,6 +24,8 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.credential.net/91d1ae8c-1040-4530-a0dc-fe0352e003e9#gs.heo06q" target="_blank">Certified Red Team Professional (CRTP)</a>
 - <a href="https://aspen.eccouncil.org/VerifyBadge?type=certification&a=2lRukjKr7UUZduuSqj0TbmTVi+5o1PGgbCuiL97m6ug=&trk=public_profile_see-credential" target="_blank">Certified Ethical Hacker (CEH)</a>
 
+## Challenges
+- <a href="https://promptairlines.com/certificate/qeIo9"> target="_blank">AI Security Certificate: Prompt Airlines by WIZ</a>
 
 ### Vulnerability Disclosure Achievements
 
