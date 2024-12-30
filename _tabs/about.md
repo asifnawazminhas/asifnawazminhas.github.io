@@ -41,7 +41,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.who.int/about/cybersecurity/vulnerability-hall-of-fame/ethical-hacker-list" target="_blank">Hall of Fame WHO: World Health Organization [2024]</a>
 - <a href="https://www.unesco.org/en/vulnerability-disclosure" target="_blank">Hall of Fame Unesco [2024]</a>
 - <a href="https://www.uwv.nl/en/about-this-site/vulnerability-disclosure-policy/hall-of-fame" target="_blank">Hall of Fame UWV [2024]</a>
-- <a href="https://www.cricket.com.au/vulnerability-disclosure-program/" target="_blank">Vulnerability Disclosure Program | cricket.com.au [2024]</a>
+- <a href="https://www.cricket.com.au/vulnerability-disclosure-program/" target="_blank">Acknowledgement | cricket.com.au [2024]</a>
 
 - I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
 - Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
