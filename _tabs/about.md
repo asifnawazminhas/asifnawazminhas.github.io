@@ -42,6 +42,8 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.unesco.org/en/vulnerability-disclosure" target="_blank">Hall of Fame Unesco [2024]</a>
 - <a href="https://www.uwv.nl/en/about-this-site/vulnerability-disclosure-policy/hall-of-fame" target="_blank">Hall of Fame UWV [2024]</a>
 - <a href="https://www.cricket.com.au/vulnerability-disclosure-program/" target="_blank">Acknowledgement | cricket.com.au [2024]</a>
+- <a href="https://www.dela.nl/over-dela/over-cooperatie-dela/governance/responsible-disclosure/hall-of-fame" target="_blank">Hall of Fame - Responsible Disclosure Dela [2024]</a>
+
 
 - I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
 - Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
