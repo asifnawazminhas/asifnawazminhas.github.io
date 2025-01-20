@@ -38,6 +38,7 @@ Here are some highly recommended tools and resources for various cybersecurity, 
 - <a href="https://owasp.org/" target="_blank">OWASP</a>
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>
 - <a href="https://book.jorianwoltjer.com/" target="_blank">Practical CTF by Jorian Woltjer</a>
+- <a href="https://notes.incendium.rocks/pentesting-notes"> target="_blank">Pentesting Notes by Remco van der meer</a>
 - <a href="https://book.hacktricks.xyz/" target="_blank">Hacktricks</a>
 - <a href="https://www.thehacker.recipes/" target="_blank">The hacker recipes</a>
 
