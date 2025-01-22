@@ -1,8 +1,8 @@
 ---
 title: "Upgrading an Autocomplete TTY Shell on Linux and Windows: A Guide for Pentesters"
 date: 2024-11-06 10:10:00 +0700
-categories: [Other]
-tags: [Other, tty-shell, autocomplete]
+categories: [Cheatsheets]
+tags: [Cheatsheets, tty-shell, autocomplete]
 pin: false
 ---
 
