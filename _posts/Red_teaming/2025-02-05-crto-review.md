@@ -113,7 +113,8 @@ The **CRTO course** is one of the best ways to gain **practical experience** in 
 
 <div class="badgr-badge" style="font-family: Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif;">
     <a href="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg">
-        <img width="120px" height="120px" src="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg/image">
+        <img width="120px" height="120px" src="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg/image" 
+             alt="CRTO Badge - Red Team Operator">
     </a>
     <p class="badgr-badge-name" style="font-size: 16px; font-weight: 600; text-align: left; color: #05012c;">
         Red Team Operator
