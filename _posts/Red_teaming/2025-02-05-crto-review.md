@@ -75,6 +75,12 @@ You have **lifetime access** to the lab environment, hosted on the <a href="http
 The interface is well-structured, making it **smooth and intuitive** to navigate between modules.
 The labs are hosted on **SnapLabs** and accessed via **Guacamole** in your web browser. I would recommended to use the **Google Chrome** browser, as it is likely to provide a **smoother experience** than other browsers.
 
+## Exam Format: CTF-Style Challenge
+
+One aspect of the **CRTO exam** that I really liked is its **CTF-style format**. The exam consists of **8 flags**, and you need to capture **at least 6** to pass. Each flag represents a critical step in the attack chain, such as **initial access, lateral movement, privilege escalation, or data exfiltration**.
+
+Once you obtain a flag, you submit it in the **exam portal**, and your progress is instantly updated, this looks great! **No report writing, no documentation, needed to do, just pure technical execution.** If you collect **6 or more flags by the end of the exam**, you will pass. It's a **straightforward, hands-on, and practical approach** that focuses purely on **offensive security skills**.
+
 The **course material starts off strong**, simulating a **full Red Team engagement** with **Defender both enabled and disabled**. **RastaMouse** has written the material **very concisely and relevantly**, ensuring it remains **practical and effective** for learners.
 
 ## Key Topics
