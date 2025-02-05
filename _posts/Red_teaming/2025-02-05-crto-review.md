@@ -15,7 +15,7 @@ pin: false
 
 ## Overview
 <span style="color:#00FF00;">➡️</span>
-I've earned the [CRTO badge](https://eu.badgr.com/public/assertions/p2xxJx0DQU2ffXblBNslLg) from [Zero-Point Security](https://www.zeropointsecurity.co.uk/).
+I've earned the <a href="https://eu.badgr.com/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">CRTO badge</a> from <a href="https://www.zeropointsecurity.co.uk/" target="_blank">Zero-Point Security</a>.
 To pass the exam, one needs to compromise at least 6 out of 8 machines, in 48 hours which you can split in a four days window. 
 What I really liked about this course is that it has a good mix of explainations and doing hands on exercises in the snaplabs environment.
 
@@ -28,7 +28,10 @@ The **Certified Red Team Operator** certification is an **advanced course in off
 
 ## Simulation real world attacks
 
-> The course teaches [tactics](https://attack.mitre.org/tactics/enterprise/), [techniques](https://attack.mitre.org/techniques/enterprise/), and [procedures (TTPs)](https://attack.mitre.org/groups/) to **simulate real-world threats**, allowing security teams to test and enhance their detection and response capabilities while strengthening an organisation's overall security posture.
+> The course teaches <a href="https://attack.mitre.org/tactics/enterprise/" target="_blank">tactics</a>, 
+<a href="https://attack.mitre.org/techniques/enterprise/" target="_blank">techniques</a>, and 
+<a href="https://attack.mitre.org/groups/" target="_blank">procedures (TTPs)</a> to **simulate real-world threats**, 
+allowing security teams to test and enhance their detection and response capabilities while strengthening an organisation's overall security posture.
 
 
 ## Understanding TTPs (Tactics, Techniques, and Procedures)
@@ -68,7 +71,7 @@ By understanding **TTPs**, defenders can **better anticipate, detect, and respon
 
 ## Lab Environment
 
-You have **lifetime access** to the lab environment, hosted on the [Thinkific](https://www.thinkific.com/) platform.  
+You have **lifetime access** to the lab environment, hosted on the <a href="https://www.thinkific.com/" target="_blank">Thinkific</a> platform.
 The interface is well-structured, making it **smooth and intuitive** to navigate between modules.
 The labs are hosted on **SnapLabs** and accessed via **Guacamole** in your web browser. I would recommended to use the **Google Chrome** browser, as it is likely to provide a **smoother experience** than other browsers.
 
@@ -103,7 +106,7 @@ The **course material starts off strong**, simulating a **full Red Team engageme
 A **strong approach** to the course is to **completely read through each section** and **create notes** as needed. The content is structured **logically** and designed to be **absorbed progressively**. This is also what I've done and would recommend to do.
 
 ## Additional Topics
-Other important topics such as **host persistence**, **domain reconnaissance**, and **Active Directory enumeration** are covered in detail in the **full curriculum**. For a complete breakdown of the course structure, visit: [CRTO Course Page](https://training.zeropointsecurity.co.uk/courses/red-team-ops)
+Other important topics such as **host persistence**, **domain reconnaissance**, and **Active Directory enumeration** are covered in detail in the **full curriculum**. For a complete breakdown of the course structure, visit: <a href="https://training.zeropointsecurity.co.uk/courses/red-team-ops" target="_blank">CRTO Course Page</a>
 
 ## Final Thoughts
 
@@ -111,27 +114,28 @@ The **CRTO course** is one of the best ways to gain **practical experience** in 
 
 🚀 **Highly recommended for anyone looking to advance their Red Teaming skills!**
 
-<div class="badgr-badge" style="font-family: Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif;">
-    <a href="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg">
+<div class="badgr-badge" style="font-family: Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">
+    <a href="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">
         <img width="120px" height="120px" src="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg/image" 
-             alt="CRTO Badge - Red Team Operator">
+             alt="CRTO Badge - Red Team Operator" style="display: block; margin: 0 auto;">
     </a>
-    <p class="badgr-badge-name" style="font-size: 16px; font-weight: 600; text-align: left; color: #05012c;">
+    <p class="badgr-badge-name" style="font-size: 16px; font-weight: 600; text-align: center; color: #333;">
         Red Team Operator
     </p>
-    <p class="badgr-badge-date" style="font-size: 12px; text-align: left; color: #555555;">
-        <strong style="color: #000;">Awarded: </strong>5 Feb 2025
+    <p class="badgr-badge-date" style="font-size: 12px; text-align: center; color: #444;">
+        <strong style="color: #222;">Awarded:</strong> 5 Feb 2025
     </p>
-    <p class="badgr-badge-recipient" style="font-size: 12px; text-align: left; color: #555555;">
-        <strong style="color: #000;">Awarded To: </strong> <span>Asif Nawaz Minhas</span>
+    <p class="badgr-badge-recipient" style="font-size: 12px; text-align: center; color: #444;">
+        <strong style="color: #222;">Awarded To:</strong> <span>Asif Nawaz Minhas</span>
     </p>
-    <p style="margin: 16px 0; padding: 0;">
+    <p style="margin: 16px 0; padding: 0; text-align: center;">
         <a class="badgr-badge-verify" target="_blank" 
            href="https://badgecheck.io?url=https%3A%2F%2Fapi.eu.badgr.io%2Fpublic%2Fassertions%2Fp2xxJx0DQU2ffXblBNslLg" 
-           style="font-size:14px; font-weight: bold; border: solid 1px black; text-decoration: none; 
-                  padding: 6px 16px; color: black;">
+           style="font-size:14px; font-weight: bold; border: solid 1px #333; text-decoration: none; 
+                  padding: 6px 16px; color: #222; background-color: #ddd; border-radius: 4px;">
             VERIFY
         </a>
     </p>
 </div>
 <script async="async" src="https://eu.badgr.com/assets/widgets.bundle.js"></script>
+
