@@ -1,7 +1,7 @@
 ---
 title: "CRTO review (Certified Red Team Operator)"
 date: 2025-02-05 10:10:00 +0700
-categories: [Red-Teaming]
+categories: [Red-teaming]
 tags: [TTP, adversary simulation, red-team, Cobalt Strike]
 pin: false
 ---
