@@ -15,7 +15,7 @@ pin: false
 
 ## Overview
 <span style="color:#00FF00;">➡️</span>
-I've earned the <a href="https://eu.badgr.com/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">CRTO badge</a> from <a href="https://www.zeropointsecurity.co.uk/" target="_blank">Zero-Point Security</a>.
+I've earned the <a href="https://eu.badgr.com/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">CRTO badge</a> from <a href="https://training.zeropointsecurity.co.uk/" target="_blank">Zero-Point Security</a>.
 What I really liked about this course is that it has a good mix of explainations and doing hands on exercises in the snaplabs environment.
 
 The **Certified Red Team Operator** certification is an **advanced course in offensive security**, focusing primarily on the use of **Cobalt Strike**, one of the main trade tools. The **course, exam, and all aspects of Zero Point Security are overseen by RastaMouse**.
