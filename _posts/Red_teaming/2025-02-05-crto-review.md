@@ -6,6 +6,8 @@ tags: [TTP, adversary simulation, red-team, Cobalt Strike]
 pin: false
 image:
   path: /assets/img/crto1.png
+  width: 800
+  height: 500
   alt: CRTO
 ---
 
