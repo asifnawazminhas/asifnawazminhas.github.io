@@ -143,3 +143,16 @@ The **CRTO course** is one of the best ways to gain **practical experience** in 
 </div>
 <script async="async" src="https://eu.badgr.com/assets/widgets.bundle.js"></script>
 
+## Useful resources
+
+- [Community Kit](https://cobalt-strike.github.io/community_kit/){:target="_blank"}
+- [Red Team Notes 2.0](https://dmcxblue.gitbook.io/red-team-notes-2-0){:target="_blank"}
+- [A Simple Guide to Successful Red Teaming](https://www.cobaltstrike.com/resources/guides/a-simple-guide-to-successful-red-teaming){:target="_blank"}
+- [Offensive Security Cheat Sheets](https://www.ired.team/offensive-security-experiments/offensive-security-cheetsheets){:target="_blank"}
+- [Cobalt Strike Kits References](https://swisskyrepo.github.io/InternalAllTheThings/command-control/cobalt-strike-kits/#references){:target="_blank"}
+- [The C2 Matrix](https://ask.thec2matrix.com/){:target="_blank"}
+- [Red Team Guide](https://redteam.guide/docs/definitions/){:target="_blank"}
+- [Red Team Wiki - C2](https://redteam.wiki/en/misc/c2){:target="_blank"}
+- [ART Toolkit](https://arttoolkit.github.io/){:target="_blank"}
+- [Atomic Red Team](https://www.atomicredteam.io/atomic-red-team){:target="_blank"}
+- [Red Team Certifications - Notes & Cheat Sheets](https://github.com/0xn1k5/Red-Teaming/blob/main/Red%20Team%20Certifications%20-%20Notes%20%26%20Cheat%20Sheets/CRTO%20-%20Notes%20%26%20Cheat%20Sheet.md){:target="_blank"}
