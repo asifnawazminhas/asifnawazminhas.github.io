@@ -4,11 +4,6 @@ date: 2025-02-05 10:10:00 +0700
 categories: [Red-teaming]
 tags: [TTP, adversary simulation, red-team, Cobalt Strike]
 pin: false
-image:
-  path: /assets/img/crto1.png
-  width: 800
-  height: 500
-  alt: CRTO
 ---
 
 ![Red Team Operations](assets/img/red_team_ops.png)
