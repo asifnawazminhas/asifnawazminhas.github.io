@@ -16,7 +16,6 @@ pin: false
 ## Overview
 <span style="color:#00FF00;">➡️</span>
 I've earned the <a href="https://eu.badgr.com/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">CRTO badge</a> from <a href="https://www.zeropointsecurity.co.uk/" target="_blank">Zero-Point Security</a>.
-To pass the exam, one needs to compromise at least 6 out of 8 machines, in 48 hours which you can split in a four days window. 
 What I really liked about this course is that it has a good mix of explainations and doing hands on exercises in the snaplabs environment.
 
 The **Certified Red Team Operator** certification is an **advanced course in offensive security**, focusing primarily on the use of **Cobalt Strike**, one of the main trade tools. The **course, exam, and all aspects of Zero Point Security are overseen by RastaMouse**.
@@ -32,7 +31,6 @@ The **Certified Red Team Operator** certification is an **advanced course in off
 <a href="https://attack.mitre.org/techniques/enterprise/" target="_blank">techniques</a>, and 
 <a href="https://attack.mitre.org/groups/" target="_blank">procedures (TTPs)</a> to **simulate real-world threats**, 
 allowing security teams to test and enhance their detection and response capabilities while strengthening an organisation's overall security posture.
-
 
 ## Understanding TTPs (Tactics, Techniques, and Procedures)
 
