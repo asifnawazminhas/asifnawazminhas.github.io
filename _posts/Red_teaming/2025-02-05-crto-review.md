@@ -109,4 +109,29 @@ By understanding **TTPs**, defenders can **better anticipate, detect, and respon
 
 ---
 🚀 **CRTO is one of the best practical Red Teaming certifications out there—highly recommended!**  
+
+<div class="badgr-badge" style="font-family: Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">
+    <a href="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">
+        <img width="120px" height="120px" src="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg/image" 
+             alt="CRTO Badge - Red Team Operator" style="display: block; margin: 0 auto;">
+    </a>
+    <p class="badgr-badge-name" style="font-size: 16px; font-weight: 600; text-align: center; color: #333;">
+        Red Team Operator
+    </p>
+    <p class="badgr-badge-date" style="font-size: 12px; text-align: center; color: #444;">
+        <strong style="color: #222;">Awarded:</strong> 5 Feb 2025
+    </p>
+    <p class="badgr-badge-recipient" style="font-size: 12px; text-align: center; color: #444;">
+        <strong style="color: #222;">Awarded To:</strong> <span>Asif Nawaz Minhas</span>
+    </p>
+    <p style="margin: 16px 0; padding: 0; text-align: center;">
+        <a class="badgr-badge-verify" target="_blank" 
+           href="https://badgecheck.io?url=https%3A%2F%2Fapi.eu.badgr.io%2Fpublic%2Fassertions%2Fp2xxJx0DQU2ffXblBNslLg" 
+           style="font-size:14px; font-weight: bold; border: solid 1px #333; text-decoration: none; 
+                  padding: 6px 16px; color: #222; background-color: #ddd; border-radius: 4px;">
+            VERIFY
+        </a>
+    </p>
+</div>
+<script async="async" src="https://eu.badgr.com/assets/widgets.bundle.js"></script>
  
