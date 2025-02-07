@@ -91,6 +91,8 @@ Procedures are often **unique to an attacker or campaign** and provide the most 
 
 By understanding **TTPs**, defenders can **better anticipate, detect, and respond** to attacks, strengthening overall security posture.
 
+🔹 **For those who want to dive deeper into Red Teaming, here are some additional resources:**  
+
 ## Useful resources
 
 - [Community Kit](https://cobalt-strike.github.io/community_kit/){:target="_blank"}
