@@ -16,21 +16,45 @@ pin: false
 ## Overview
 <span style="color:#00FF00;">➡️</span>
 I've earned the <a href="https://eu.badgr.com/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">CRTO badge</a> from <a href="https://training.zeropointsecurity.co.uk/" target="_blank">Zero-Point Security</a>.
-What I really liked about this course is that it has a good mix of explainations and doing hands on exercises in the snaplabs environment.
+What I really liked about this course is that it has a good mix of explanations and hands-on exercises in the SnapLabs environment.
 
 The **Certified Red Team Operator** certification is an **advanced course in offensive security**, focusing primarily on the use of **Cobalt Strike**, one of the main trade tools. The **course, exam, and all aspects of Zero Point Security are overseen by RastaMouse**.
 
-## Key takeawasy from the course
+## Key Takeaways from the Course
 ✅ **Highly Recommended** – Covers essential Red Team concepts.  
 ✅ **Hands-on Experience** – Work with **Cobalt Strike C2** in a fully functional lab.  
 ✅ **Lifetime Access** – Get free course updates and revisit materials anytime.  
 
-## Simulation real world attacks
+## What I Really Liked About CRTO  
+
+One of the best parts of this course was the deep hands-on experience with **Cobalt Strike and Red Teaming methodologies**. Here’s what stood out:  
+
+- **Hands-on Experience with Cobalt Strike C2** – Practical exercises covering **beacon management, payload staging, and real-world attack simulation**.  
+- **Working with Artifacts in Cobalt Strike** – Customizing **artifact kits** to improve **payload OPSEC and evasion**.  
+- **Building a Custom C2 Profile** – Crafting a **Malleable C2 profile** and learning how adversaries **mimic legitimate traffic**.  
+- **Bypassing Windows Defender** – Learning the **methodology** of systematically bypassing **Windows Defender.**.  
+- **Understanding Red Teaming Configurations** – Gaining insight into **Cobalt Strike infrastructure, OPSEC configurations, and stealth techniques**.  
+- **No Flag Submission Needed** – The exam is **purely technical**, and if you capture **at least 6 flags**, you **pass automatically**—**no need to submit a report!**  
+- **Get Your Digital Certificate** – Once you pass, **create an account on [Badgr](https://eu.badgr.com/){:target="_blank"} with the same email address you registered at [training.zeropointsecurity.co.uk](https://training.zeropointsecurity.co.uk/){:target="_blank"} to claim your digital certificate**.  
+
+
+---
+
+## Simulation of Real-World Attacks
 
 > The course teaches <a href="https://attack.mitre.org/tactics/enterprise/" target="_blank">tactics</a>, 
 <a href="https://attack.mitre.org/techniques/enterprise/" target="_blank">techniques</a>, and 
 <a href="https://attack.mitre.org/groups/" target="_blank">procedures (TTPs)</a> to **simulate real-world threats**, 
 allowing security teams to test and enhance their detection and response capabilities while strengthening an organisation's overall security posture.
+
+## Who Should Take CRTO?  
+
+This course is **ideal for professionals looking to gain practical Red Teaming experience**, especially with **Cobalt Strike**.
+
+✅ **Penetration Testers** who want to transition into **Red Teaming**.  
+✅ **Security Analysts & SOC Teams** who want to understand **real-world adversary techniques**.  
+✅ **Aspiring Red Teamers** who want to master **Cobalt Strike, OPSEC, and evasion**.  
+✅ **Defensive Security Professionals** who want insight into **how attackers bypass security controls**.  
 
 ## Understanding TTPs (Tactics, Techniques, and Procedures)
 
@@ -67,82 +91,6 @@ Procedures are often **unique to an attacker or campaign** and provide the most 
 
 By understanding **TTPs**, defenders can **better anticipate, detect, and respond** to attacks, strengthening overall security posture.
 
-## Lab Environment
-
-You have **lifetime access** to the lab environment, hosted on the <a href="https://www.thinkific.com/" target="_blank">Thinkific</a> platform.
-The interface is well-structured, making it **smooth and intuitive** to navigate between modules.
-The labs are hosted on **SnapLabs** and accessed via **Guacamole** in your web browser. I would recommended to use the **Google Chrome** browser, as it is likely to provide a **smoother experience** than other browsers.
-
-## Exam Format: CTF-Style Challenge
-
-One aspect of the **CRTO exam** that I really liked is its **CTF-style format**. The exam consists of **8 flags**, and you need to capture **at least 6** to pass. Each flag represents a critical step in the attack chain, such as **initial access, lateral movement, privilege escalation, or data exfiltration**.
-
-Once you obtain a flag, you submit it in the **exam portal**, and your progress is instantly updated, this looks great! **No report writing, no documentation, needed to do, just pure technical execution.** If you collect **6 or more flags by the end of the exam**, you will pass. It's a **straightforward, hands-on, and practical approach** that focuses purely on **offensive security skills**.
-
-The **course material starts off strong**, simulating a **full Red Team engagement** with **Defender both enabled and disabled**. **RastaMouse** has written the material **very concisely and relevantly**, ensuring it remains **practical and effective** for learners.
-
-## Key Topics
-
-### 1️⃣ Command & Control (C2)
-- Setting up and managing **Cobalt Strike**.
-- Generating **payloads** and establishing **beacon communication**.
-- Understanding **OPSEC considerations** to maintain stealth.
-
-### 2️⃣ Privilege Escalation & Credential Theft
-- Exploiting **Windows services** for **privilege escalation**.
-- **Bypassing UAC** to gain higher privileges.
-- Extracting credentials using **Mimikatz**, NTLM hashes, and Kerberos tickets.
-
-### 3️⃣ Bypassing Defenses & OPSEC
-- **Evading Windows Defender, AppLocker, and AMSI**.
-- Understanding **common detection techniques** and how to **stay under the radar**.
-
-### 4️⃣ Lateral Movement & User Impersonation
-- Moving laterally within a network using **PsExec, WMI, and WinRM**.
-- Using **Pass-the-Hash (PtH), Pass-the-Ticket (PtT)**, and **Kerberos ticket impersonation**.
-
-### 5️⃣ Post-Exploitation & Data Exfiltration
-- **Gathering sensitive data** while maintaining stealth.
-- Techniques for **exfiltrating data** without triggering alarms.
-
-## Strategy for Success
-
-A **strong approach** to the course is to **completely read through each section** and **create notes** as needed. The content is structured **logically** and designed to be **absorbed progressively**. This is also what I've done and would recommend to do.
-
-## Additional Topics
-Other important topics such as **host persistence**, **domain reconnaissance**, and **Active Directory enumeration** are covered in detail in the **full curriculum**. For a complete breakdown of the course structure, visit: <a href="https://training.zeropointsecurity.co.uk/courses/red-team-ops" target="_blank">CRTO Course Page</a>
-
-## Final Thoughts
-
-The **CRTO course** is one of the best ways to gain **practical experience** in **Active Directory exploitation and adversary simulation**. It provides a **structured approach** to **Red Team operations** and helps refine **stealth tactics** used in real-world engagements.
-
-🚀 **Highly recommended for anyone looking to advance their Red Teaming skills!**
-
-<div class="badgr-badge" style="font-family: Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">
-    <a href="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">
-        <img width="120px" height="120px" src="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg/image" 
-             alt="CRTO Badge - Red Team Operator" style="display: block; margin: 0 auto;">
-    </a>
-    <p class="badgr-badge-name" style="font-size: 16px; font-weight: 600; text-align: center; color: #333;">
-        Red Team Operator
-    </p>
-    <p class="badgr-badge-date" style="font-size: 12px; text-align: center; color: #444;">
-        <strong style="color: #222;">Awarded:</strong> 5 Feb 2025
-    </p>
-    <p class="badgr-badge-recipient" style="font-size: 12px; text-align: center; color: #444;">
-        <strong style="color: #222;">Awarded To:</strong> <span>Asif Nawaz Minhas</span>
-    </p>
-    <p style="margin: 16px 0; padding: 0; text-align: center;">
-        <a class="badgr-badge-verify" target="_blank" 
-           href="https://badgecheck.io?url=https%3A%2F%2Fapi.eu.badgr.io%2Fpublic%2Fassertions%2Fp2xxJx0DQU2ffXblBNslLg" 
-           style="font-size:14px; font-weight: bold; border: solid 1px #333; text-decoration: none; 
-                  padding: 6px 16px; color: #222; background-color: #ddd; border-radius: 4px;">
-            VERIFY
-        </a>
-    </p>
-</div>
-<script async="async" src="https://eu.badgr.com/assets/widgets.bundle.js"></script>
-
 ## Useful resources
 
 - [Community Kit](https://cobalt-strike.github.io/community_kit/){:target="_blank"}
@@ -156,3 +104,8 @@ The **CRTO course** is one of the best ways to gain **practical experience** in 
 - [ART Toolkit](https://arttoolkit.github.io/){:target="_blank"}
 - [Atomic Red Team](https://www.atomicredteam.io/atomic-red-team){:target="_blank"}
 - [Red Team Certifications - Notes & Cheat Sheets](https://github.com/0xn1k5/Red-Teaming/blob/main/Red%20Team%20Certifications%20-%20Notes%20%26%20Cheat%20Sheets/CRTO%20-%20Notes%20%26%20Cheat%20Sheet.md){:target="_blank"}
+
+---
+🚀 **CRTO is one of the best practical Red Teaming certifications out there—highly recommended!**  
+
+Let me know if you need any **more refinements** or additions! 🚀🔥  
