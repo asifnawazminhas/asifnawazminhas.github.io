@@ -32,9 +32,9 @@ One of the best parts of this course was the deep hands-on experience with **Cob
 - **Hands-on Experience with Cobalt Strike C2** – Practical exercises covering **beacon management, payload staging, and real-world attack simulation**.  
 - **Working with Artifacts in Cobalt Strike** – Customizing **artifact kits** to improve **payload OPSEC and evasion**.  
 - **Building a Custom C2 Profile** – Crafting a **Malleable C2 profile** and learning how adversaries **mimic legitimate traffic**.  
-- **Bypassing Windows Defender** – Learning the **methodology** of systematically bypassing **Windows Defender.**.  
+- **Bypassing Windows Defender** – Learning the **methodology** of systematically bypassing **Windows Defender**.  
 - **Understanding Red Teaming Configurations** – Gaining insight into **Cobalt Strike infrastructure, OPSEC configurations, and stealth techniques**.  
-- **No Flag Submission Needed** – The exam is **purely technical**, and if you capture **at least 6 flags**, you **pass automatically**—**no need to submit a report!**  
+- **No Report Submission Needed** – The exam is **purely technical**, and if you capture **at least 6 flags**, you **pass automatically**—**no need to submit a report!** However, flag submission is required to pass.
 - **Get Your Digital Certificate** – Once you pass, **create an account on [Badgr](https://eu.badgr.com/){:target="_blank"} with the same email address you registered at [training.zeropointsecurity.co.uk](https://training.zeropointsecurity.co.uk/){:target="_blank"} to claim your digital certificate**.  
 
 
