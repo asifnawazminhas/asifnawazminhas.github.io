@@ -1,6 +1,6 @@
 ---
 title: OWASP GenAI Red Teaming Guide
-date: 2024-02-24 10:10:00 +0700
+date: 2025-02-24 10:10:00 +0700
 categories: [Red-teaming, AI]
 tags: [AI Security, Adversarial Testing, Risk Assessment, Ethical Hacking]
 pin: false
