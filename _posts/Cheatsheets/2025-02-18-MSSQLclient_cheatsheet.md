@@ -21,7 +21,7 @@ All credits for the initial implementation go to **Alamot**. This script is a mo
 ---
 
 ## MSSQL Shell Script
-```python3
+```python
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
