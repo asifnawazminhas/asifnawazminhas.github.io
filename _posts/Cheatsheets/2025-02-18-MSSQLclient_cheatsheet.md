@@ -9,7 +9,8 @@ pin: false
 # MSSQL Shell Script
 
 ## Acknowledgments
-This script is based on the original work by **[Alamot](https://alamot.github.io/mssql_shell/)**. The original script was modified to:
+This script is based on the original work by **[Alamot](https://alamot.github.io/mssql_shell/){:target="_blank"}**
+. The original script was modified to:
 - Fix compatibility issues related to `base64.encodestring` (which was removed in Python 3.9).
 - Add **tab completion** for commands, file paths, and directory navigation.
 - Enhance **usability** and **command history** using `readline`.
@@ -199,14 +200,15 @@ RECONFIGURE;
 EXEC sp_configure 'xp_cmdshell',1;
 RECONFIGURE;
 ```
-**Credit:** [Alamot](https://alamot.github.io/mssql_shell/)
+**Credit:** **[Alamot](https://alamot.github.io/mssql_shell/){:target="_blank"}**
 
 ### **File Upload & Execution**
 ```shell
 UPLOAD PowerUp.ps1 C:\Users\Public\PowerUp.ps1
 powershell -command "& { . .\PowerUp.ps1; Invoke-AllChecks | Out-File -Encoding ASCII powerup_output.txt }"
 ```
-**Credit:** [Alamot](https://alamot.github.io/mssql_shell/)
+**Credit:** **[Alamot](https://alamot.github.io/mssql_shell/){:target="_blank"}**
+
 
 ### **MSSQLClient Cheatsheet**
 Connect to MSSQL server:
