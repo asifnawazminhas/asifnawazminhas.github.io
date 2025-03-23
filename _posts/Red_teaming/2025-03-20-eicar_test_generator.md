@@ -6,7 +6,7 @@ tags: [EICAR, antivirus, security-testing, malware-simulation]
 pin: false
 ---
 
-# 🛡️ Generating 68 KB EICAR Test Files in Multiple Formats
+# Generating 68 KB EICAR Test Files in Multiple Formats
 
 The **EICAR test file** is a standardized file used to test antivirus detection without using actual malware. This repository provides a script to generate **EICAR test files** of exactly **68 KB** in various formats, including **TXT, PDF, XLS/XLSX, and ZIP**.
 
