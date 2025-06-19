@@ -307,7 +307,7 @@ MSSQL       10.10.11.51     1433   DC01             sequel\sql_svc
 This confirmed that I had command execution as the sql_svc service account 
 ```
 
-```sql
+```bash
 
 Reverse Shell via xp_cmdshell and HoaxShell
 
