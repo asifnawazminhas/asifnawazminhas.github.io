@@ -312,7 +312,7 @@ This confirmed that I had command execution as the sql_svc service account
 
 Reverse Shell via xp_cmdshell and HoaxShell
 
-With xp_cmdshell enabled on the SQL Server, I used <a href="https://github.com/t3l3machus/hoaxshell" target="_blank">HoaxShell</a> to establish a stable reverse shell.
+With xp_cmdshell enabled on the SQL Server, I used [HoaxShell](https://github.com/t3l3machus/hoaxshell){:target="_blank"} to establish a stable reverse shell.
 
 Step 1: Start the HoaxShell Listener
 
