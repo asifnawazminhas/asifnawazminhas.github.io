@@ -9,7 +9,8 @@ pin: false
 
 # Assumed Breach to Domain Admin – HTB EscapeTwo Walkthrough
 
-This post demonstrates a full-path Active Directory compromise using initial credentials, misconfigured services, and post-exploitation techniques. Based on the retired [HTB EscapeTwo](https://app.hackthebox.com/machines/EscapeTwo) machine.
+This post demonstrates a full-path Active Directory compromise using initial credentials, misconfigured services, and post-exploitation techniques. 
+Based on the retired [HTB EscapeTwo](https://app.hackthebox.com/machines/EscapeTwo){:target="_blank"} machine.
 
 ## Adversary Tradecraft Timeline
 
