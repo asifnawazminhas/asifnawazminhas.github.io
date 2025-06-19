@@ -308,11 +308,11 @@ MSSQL       10.10.11.51     1433   DC01             sequel\sql_svc
 This confirmed that I had command execution as the sql_svc service account 
 ```
 
-```bash
+```markdown
 
 Reverse Shell via xp_cmdshell and HoaxShell
 
-With xp_cmdshell enabled on the SQL Server, I used [HoaxShell](https://github.com/t3l3machus/hoaxshell){:target="_blank"} to establish a stable reverse shell.
+With xp_cmdshell enabled on the SQL Server, I used <a href="https://github.com/t3l3machus/hoaxshell" target="_blank">HoaxShell</a> to establish a stable reverse shell.
 
 Step 1: Start the HoaxShell Listener
 
