@@ -1,7 +1,7 @@
 ---
 title: "Mark of the Web Bypass - Red Team Tactics"
 date: 2025-06-25 18:30:00 +0200
-categories: [Payload-Delivery]
+categories: [Red_teaming]
 tags: [Red Teaming, MOTW, Phishing, ISO, SmartScreen, Detection Evasion, T1553.005]
 toc: true
 pin: false
