@@ -1,8 +1,10 @@
 ---
 title: "Subdomain takeover: A deep dive into a common but overlooked cloud vulnerability"
-date: 2025-07-01
-author: "Asif Nawaz Minhas"
+date: 2025-07-01 10:10:00 +0700
+categories: [Red-teaming]
 tags: [subdomain takeover, red teaming, DNS, CNAME, cloud security, offensive security]
+author: "Asif Nawaz Minhas"
+pin: false
 ---
 
 > ⚠️ **Disclaimer**  
@@ -35,7 +37,9 @@ and essentially hijacking the namespace under a trusted parent domain.
 - A subdomain has a `CNAME` record pointing to `orphaned-service.cloudprovider.com`
 - The target (`orphaned-service`) is unclaimed or deleted
 - The `CNAME` still exists and resolves
-- Attacker claims the orphaned service and serves content from the subdomain
+- The attacker registers and takes control of the unclaimed service, then uses the subdomain to serve their content.
+
+![Subdomain Takeover Example](assets/img/subdomain%20takeover%20image.png)
 
 ---
 
