@@ -3,7 +3,6 @@ title: "Subdomain takeover: A deep dive into a common but overlooked cloud vulne
 date: 2025-07-01 10:10:00 +0700
 categories: [Red-teaming]
 tags: [subdomain takeover, red teaming, DNS, CNAME, cloud security, offensive security]
-author: "Asif Nawaz Minhas"
 pin: false
 ---
 
