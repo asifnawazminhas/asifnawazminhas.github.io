@@ -108,7 +108,7 @@ By understanding **TTPs**, defenders can **better anticipate, detect, and respon
 - [Red Team Certifications - Notes & Cheat Sheets](https://github.com/0xn1k5/Red-Teaming/blob/main/Red%20Team%20Certifications%20-%20Notes%20%26%20Cheat%20Sheets/CRTO%20-%20Notes%20%26%20Cheat%20Sheet.md){:target="_blank"}
 
 ---
-🚀 **CRTO is one of the best practical Red Teaming certifications out there—highly recommended!**  
+**CRTO is one of the best practical Red Teaming certifications out there—highly recommended!**  
 
 <div class="badgr-badge" style="font-family: Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif; background-color: #f0f0f0; padding: 10px; border-radius: 8px;">
     <a href="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">
