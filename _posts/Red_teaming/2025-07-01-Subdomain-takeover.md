@@ -18,7 +18,7 @@ solely for **authorized red teaming, penetration testing**, and **responsible di
 A **subdomain takeover** occurs when a subdomain (like `staging.example.com`) points via DNS to a service 
 that has **not been claimed** or was **deleted but not cleaned up** in DNS.
 
-A subdomain takeover occurs when it points to an external service that no longer exists. This allows an attacker to re-register and control it. 
+This allows an attacker to **re-register the missing service** and gain control over the subdomain.
 This is common with cloud providers such as Azure, AWS, etc.
 
 ## Why subdomain takeover matters in red teaming and beyond
@@ -94,7 +94,23 @@ If you see:
 ;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 12345
 ```
 
+
 That means the CNAME target **does not exist**, a key indicator that this is a dangling record.
+
+## ## How to confirm via Azure Portal
+
+To confirm if a dangling Azure subdomain is available, go to  
+<a href="https://portal.azure.com" target="_blank">https://portal.azure.com</a> and log in with your credentials. 
+
+In the case of `.azurewebsites.net`, you can try creating a new **Web App** with the exact name of the unclaimed subdomain.  
+If it's available, Azure will show a **green checkmark** confirming that the subdomain can be registered — meaning it's vulnerable to takeover.
+
+![Azure takeover confirmation with green checkmark](assets/img/azure%20takeover%20confirm%20vinkje.png)  
+*Screenshot: Azure Web App creation confirms the dangling subdomain is available to register (`.azurewebsites.net` shows a green checkmark).*
+
+> 💡 **Tip**  
+> To confirm availability manually, try registering the same name in Azure’s Web App interface. A green checkmark means the subdomain is available — and likely vulnerable.
+
 
 ### Optional: Use tools to automate this
 
