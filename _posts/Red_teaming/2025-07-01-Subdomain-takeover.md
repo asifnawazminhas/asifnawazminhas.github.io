@@ -35,9 +35,9 @@ and lack of visibility. That’s why red teamers, bug bounty hunters, and cloud 
 
 **DNS** stands for *Domain Name System*. It translates human readable domain names (like `example.com`) into IP addresses that computers use to identify each other.
 
-In this context, **CNAME records** are a type of DNS record that allow a subdomain to point to another domain name, essentially creating an alias. For example, `blog.example.com` might be a CNAME pointing to `example-blog.hostingplatform.net`.
+In this context, **CNAME records** are a type of DNS record that allow a subdomain to point to another domain name, essentially creating an alias. For example, `blog.example.com` might be a CNAME pointing to `example-blog.azurewebsites.net`.
 
-It becomes a security risk when DNS references (such as CNAME records) persist after the associated cloud service or server is deleted. If the destination (like `example-blog.hostingplatform.net`) no longer exists, an attacker can register that service and take control of the subdomain (`blog.example.com`).
+It becomes a security risk when DNS references (such as CNAME records) persist after the associated cloud service or server is deleted. If the destination (like `example-blog.azurewebsites.net`) no longer exists, an attacker can register that service and take control of the subdomain (`blog.example.com`).
 
 **CNAME** stands for *Canonical Name*. This record can only point to **other domain names**, not directly to **IP addresses**.
 
@@ -48,7 +48,7 @@ This happens because the service provider no longer uses that subdomain, but the
 ### How subdomain takeovers work
 
 - A subdomain has a `CNAME` record pointing to `orphaned-service.cloudprovider.com`
-- The target (`testsubdomaintakeover.azurewebsites.net`) is unclaimed or deleted
+- The target (`example-blog.azurewebsites.net`) is unclaimed
 - The `CNAME` still exists and resolves
 - The attacker registers and takes control of the unclaimed service, then uses the subdomain to serve their content.
 
