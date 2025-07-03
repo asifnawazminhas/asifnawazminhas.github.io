@@ -27,9 +27,9 @@ Execution is blocked, restricted, or prompts the user.
 
 ---
 
-## 📁 MotW Bypass Strategy (Step-by-Step)
+## MotW Bypass Strategy (Step-by-Step)
 
-### ✅ Step 1: Create Your Payload
+### Step 1: Create Your Payload
 
 Prepare any executable or script you want to deliver, commonly `.ps1`, `.vbs`, `.js`, `.bat`, or `.exe`.
 
@@ -39,7 +39,7 @@ echo 'Write-Output "Bypassed MOTW"' > payload.ps1
 
 ---
 
-### ✅ Step 2: Archive the Payload (ZIP)
+### Step 2: Archive the Payload (ZIP)
 
 Compress the payload into a `.zip` or `.7z` archive. This is your delivery container.
 
@@ -51,7 +51,7 @@ MotW is applied to `payload.zip` if downloaded, but **not automatically to extra
 
 ---
 
-### ✅ Step 3: Deliver the Archive
+### Step 3: Deliver the Archive
 
 Send the archive via:
 - Phishing email attachment
@@ -63,7 +63,7 @@ Once received, MotW will be on the **container**, not the **contents** (dependin
 
 ---
 
-### ✅ Step 4: Ensure Extraction Bypasses MotW
+### Step 4: Ensure Extraction Bypasses MotW
 
 Have the user extract the archive with a third-party tool like **7-Zip**.
 
@@ -76,7 +76,7 @@ Have the user extract the archive with a third-party tool like **7-Zip**.
 
 ---
 
-### ✅ Step 5: Execute Payload Without Prompt
+### Step 5: Execute Payload Without Prompt
 
 Once extracted without MotW, the payload (e.g., `payload.ps1`) will execute **without Protected View**, **no SmartScreen warning**, and **no execution block**.
 
@@ -86,7 +86,7 @@ Once extracted without MotW, the payload (e.g., `payload.ps1`) will execute **wi
 
 ---
 
-## 🧪 Full Execution Flow
+## Full Execution Flow
 
 | Phase          | Action                         | Tool/Technique                   |
 |----------------|--------------------------------|----------------------------------|
@@ -98,7 +98,7 @@ Once extracted without MotW, the payload (e.g., `payload.ps1`) will execute **wi
 
 ---
 
-## 🔐 MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 - **Technique**: [T1553.005 – Mark-of-the-Web Bypass](https://attack.mitre.org/techniques/T1553/005/){:target="_blank"}
 - **Tactic**: Defense Evasion
@@ -106,7 +106,7 @@ Once extracted without MotW, the payload (e.g., `payload.ps1`) will execute **wi
 
 ---
 
-## 📦 Filetypes Targeted by MotW
+## Filetypes Targeted by MotW
 
 These file types are either blocked or restricted when tagged with MotW:
 
@@ -126,7 +126,7 @@ Reference: [Red Canary MOTW Report](https://redcanary.com/threat-detection-repor
 
 ---
 
-## 🕵️‍♀️ Blue Team Detection Tips
+## Blue Team Detection Tips
 
 | Technique         | Detection Source                   |
 |------------------|------------------------------------|
@@ -135,13 +135,13 @@ Reference: [Red Canary MOTW Report](https://redcanary.com/threat-detection-repor
 | Zone reads        | Windows Defender/SmartScreen logs  |
 | File execution    | AMSI, Script Block Logging         |
 
-🧩 Additional monitoring:
+Additional monitoring:
 - Uncommon mounting of `.iso` or `.vhd` from downloads
 - Execution of high-risk extensions with no MotW present
 
 ---
 
-## 🧠 Notes and Limitations
+## Notes and Limitations
 
 - **Not all extraction tools behave the same.** Always test `.zip` and `.iso` behavior in your target's environment.
 - **Office macros** may still be blocked unless inside a trusted location.
@@ -149,7 +149,7 @@ Reference: [Red Canary MOTW Report](https://redcanary.com/threat-detection-repor
 
 ---
 
-## ✅ Summary
+## Summary
 
 | Step     | Technique                     |
 |----------|-------------------------------|
