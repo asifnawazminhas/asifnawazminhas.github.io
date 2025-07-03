@@ -6,16 +6,24 @@ tags: [subdomain takeover, red teaming, DNS, CNAME, cloud security, offensive se
 pin: false
 ---
 
-> ⚠️ **Disclaimer**  
-> This blog post is for **educational and ethical hacking purposes only**. The author is **not responsible** for any misuse of the techniques described. 
+> **Disclaimer**  
+> This blog post is for **educational and ethical hacking purposes only**. I am **not responsible** for any misuse of the techniques described. 
 Always seek **explicit permission** before testing domains or infrastructure that you do not own or operate. Any techniques discussed are intended 
 solely for **authorized red teaming, penetration testing**, and **responsible disclosure** efforts.
 
 ---
 
+## What is a subdomain takeover?
+
+A **subdomain takeover** occurs when a subdomain (like `staging.example.com`) points via DNS to a service 
+that has **not been claimed** or was **deleted but not cleaned up** in DNS.
+
+A subdomain takeover occurs when it points to an external service that no longer exists. This allows an attacker to re-register and control it. 
+This is common with cloud providers such as Azure, AWS, etc.
+
 ## Why subdomain takeover matters in red teaming and beyond
 
-In red teaming or offensive security simulations, the goal is to think like an attacker - and attackers love low hanging fruit(s). 
+In red teaming or offensive security simulations, the goal is to think like an attacker - and attackers love low hanging fruit. 
 One such vector is the **subdomain takeover**: it’s **stealthy, high-impact, and surprisingly common**, especially in cloud environments.
 
 Subdomain takeovers often don’t require advanced exploit chains. They prey on **poor hygiene**, leftover DNS records, abandoned cloud services 
@@ -23,18 +31,24 @@ and lack of visibility. That’s why red teamers, bug bounty hunters, and cloud 
 
 ---
 
-## What is a subdomain takeover?
+## The DNS + CNAME relationship in this attack
 
-A **subdomain takeover** occurs when a subdomain (like `staging.example.com`) points via DNS to a service 
-(like an Azure App, GitHub Pages site, Heroku app, S3 bucket, etc.) that has **not been claimed** or was **deleted but not cleaned up** in DNS.
+**DNS** stands for *Domain Name System*. It translates human readable domain names (like `example.com`) into IP addresses that computers use to identify each other.
 
-An attacker who identifies this dangling subdomain can **register the same resource** on the third party platform and take control of that subdomain
-and essentially hijacking the namespace under a trusted parent domain.
+In this context, **CNAME records** are a type of DNS record that allow a subdomain to point to another domain name, essentially creating an alias. For example, `blog.example.com` might be a CNAME pointing to `example-blog.hostingplatform.net`.
+
+It becomes a security risk when DNS references (such as CNAME records) persist after the associated cloud service or server is deleted. If the destination (like `example-blog.hostingplatform.net`) no longer exists, an attacker can register that service and take control of the subdomain (`blog.example.com`).
+
+**CNAME** stands for *Canonical Name*. This record can only point to **other domain names**, not directly to **IP addresses**.
+
+A subdomain takeover occurs when a subdomain, which is linked to a service via a CNAME record, is taken over by an attacker. 
+This happens because the service provider no longer uses that subdomain, but the CNAME record in the DNS hasn't been removed.
+
 
 ### How subdomain takeovers work
 
 - A subdomain has a `CNAME` record pointing to `orphaned-service.cloudprovider.com`
-- The target (`orphaned-service`) is unclaimed or deleted
+- The target (`testsubdomaintakeover.azurewebsites.net`) is unclaimed or deleted
 - The `CNAME` still exists and resolves
 - The attacker registers and takes control of the unclaimed service, then uses the subdomain to serve their content.
 
@@ -42,24 +56,13 @@ and essentially hijacking the namespace under a trusted parent domain.
 
 ---
 
-## The DNS + CNAME relationship in This Attack
 
-At the core of this vulnerability is how DNS resolution works — particularly with **CNAME records**.
-
-- A **CNAME (Canonical Name)** record is an alias that maps one domain to another.
-- Example:
-  
-  ```
-  staging.example.com. 300 IN CNAME staging-app.azurewebsites.net.
-  ```
-
-If `staging-app.azurewebsites.net` is deleted but the above DNS record remains, `staging.example.com` becomes a dangling pointer, thus waiting to be claimed.
-
-This is what we mean when we say "a dangling CNAME."
 
 ---
 
 ## How to detect a vulnerable subdomain
+
+To begin, gather a list of subdomains using tools like `amass` or `subfinder`. Then, check if any of them contain `CNAME` records pointing to cloud services. Cross-reference with the status in <a href="https://github.com/EdOverflow/can-i-take-over-xyz" target="_blank">Can I Take Over XYZ</a>. If the status is **Vulnerable** and the fingerprint matches (e.g., NXDOMAIN), the subdomain is likely vulnerable to takeover.
 
 **What is NXDOMAIN?**  
 > It means "Non-Existent Domain", DNS attempted to resolve a domain name but found no valid target. If your subdomain’s CNAME points to a service that returns NXDOMAIN, it’s likely vulnerable to takeover.
@@ -82,7 +85,7 @@ subdomain.example.com.  300 IN CNAME poc.azurewebsites.net.
 ### Step 2: Check if the CNAME target is available or dead
 
 ```bash
-dig poc.azurewebsites.net
+dig A poc.azurewebsites.net
 ```
 
 If you see:
@@ -111,7 +114,7 @@ Signature checks are performed by these tools to detect services susceptible to 
 - **Zenly (Snap Inc.)** — Subdomain takeover of `brand.zen.ly` due to unclaimed external service.  
   <a href="https://hackerone.com/reports/1474784" target="_blank">[HackerOne Report #1474784]</a>
 
-Attackers can serve phishing sites, malicious scripts, or C2 beacons **from a domain the victim trusts**.  
+Attackers can serve phishing sites, malicious scripts, spread malware or use C2 beacons **from a domain the victim trusts**.  
 In a supply chain scenario, this could mean **stealing credentials**, **breaking CSP policies**, or hijacking trusted OAuth redirect URIs.
 
 ---
@@ -133,25 +136,25 @@ Once an attacker gains control of the subdomain, they can:
 
 The best defense is **prevention through visibility** and **systematic hygiene**:
 
-### ✅ Inventory and monitor
+### Inventory and monitor
 
 - Maintain a live inventory of **all active subdomains**
 - Detect DNS records that point to **external third party platforms**
 
-### ✅ Remove dangling records
+### Remove dangling records
 
 - Delete CNAME/A records pointing to services you no longer use
 - Clean up test environments during decommissioning
 
-### ✅ Claim and reclaim
+### Claim and reclaim
 
 - If a subdomain is unused but still resolves — **either remove the DNS record or reclaim the service**
 
-### ✅ Monitor for NXDOMAINs
+### Monitor for NXDOMAINs
 
 - Use DNS monitoring tools (e.g., SecurityTrails, DNSDB, PassiveTotal) to detect NXDOMAIN responses on your infrastructure
 
-### ✅ Automate continuous testing
+### Automate continuous testing
 
 - Run scheduled scans with tools like `amass` to detect changes in DNS resolution and service ownership
 
@@ -193,4 +196,4 @@ This prevents attackers from being able to claim the associated CNAME target.
 
 ---
 
-When it comes to subdomain takeover vulnerabilities, here's the crucial advice: always stay vigilant, automate what you can, and disclose responsibly.
+So, as we wrap up our dive into subdomain takeovers, remember this: in the fast paced world of cloud environments and ever evolving threats, our best defense is to be proactive. Stay alert in monitoring your digital footprint, automate your detection efforts whenever possible to catch those tricky dangling records, and if you uncover a vulnerability, always prioritize responsible disclosure (efforts by the community). By adopting these practices, we can collectively make the internet a safer place, one subdomain at a time.
