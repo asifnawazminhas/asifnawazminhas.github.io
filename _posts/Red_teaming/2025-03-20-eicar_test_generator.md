@@ -14,19 +14,19 @@ The **EICAR test file** is a standardized file used to test antivirus detection 
 
 ---
 
-## 🎯 Why Use This Tool?
+## Why Use This Tool?
 
 This tool is useful for:
-- ✅ **Antivirus detection testing**
-- 🔍 **Security research & malware simulations**
-- 🌐 **Network monitoring validation**
-- 🔒 **CSP & file restriction testing**
+-  **Antivirus detection testing**
+- **Security research & malware simulations**
+- **Network monitoring validation**
+- **CSP & file restriction testing**
 
 Unlike standard EICAR test files, which are typically **68 bytes**, this generator ensures the file is **exactly 68 KB**, making it ideal for testing **file upload restrictions, scanning mechanisms, and storage limitations**.
 
 ---
 
-## 🚀 Installation & Usage
+## Installation & Usage
 
 ### **1️⃣ Install Dependencies**
 Run the following command to install the required dependencies:
@@ -76,7 +76,7 @@ ls -lh eicar_test_68kb.*
 exiftool eicar_test_68kb.pdf
 ```
 
-📜 About the EICAR Test File
+About the EICAR Test File
 
 Any antivirus product that supports the EICAR test file should detect it in any file that starts with the first 68 characters and is exactly 68 bytes long:
 
