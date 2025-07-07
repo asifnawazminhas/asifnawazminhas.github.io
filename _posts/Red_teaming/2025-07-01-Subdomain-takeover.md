@@ -97,7 +97,7 @@ If you see:
 
 That means the CNAME target **does not exist**, a key indicator that this is a dangling record.
 
-## ## How to confirm via Azure Portal
+## How to confirm via Azure Portal
 
 To confirm if a dangling Azure subdomain is available, go to  
 <a href="https://portal.azure.com" target="_blank">https://portal.azure.com</a> and log in with your credentials. 
