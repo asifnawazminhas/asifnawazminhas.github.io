@@ -250,7 +250,7 @@ Found:
 DC01\sa : MSSQLP@ssw0rd!
 ```
 
-## 🛠️ Privileged MSSQL Shell
+## Privileged MSSQL Shell
 
 ```bash
 impacket-mssqlclient 'sa':'MSSQLP@ssw0rd!'@sequel.htb
