@@ -50,6 +50,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.basf.com/global/en/legal/responsible-disclosure-statement" target="_blank">BASF - Heroes of BASF [2025]</a>
 - <a href="https://www.dela.nl/over-dela/over-cooperatie-dela/governance/responsible-disclosure/hall-of-fame" target="_blank">Hall of Fame - Responsible Disclosure Dela [2025]</a>
 - <a href="https://www.tudelft.nl/hall-of-fame" target="_blank">Hall of Fame - TUDELFT [2025]</a>
+- <a href="https://www.knaw.nl/en/responsible-disclosure-policy" target="_blank">Hall of Fame - KNAW: Koninklijke Nederlandse Akademie van Wetenschappen [2025]</a>
 
 - I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
 - Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
