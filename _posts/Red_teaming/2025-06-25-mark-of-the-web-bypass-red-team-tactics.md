@@ -71,8 +71,8 @@ Have the user extract the archive with a third-party tool like **7-Zip**.
 7z x payload.zip
 ```
 
-> ✅ Files extracted with 7-Zip often **don’t inherit MotW**  
-> ❌ Files extracted with Windows Explorer **do inherit MotW**
+> Files extracted with 7-Zip often **don’t inherit MotW**  
+> Files extracted with Windows Explorer **do inherit MotW**
 
 ---
 
