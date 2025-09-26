@@ -162,7 +162,7 @@ sshpass -p 'THECRACKEDPASSWORD' ssh enox@10.10.10.10
 
 
 ### 6. Conclusion
-```bash
+
 This lab showed that a legacy file format such as .WAX can be turned into a practical test of modern defenses. In a controlled environment the WAX file repeatedly caused an endpoint to
 initiate an outbound NTLMv2 authentication exchange that revealed authentication metadata. That behavior highlights how older handlers and automatic retrieval mechanisms remain an underrated attack surface.
 
@@ -174,5 +174,5 @@ tune detection to link file open or preview events with outbound NTLM activity. 
 
 Ultimately legacy formats still matter. They can produce high impact, low visibility checks of network segmentation, endpoint configuration,
 and detection maturity when used responsibly and with appropriate safeguards.
-```
+
 
