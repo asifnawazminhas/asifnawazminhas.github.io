@@ -10,7 +10,7 @@ pin: false
 
 The **EICAR test file** is a standardized file used to test antivirus detection without using actual malware. This repository provides a script to generate **EICAR test files** of exactly **68 KB** in various formats, including **TXT, PDF, XLS/XLSX, and ZIP**.
 
-🔗 **[GitHub Repository: EICAR 68KB Tester](https://github.com/asifnawazminhas/eicar-68kb-tester){:target="_blank"}**  
+**[GitHub Repository: EICAR 68KB Tester](https://github.com/asifnawazminhas/eicar-68kb-tester){:target="_blank"}**  
 
 ---
 
@@ -84,7 +84,7 @@ Any antivirus product that supports the EICAR test file should detect it in any 
 
 The first 68 characters form the known EICAR string. Optionally, whitespace characters may be appended, but the total length must not exceed 128 characters.
 
-🔗 **Reference:** [EICAR Official Website](https://www.eicar.org/download-anti-malware-testfile/){:target="_blank"}
+**Reference:** [EICAR Official Website](https://www.eicar.org/download-anti-malware-testfile/){:target="_blank"}
 
-## 📄 License
+## License
 This project is released under the **MIT License**.
