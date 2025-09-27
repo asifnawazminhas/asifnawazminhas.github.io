@@ -175,5 +175,8 @@ tune detection to link file open or preview events with outbound NTLM activity. 
 Ultimately legacy formats still matter. They can produce high impact, low visibility checks of network segmentation, endpoint configuration,
 and detection maturity when used responsibly and with appropriate safeguards.
 
+> **Disclaimer:** This article is for educational purposes only and details a Proof of Concept (POC) technique. This information should only be used in authorized penetration testing, bug bounty programs, or approved red teaming engagements. The author and publisher are not responsible for any misuse of this information.
+{: .prompt-info }
+
 > This technique can be applied in penetration testing or `red teaming` engagements.
 {: .prompt-danger }
