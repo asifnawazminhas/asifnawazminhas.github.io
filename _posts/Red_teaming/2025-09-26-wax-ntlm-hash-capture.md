@@ -9,9 +9,9 @@ pin: false
 
 # NTLM Hash Capture via Legacy WAX File - Lab Demonstration
 
-This lab scenario explores the capture of NTLMv2 hashes using a legacy WAX file combined with Responder for hash poisoning. The technique demonstrates a POC (proof of concept) 
+This lab scenario explores the capture of NTLMv2 hashes using a legacy `WAX file` combined with `Responder` for hash poisoning. The technique demonstrates a POC (proof of concept) 
 approach that, while effective in controlled environments, may have varying real world applicability depending on target configurations and security controls. There was a option
-to upload a Windows Media Player file through the Web GUI. This method could potentially be useful in red teaming engagements where legacy systems are present. 
+to upload a `Windows Media Player` file through the Web GUI. This method could potentially be useful in red teaming engagements where legacy systems are present. 
 
 ## Attack Flow
 
@@ -175,4 +175,5 @@ tune detection to link file open or preview events with outbound NTLM activity. 
 Ultimately legacy formats still matter. They can produce high impact, low visibility checks of network segmentation, endpoint configuration,
 and detection maturity when used responsibly and with appropriate safeguards.
 
-
+> This technique can be applied in penetration testing or `red teaming` engagements.
+{: .prompt-danger }
