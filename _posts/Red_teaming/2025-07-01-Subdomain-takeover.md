@@ -52,7 +52,7 @@ This happens because the service provider no longer uses that subdomain, but the
 - The `CNAME` still exists and resolves
 - The attacker registers and takes control of the unclaimed service, then uses the subdomain to serve their content.
 
-![Subdomain Takeover Example](assets/img/subdomain%20takeover%20image.png)
+![Subdomain takeover]({{ "/assets/img/subdomain-takeover-image.png" | relative_url }})
 
 ---
 
@@ -105,7 +105,7 @@ To confirm if a dangling Azure subdomain is available, go to
 In the case of `.azurewebsites.net`, you can try creating a new **Web App** with the exact name of the unclaimed subdomain.  
 If it's available, Azure will show a **green checkmark** confirming that the subdomain can be registered — meaning it's vulnerable to takeover.
 
-![Azure takeover confirmation with green checkmark](assets/img/azure%20takeover%20confirm%20vinkje.png)  
+![Azure confirm]({{ "/assets/img/azure-takeover-confirm-vinkje.png" | relative_url }}) 
 *Screenshot: Azure Web App creation confirms the dangling subdomain is available to register (`.azurewebsites.net` shows a green checkmark).*
 
 > 💡 **Tip**  
