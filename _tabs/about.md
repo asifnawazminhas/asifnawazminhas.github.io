@@ -52,7 +52,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.tudelft.nl/hall-of-fame" target="_blank">Hall of Fame - TUDELFT [2025]</a>
 - <a href="https://www.knaw.nl/en/responsible-disclosure-policy" target="_blank">Hall of Fame - KNAW: Koninklijke Nederlandse Akademie van Wetenschappen [2025]</a>
 - <a href="https://vu.nl/en/about-vu/more-about/security-and-operations-control-center" target="_blank">Hall of Fame - VU: Vrij Universiteit Amsterdam [2025]</a>
-- <a href="https://www.stedin.net/responsible-disclosure/gemelde-en-opgeloste-kwetsbaarheden" target="_blank">Hall of Fame - Stedin [2025]</a> 
+- <a href="https://www.stedin.net/responsible-disclosure/gemelde-en-opgeloste-kwetsbaarheden" target="_blank"> Responsible Disclosure Hall of Fame - Stedin [2025]</a>
 
 - I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
 - Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
