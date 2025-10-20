@@ -6,9 +6,9 @@ tags: [TTP, adversary simulation, red-team, Cobalt Strike]
 pin: false
 ---
 
-![Red Team Operations](assets/img/red_team_ops.png)
+![Red Team Ops]({{ "/assets/img/red_team_ops.png" | relative_url }})
 
-![CRTO1](assets/img/crto1.png)
+![CRTO 1]({{ "/assets/img/crto1.png" | relative_url }})
 
 > Red Teaming is a cybersecurity assessment that involves adversary simulation, using real-world TTPs (Tactics, Techniques, and Procedures) to mimic advanced threats, test defenses, and improve an organisation's security posture.
 {: .prompt-danger }
