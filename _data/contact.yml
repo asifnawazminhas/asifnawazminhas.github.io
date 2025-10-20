@@ -8,7 +8,7 @@
    # Fill with your Linkedin homepage
 
 - type: github
-  icon: 'fab fa-github'
+  icon: 'fa-brands fa-github'
   url: 'https://github.com/asifnawazminhas/'
   noblank: false
 
