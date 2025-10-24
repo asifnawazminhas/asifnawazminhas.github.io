@@ -1,4 +1,4 @@
-# Hey! 👋 Welcome to asifnawazminhas.com
+# Welcome to asifnawazminhas.com
 
 [![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222222?style=flat-square&logo=github)](https://pages.github.com/)
 [![Jekyll Theme](https://img.shields.io/badge/Theme-Chirpy-0A0A0A?style=flat-square&logo=ruby)](https://github.com/cotes2020/jekyll-theme-chirpy)
