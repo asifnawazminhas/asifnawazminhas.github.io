@@ -5,7 +5,6 @@ categories: [Red-teaming, AI]
 tags: [red team, blue team, purple team, offensive security, defensive security, collaboration, cyber resilience]
 pin: false
 description: Understand the relationship between Red, Blue, and Purple Teams in cybersecurity, how offense and defense work together to strengthen an organisation’s detection, response, and resilience.
-excerpt: How Red, Blue and Purple teams work together to turn adversary simulation into measurable defensive improvements.
 image: /assets/img/diagram.png
 ---
 
