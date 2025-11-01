@@ -4,6 +4,8 @@ date: 2025-02-05 10:10:00 +0700
 categories: [Red-teaming]
 tags: [TTP, adversary simulation, red-team, Cobalt Strike]
 pin: false
+description: Certified Red Team Operator (CRTO) This certification validates expertise in advanced adversarial simulation, focusing on real-world Red Team tactics, techniques, and procedures (TTPs) using tools like Cobalt Strike. It trains security professionals to compromise enterprise environments and maintain stealth while simulating complex attacks
+image: /assets/img/red_team_ops.png
 ---
 
 ![Red Team Ops]({{ "/assets/img/red_team_ops.png" | relative_url }})
