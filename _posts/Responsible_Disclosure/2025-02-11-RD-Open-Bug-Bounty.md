@@ -216,4 +216,13 @@ I hope these coordinated disclosures helped reduce risk to students and staff.
 **Acknowledgements:**  
 Special thanks to **Open Bug Bounty** for their coordination and for recognising my contribution with the *Outstanding Security Research* certificate.  
 
-[View Certificate (PDF)](/assets/pdf/Certificate.pdf){:target="_blank" rel="noopener noreferrer"}
+## Certificate of Recognition
+
+![Open Bug Bounty Outstanding Security Research Certificate](/assets/pdf/Certificate.pdf)
+
+<p style="text-align:center;font-size:0.9em;color:gray;">
+Asif Minhas – Responsible Disclosure | Open Bug Bounty 2025  
+<a href="/assets/pdf/Certificate.pdf" target="_blank" rel="noopener noreferrer">
+View Full Certificate (PDF)
+</a>
+</p>
