@@ -110,7 +110,7 @@ If the TLD is generic / global, I mark it as **Generic**.
 
 > **Note:** flag emoji rendering depends on the platform/browser. If the flag does not render for a reader, it will appear as two letters (regional indicator symbols).
 
-### 🌍 Country-Based TLDs with Continents
+### Country-Based TLDs with Continents
 
 | Flag | TLD | Country / Region | Continent |
 |:----:|:----|:-----------------|:-----------|
@@ -169,7 +169,7 @@ If the TLD is generic / global, I mark it as **Generic**.
 
 ---
 
-### 💡 Generic / Thematic TLDs
+### Generic / Thematic TLDs
 
 | TLD | Purpose / Theme |
 |:----|:----------------|
