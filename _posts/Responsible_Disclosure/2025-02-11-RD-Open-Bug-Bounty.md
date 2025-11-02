@@ -218,7 +218,10 @@ Special thanks to **Open Bug Bounty** for their coordination and for recognising
 
 ## Certificate of Recognition
 
-![Open Bug Bounty Outstanding Security Research Certificate](/assets/pdf/Certificate.pdf)
+<img src="/assets/img/Certificate.png"
+     alt="Open Bug Bounty Outstanding Security Research Certificate"
+     style="display:block;margin:auto;max-width:90%;border-radius:10px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.15);">
 
 <p style="text-align:center;font-size:0.9em;color:gray;">
 Asif Minhas – Responsible Disclosure | Open Bug Bounty 2025  
