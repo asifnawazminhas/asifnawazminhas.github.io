@@ -55,7 +55,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.stedin.net/responsible-disclosure/gemelde-en-opgeloste-kwetsbaarheden" target="_blank"> Responsible Disclosure Hall of Fame - Stedin [2025]</a>
 
 - I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
-- Discovered and reported 67 CVEs, leading to improved security in widely-used open-source software.
+- Discovered and reported 68 CVEs, leading to improved security in widely-used open-source software.
 
   ## 📬 Contact Information
 
