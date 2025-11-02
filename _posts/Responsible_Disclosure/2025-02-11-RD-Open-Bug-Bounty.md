@@ -8,7 +8,8 @@ description: "Summary of my responsible disclosure work reporting reflected XSS 
 image: /assets/img/www.png
 ---
 
-> **Legal / ethical reminder:** Misusing these techniques against systems without permission is illegal. All findings described below were reported responsibly and remediated where possible.
+>  **Legal / ethical reminder:** Misusing these techniques against systems without permission is illegal. All findings described below were reported responsibly and remediated where possible.
+{: .prompt-danger }
 
 ## Executive summary
 
