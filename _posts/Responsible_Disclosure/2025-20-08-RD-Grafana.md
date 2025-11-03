@@ -4,12 +4,18 @@ date: 2025-08-20 07:10:00 +0700
 categories: [Responsible_Disclosure]
 tags: [Web, Enumeration, Information Gathering, Responsible Disclosure, Grafana, CVE-2025-4123]
 pin: false
+description: "Summary of my responsible disclosure work reporting open redirect issues (CVE-2025-4123) that I reported"
+image: /assets/img/grafana.png
 ---
 
 ## Executive Summary
 During a responsible disclosure engagement, an exposed Grafana instance was identified on the target’s infrastructure.  
 The version in use was found to be vulnerable to **CVE-2025-4123**, a severity flaw that combines path traversal and open redirect.  
 If left unpatched, this issue could allow attackers to redirect users to malicious websites, potentially leading to phishing, data theft, or further exploitation.  
+
+## Impact
+
+Unauthenticated attackers could trick victims into following trusted links that redirect to malicious domains.
 
 The vulnerability was responsibly reported to the affected organisation. 
 No data was accessed or modified during testing, and all actions were performed strictly within the boundaries of ethical security research.  
@@ -49,7 +55,7 @@ to the attacker controlled example.com. This proves that the vulnerability works
 ### Conclusion
 
 The tested Grafana instance was confirmed to be vulnerable to **CVE-2025-4123**. Although the issue had already been disclosed publicly, 
-its presence on a production system demonstrates the importance of timely patching. If left unresolved, attackers could escalate from open redirect to SSRF, LFI, or XSS.
+its presence on a production system demonstrates the importance of timely patching. If left unresolved, attackers could potentially escalate from open redirect to SSRF, LFI, or XSS.
 
 **Responsible Disclosure**: This finding was tested for a live site and responsibly reported to the affected organisation through 
 their Responsible Disclosure program. 
