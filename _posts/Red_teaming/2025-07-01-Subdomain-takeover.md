@@ -4,6 +4,8 @@ date: 2025-07-01 10:10:00 +0700
 categories: [Red-teaming]
 tags: [subdomain takeover, red teaming, DNS, CNAME, cloud security, offensive security]
 pin: false
+description: "A technical summary of my responsible disclosure work on a high impact subdomain takeover vulnerability I discovered."
+image: /assets/img/subd.png
 ---
 
 > **Disclaimer**  
