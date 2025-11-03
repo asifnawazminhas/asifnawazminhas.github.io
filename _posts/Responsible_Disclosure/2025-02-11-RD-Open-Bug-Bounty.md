@@ -5,7 +5,7 @@ categories: [responsible-disclosure]
 tags: [web, enumeration, information-gathering, responsible-disclosure, open-bug-bounty, appsec]
 pin: false
 description: "Summary of my responsible disclosure work reporting reflected XSS and open redirect issues (CVE-2021-32478) across education and learning sites worldwide, coordinated via Open Bug Bounty."
-image: /assets/img/www.png
+image: /assets/img/Certificate.png
 ---
 
 >  **Legal / ethical reminder:** Misusing these techniques against systems without permission is illegal. All findings described below were reported responsibly and remediated where possible.
@@ -13,10 +13,10 @@ image: /assets/img/www.png
 
 ## Executive summary
 
-Between September and November 2023 I ran a coordinated responsible-disclosure effort focused on web issues in education and learning platforms. Over the course of this work I **reported over 600 issues** 
+Between September and November 2023 I ran a coordinated responsible-disclosure effort focused on web issues in education and learning platforms. Over the course of this work, I **reported over 600 issues** 
 through Open Bug Bounty and related channels; my coordinated discoveries contributed to **151+ verified fixes** acknowledged by Open Bug Bounty. 
 
-I did not receive monetary bounties from Open Bug Bounty for most of this work, the value was in learning, coordinating fixes, and helping keep student data safer.
+I did not receive monetary bounties from Open Bug Bounty for this work, the value was in learning, coordinating fixes, and helping keep student data safer.
 
 ## Interactive map
 
@@ -32,10 +32,10 @@ Asif Minhas – Responsible Disclosure | Open Bug Bounty 2025
 
 ## What I found (high level)
 
-The majority of the accepted reports I submitted to Open Bug Bounty fell into five categories:
+The majority of the accepted reports that are accepted by Open Bug Bounty fell into the following five categories:
 
 - **Reflected Cross-Site Scripting (XSS)**
-- **Open Redirect** (typically via `redirect_uri` parameters)
+- **Open Redirect** 
 - **Cross-Site Request Forgery (CSRF)**
 - **Improper Access Control**
 - **GDPR / PII exposure**
@@ -45,7 +45,8 @@ I focused on finding:
 - **Cross-Site Scripting (XSS)**
 - **Open Redirect** (typically via `redirect_uri` parameters)
 
-A particularly recurring and exploitable pattern I observed was the combination of reflected XSS + permissive `redirect_uri` handling in some LMS / LTI flows (the issue is exemplified by CVE-2021-32478).
+My research focused on identifying learning platforms, primarily Moodle instances, that had not applied the security patch for CVE-2021-32478. 
+This 2021 vulnerability combines an open redirect with a reflected XSS in the LTI authentication module (/mod/lti/auth.php), and I found it remained unpatched on hundreds of systems in 2023.
 
 ---
 
@@ -53,8 +54,7 @@ A particularly recurring and exploitable pattern I observed was the combination 
 
 - **First accepted report on OBB:** 2023-09-07  
 - **Last submission in this batch:** 2023-11-18  
-- **Method:** I used a mix of automated discovery (Shodan, Censys, targeted Google dorks) and custom Python scripts to find candidate targets,
-- then validated results manually to avoid false positives. Automation narrowed the search; manual validation produced clean, reproducible PoCs for that I submitted on the Open Bug Bounty platform.
+- **Method:** I used a mix of automated discovery (Shodan, Censys, targeted Google dorks) and custom Python scripts to find candidate targets, then validated results manually to avoid false positives.
 
 ---
 
@@ -113,6 +113,9 @@ If the TLD is generic / global, I mark it as **Generic**.
 > **Note:** flag emoji rendering depends on the platform/browser. If the flag does not render for a reader, it will appear as two letters (regional indicator symbols).
 
 ### Country-Based TLDs with Continents
+
+This vulnerability wasn't isolated to one region. My research identified and helped secure vulnerable platforms across seven continents. 
+The following tables break down the Top-Level Domains (TLDs) of the affected systems, showing the truly global reach of this responsible disclosure effort.
 
 | Flag | TLD | Country / Region | Continent |
 |:----:|:----|:-----------------|:-----------|
@@ -223,6 +226,11 @@ Special thanks to **Open Bug Bounty** for their coordination and for recognising
      alt="Open Bug Bounty Outstanding Security Research Certificate"
      style="display:block;margin:auto;max-width:90%;border-radius:10px;
             box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+            
+<p style="text-align:center;color:gray;font-size:0.85em;">
+Certificate issued by Open Bug Bounty — Recognising 151+ verified fixes (2023)
+</p>
+
 
 <p style="text-align:center;font-size:0.9em;color:gray;">
 Asif Minhas – Responsible Disclosure | Open Bug Bounty 2025  
