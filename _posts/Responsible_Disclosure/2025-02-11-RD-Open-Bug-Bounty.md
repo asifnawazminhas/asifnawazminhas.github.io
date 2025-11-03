@@ -5,7 +5,7 @@ categories: [responsible-disclosure]
 tags: [web, enumeration, information-gathering, responsible-disclosure, open-bug-bounty, appsec]
 pin: false
 description: "Summary of my responsible disclosure work reporting reflected XSS and open redirect issues (CVE-2021-32478) across education and learning sites worldwide, coordinated via Open Bug Bounty."
-image: /assets/img/Certificate.png
+image: /assets/img/award_obb.png
 ---
 
 >  **Legal / ethical reminder:** Misusing these techniques against systems without permission is illegal. All findings described below were reported responsibly and remediated where possible.
