@@ -50,7 +50,8 @@ to the attacker controlled example.com. This proves that the vulnerability works
 
 ### References
 
-* <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-4123" target="_blank">CVE-2025-4123 — NVD</a>  
+* <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-4123" target="_blank">CVE-2025-4123 — NVD</a>
+* <a href="https://github.com/ynsmroztas/CVE-2025-4123-Exploit-Tool-Grafana-" target="_blank">ynsmroztas CVE-2025-4123-Exploit-Tool-Grafana</a>
 
 ### Conclusion
 
