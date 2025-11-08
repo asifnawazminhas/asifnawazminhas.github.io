@@ -1,7 +1,7 @@
 ---
 title: Responsible Disclosure — Open Bug Bounty Outstanding Security Research Award
 date: 2025-11-02 07:10:00 +0700
-categories: [responsible-disclosure]
+categories: [Responsible_Disclosure]
 tags: [web, enumeration, information-gathering, responsible-disclosure, open-bug-bounty, appsec]
 pin: false
 description: "Summary of my responsible disclosure work reporting reflected XSS and open redirect issues (CVE-2021-32478) across education and learning sites worldwide, coordinated via Open Bug Bounty."
