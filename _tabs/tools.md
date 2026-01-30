@@ -15,6 +15,7 @@ order: 4
 - <a href="https://subdomainfinder.c99.nl/" target="_blank">Subdomain Finder</a>: Quick subdomain enumeration.
 - <a href="https://crackstation.net/" target="_blank">Crackstation</a>: Password hash cracking.
 - <a href="https://www.shellcheck.net/" target="_blank">ShellCheck Online</a>: Analyze and lint your shell scripts in the browser.
+- <a href="https://xssnow.in/index.html" target="_blank">xssnow.in</a> Serves as an educational guide and documentation platform for understanding and testing Cross-Site Scripting (XSS) security vulnerabilities.
 
 **Red Team & Post-Exploitation**
 - <a href="https://www.revshells.com/" target="_blank">RevShells</a>: Generate reverse shell commands for multiple languages.
