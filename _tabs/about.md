@@ -54,6 +54,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://vu.nl/en/about-vu/more-about/security-and-operations-control-center" target="_blank">Hall of Fame - VU: Vrij Universiteit Amsterdam [2025]</a>
 - <a href="https://www.stedin.net/responsible-disclosure/gemelde-en-opgeloste-kwetsbaarheden" target="_blank"> Responsible Disclosure Hall of Fame - Stedin [2025]</a>
 - <a href="https://www.eur.nl/campus/locaties/campus-woudestein/beveiliging-veiligheid/informatiebeveiliging/hall-fame" target="_blank"> Responsible Disclosure Hall of Fame - EUR [2025]</a>
+- <a href="https://www.uu.nl/organisatie/it/hall-of-fame-verantwoorde-openbaarmaking" target="_blank"> Responsible Disclosure Hall of Fame - UU [2025]</a>
 - <a href="https://www.uu.nl/organisatie/it/hall-of-fame-verantwoorde-openbaarmaking" target="_blank"> Responsible Disclosure Hall of Fame - UU [2026]</a>
 
 - I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
