@@ -144,7 +144,7 @@ Pro-Tip: If you are pivoting into a Windows environment and can't ping targets, 
 # Part 3 -- Running Ligolo Agent via PowerShell (Shellcode Runner)
 
 Reference:
-https://github.com/Extravenger/OSEPlayground/tree/main/04%20-%20Tunneling
+<a href="https://github.com/Extravenger/OSEPlayground/tree/main/04%20-%20Tunneling" target="_blank" rel="noopener">OSEP Playground Tunneling Reference</a>
 
 ------------------------------------------------------------------------
 
@@ -233,9 +233,9 @@ kill -9 <pid>
 
 # Credits
 
--   Ligolo-ng: https://github.com/nicocha30/ligolo-ng
--   Chisel: https://github.com/jpillora/chisel
--   OSEP Playground Tunneling Reference: https://github.com/Extravenger/OSEPlayground
+- <a href="https://github.com/nicocha30/ligolo-ng" target="_blank" rel="noopener">Ligolo-ng</a>
+- <a href="https://github.com/jpillora/chisel" target="_blank" rel="noopener">Chisel</a>
+- <a href="https://github.com/Extravenger/OSEPlayground/tree/main/04%20-%20Tunneling" target="_blank" rel="noopener">OSEP Playground Tunneling Reference</a>
 
 ------------------------------------------------------------------------
 
