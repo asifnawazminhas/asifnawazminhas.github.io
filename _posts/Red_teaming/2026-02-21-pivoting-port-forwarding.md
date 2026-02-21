@@ -33,6 +33,36 @@ pivots and proxychains workflows.
 A network-native pivot using a TUN interface, allowing you to route
 traffic as if directly connected to the internal subnet.
 
+## Notes on IP Addresses and When Pivoting Is Needed
+
+All IP addresses in this post are examples.
+
+- Addresses like `192.168.1.1` are commonly used as example “attacker reachable” IPs (lab VPN, public VPS, or your Kali interface reachable by the target).
+- After initial access, you often discover additional internal-only networks, for example `172.16.0.0/12`, `10.0.0.0/8`, or another `192.168.0.0/16` segment.
+
+A common real-world pattern:
+
+- You gain initial access on a host reachable from your Kali or C2.
+- That host has a second interface on an internal subnet (for example `172.16.1.0/24`).
+- Your Kali cannot directly reach that internal subnet.
+- You set up a tunnel (Chisel or Ligolo-ng) through the compromised host to reach `172.16.1.0/24` and any deeper segments.
+
+Example:
+
+- Kali or C2 reachable IP: `192.168.1.1` (example)
+- Pivot host internal interface: `172.16.1.10`
+- Internal subnet to enumerate: `172.16.1.0/24`
+
+Pivoting is what bridges that gap.
+
+Kali (192.168.1.1)
+        │
+        ▼
+Compromised Host (172.16.1.10)
+        │
+        ▼
+Internal Network (172.16.1.0/24)
+
 ------------------------------------------------------------------------
 
 # Part 1 -- Chisel Pivoting (Reverse SOCKS Tunnel)
