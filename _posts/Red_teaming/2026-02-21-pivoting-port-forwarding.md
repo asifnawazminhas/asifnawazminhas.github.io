@@ -3,6 +3,7 @@ title: "Port Forwarding and Pivoting with Chisel and Ligolo-ng (Linux + Windows)
 date: 2026-02-21
 categories: [Red Team, Tunneling, Pivoting]
 tags: [chisel, ligolo-ng, socks, port-forward, pivot, osep]
+image: /assets/img/portforw.jpg
 ---
 
 # Port Forwarding and Pivoting with Chisel and Ligolo-ng
@@ -232,8 +233,7 @@ kill -9 <pid>
 
 -   Ligolo-ng: https://github.com/nicocha30/ligolo-ng
 -   Chisel: https://github.com/jpillora/chisel
--   OSEP Playground Tunneling Reference:
-    https://github.com/Extravenger/OSEPlayground/tree/main/04%20-%20Tunneling
+-   OSEP Playground Tunneling Reference: https://github.com/Extravenger/OSEPlayground
 
 ------------------------------------------------------------------------
 
