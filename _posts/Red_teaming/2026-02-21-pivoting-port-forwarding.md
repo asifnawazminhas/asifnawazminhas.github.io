@@ -8,6 +8,8 @@ image: /assets/img/portforw.jpg
 
 # Port Forwarding and Pivoting with Chisel and Ligolo-ng
 
+![Port Forwarding & Pivoting with Chisel and Ligolo-ng](/assets/img/portforw.jpg)
+
 ## Disclaimer
 
 This post is for authorized security testing and lab environments only.\
