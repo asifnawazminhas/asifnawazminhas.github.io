@@ -26,6 +26,7 @@ order: 4
 
 **Obfuscation, Evasion, & Bypass**
 - <a href="https://shaquibizhar.github.io/Amsi-bypass-generator/" target="_blank">AMSI Bypass Generator</a>: Auto-generate AMSI bypass payloads for Windows.
+- <a href="https://amsibypass.com/" target="_blank">AMSI Bypass Generator</a>: AMSI Bypass Generator.
 - <a href="https://argfuscator.net/" target="_blank">Argfuscator</a>: Argument obfuscation for command line payloads.
 - <a href="https://powershellforhackers.com/tools/revshell/" target="_blank">PowerShellForHackers</a>: Handy online tool to generate reverse shell when doing red teaming.
 
