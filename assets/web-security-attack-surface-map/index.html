@@ -313,14 +313,27 @@
   background:rgba(0,0,0,.25);
   box-shadow:var(--shadow);
   padding:24px;
-  overflow-x:auto;
+  overflow:auto;                /* important */
   backdrop-filter:blur(4px);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable both-edges;
 }
 
+/* Make the grid a horizontal track that can scroll */
 .webmap-columns{
   display:grid;
-  grid-template-columns:repeat(7,minmax(270px,1fr));
+  grid-auto-flow:column;        /* important */
+  grid-auto-columns:minmax(270px, 1fr);
   gap:18px;
+  width:max-content;            /* important */
+  padding-right:24px;           /* prevents right-edge clipping */
+}
+
+/* Optional: slightly smaller cards on narrow screens */
+@media (max-width: 900px){
+  .webmap-columns{
+    grid-auto-columns:minmax(240px, 1fr);
+  }
 }
 
 .webmap-column{
