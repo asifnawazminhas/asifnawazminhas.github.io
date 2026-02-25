@@ -42,9 +42,35 @@
 .webmap-root *{ box-sizing:border-box; }
 
 .webmap-container{
-  max-width:1600px;
-  margin:0 auto;
-  padding:28px;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.webmap-columns{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(230px, 1fr); /* was 270px */
+  gap: 14px; /* was 18px */
+  width: max-content;
+  padding-right: 18px;
+}
+
+.webmap-column{
+  padding: 14px; /* was 16px */
+}
+
+.webmap-card{
+  padding: 12px; /* was 14px */
+  margin-bottom: 10px; /* was 12px */
+}
+
+.webmap-card-title{
+  font-size: 14px; /* was 15px */
+}
+
+.webmap-card-sub{
+  font-size: 11.5px; /* was 12px */
 }
 
 .webmap-header{
