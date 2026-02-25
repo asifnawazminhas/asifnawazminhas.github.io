@@ -7,25 +7,40 @@ layout: page
 ---
 
 <style>
-/* Make the page use maximum width and reduce theme padding */
-.page-content {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+/* 1) Remove the "embedded page" chrome for THIS page */
+main .breadcrumb,
+main h1,
+main .page-heading,
+main .post-title,
+main header,
+main .topbar,
+main .content-header {
+  display: none !important;
 }
 
-/* Make iframe fill the viewport area nicely */
+/* 2) Remove page padding so the iframe can go edge-to-edge */
+.page-content,
+main,
+#main-wrapper,
+#main,
+#main > .container,
+#main > .container-fluid {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+/* 3) Fullscreen iframe */
 .attackmap-embed {
   width: 100%;
-  height: calc(100vh - 140px);
+  height: 100vh;
   border: 0;
   display: block;
 }
 
-/* On smaller screens, give a bit more room */
-@media (max-width: 768px) {
-  .attackmap-embed {
-    height: calc(100vh - 110px);
-  }
+/* If you still get a tiny outer scroll, this helps */
+html, body {
+  overflow: hidden;
 }
 </style>
 
