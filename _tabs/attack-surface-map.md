@@ -1,7 +1,7 @@
 ---
 title: Attack Surface Map
 icon: fas fa-sitemap
-order: 6
+order: 5
 permalink: /attack-surface-map/
 layout: page
 ---
