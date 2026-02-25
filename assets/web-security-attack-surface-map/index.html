@@ -307,6 +307,35 @@
   max-width:1100px;
 }
 
+/* Top horizontal scrollbar (synced with the board) */
+.webmap-topscroll{
+  width:100%;
+  overflow:auto;
+  height:12px;
+  border-radius:999px;
+  background: rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.08);
+  margin-bottom:14px;
+  scrollbar-width: thin; /* Firefox */
+}
+
+.webmap-topscroll-inner{
+  height:1px;
+  width:0;
+}
+
+.webmap-topscroll::-webkit-scrollbar{
+  height:10px;
+}
+.webmap-topscroll::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.18);
+  border-radius: 999px;
+}
+.webmap-topscroll::-webkit-scrollbar-track{
+  background: rgba(0,0,0,.25);
+  border-radius: 999px;
+}
+
 .webmap-board{
   border-radius:var(--radius);
   border:1px solid var(--border);
@@ -336,11 +365,11 @@
 /* Make the grid a horizontal track that can scroll */
 .webmap-columns{
   display:grid;
-  grid-auto-flow:column;        /* important */
+  grid-auto-flow:column;
   grid-auto-columns:minmax(270px, 1fr);
   gap:18px;
-  width:max-content;            /* important */
-  padding-right:24px;           /* prevents right-edge clipping */
+  width:max-content;
+  padding-right:24px;
 }
 
 /* Optional: slightly smaller cards on narrow screens */
@@ -637,7 +666,11 @@
     Mode counts overlap. A single vector can be testable in multiple modes, so totals won’t sum to the overall vector count.
   </div>
 
-  <div class="webmap-board">
+  <div class="webmap-topscroll" id="webmap-topscroll" aria-hidden="true">
+    <div class="webmap-topscroll-inner" id="webmap-topscroll-inner"></div>
+  </div>
+
+  <div class="webmap-board" id="webmap-board">
     <div class="webmap-columns" id="webmap-columns"></div>
   </div>
 </div>
@@ -975,6 +1008,38 @@ function render(){
   applyFilters();
 }
 
+/* Sync top scrollbar with the board scrollbar */
+function initTopScrollbar(){
+  const board = document.getElementById("webmap-board");
+  const top = document.getElementById("webmap-topscroll");
+  const inner = document.getElementById("webmap-topscroll-inner");
+  if (!board || !top || !inner) return;
+
+  function syncWidth(){
+    inner.style.width = board.scrollWidth + "px";
+    top.scrollLeft = board.scrollLeft;
+  }
+
+  let syncing = false;
+
+  top.addEventListener("scroll", () => {
+    if (syncing) return;
+    syncing = true;
+    board.scrollLeft = top.scrollLeft;
+    syncing = false;
+  });
+
+  board.addEventListener("scroll", () => {
+    if (syncing) return;
+    syncing = true;
+    top.scrollLeft = board.scrollLeft;
+    syncing = false;
+  });
+
+  syncWidth();
+  window.addEventListener("resize", syncWidth);
+}
+
 document.addEventListener("click", () => closeAllDropdowns());
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape"){
@@ -1018,6 +1083,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   render();
+  initTopScrollbar();
 
   const hash = decodeURIComponent((location.hash || "").replace("#", "")).trim();
   if (hash){
