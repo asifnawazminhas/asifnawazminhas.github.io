@@ -1,6 +1,6 @@
 ---
 title: "Web Security Attack Surface Map"
-date: 2026-02-26
+date: 2026-02-25
 categories: [Web]
 tags: [attack-surface, blackbox, greybox, whitebox, appsec, methodology]
 ---
