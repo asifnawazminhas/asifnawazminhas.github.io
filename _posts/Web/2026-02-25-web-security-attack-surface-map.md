@@ -3,6 +3,10 @@ title: "Web Security Attack Surface Map"
 date: 2026-02-25
 categories: [Web]
 tags: [attack-surface, blackbox, greybox, whitebox, appsec, methodology]
+toc: true
+pin: true
+image: /assets/img/WSASM.png
+description: "An interactive Web Security Attack Surface Map covering 88 attack vectors across discovery, authentication, injection, access control, API, data, and infrastructure security."
 ---
 
 ## Web Security Attack Surface Map
