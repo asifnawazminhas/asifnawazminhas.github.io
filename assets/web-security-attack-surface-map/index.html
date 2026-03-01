@@ -52,6 +52,9 @@
   gap:24px;
   margin-bottom:22px;
   flex-wrap:wrap;
+
+  position: relative;
+  z-index: 2000;
 }
 
 .webmap-title{
@@ -113,7 +116,12 @@
   box-shadow:var(--shadow);
   backdrop-filter:blur(10px);
   min-width:320px;
+  
+  position: relative;
+  z-index: 2000;
 }
+
+ 
 
 .webmap-row{
   display:flex;
@@ -218,7 +226,7 @@
   border-radius:16px;
   box-shadow: 0 25px 60px rgba(0,0,0,.65);
   padding:10px;
-  z-index:1200;
+  z-index:9999;
   display:none;
   max-height:320px;
   overflow:auto;
