@@ -547,11 +547,6 @@
   font-style: italic;
 }
 
-/* Remove any image references that might be causing errors */
-img {
-  display: none;
-}
-
 /* On very small screens, do not force scale-fit (keep readable, allow vertical scroll) */
 @media (max-width: 980px){
   .webmap-board{ max-height: none; }
@@ -693,6 +688,10 @@ img {
 </div>
 
 <script>
+/* Prevent literal "<img" in HTML source (HTML-Proofer can mis-detect tags inside scripts) */
+const LT = "\u003c";
+const GT = "\u003e";
+
 const COLUMNS = [
   { key:"discovery", title:"DISCOVERY", cls:"discovery" },
   { key:"auth", title:"AUTHENTICATION", cls:"auth" },
@@ -788,7 +787,7 @@ const VECTORS = [
     }
   },
 
-  // AUTHENTICATION
+  /* AUTHENTICATION */
   { id:"brute-force", col:"auth", title:"Credential Brute Force", sub:"Rate limits, lockouts, enumeration", modes:["blackbox","greybox"], severity:"high", tags:["burp"], owasp:["A07:2025","A01:2025","A09:2025"],
     example: {
       request: "POST /login HTTP/1.1\nHost: target.com\nContent-Type: application/x-www-form-urlencoded\n\nusername=admin&password=password123",
@@ -881,7 +880,7 @@ const VECTORS = [
     }
   },
 
-  // INJECTION
+  /* INJECTION */
   { id:"sqli", col:"injection", title:"SQL Injection", sub:"Error, blind, time, second-order", modes:["blackbox","greybox","whitebox"], severity:"critical", tags:["review"], owasp:["A05:2025","A10:2025"],
     example: {
       request: "GET /products?id=1' UNION SELECT username,password FROM users-- HTTP/1.1\nHost: target.com",
@@ -903,13 +902,19 @@ const VECTORS = [
       note: "Reflected XSS - script executes in victim's browser"
     }
   },
+
+  /* FIXED: do not include literal "<img" in HTML source */
   { id:"dom-xss", col:"injection", title:"DOM-based Vulnerabilities", sub:"Client-side sinks and unsafe DOM APIs", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["devtools"], owasp:["A05:2025","A06:2025"],
     example: {
-      request: "GET /profile#<img src=x onerror=alert(1)> HTTP/1.1\nHost: target.com",
+      request:
+        "GET /profile#" +
+        LT + "img src=x onerror=alert(1)" + GT +
+        " HTTP/1.1\nHost: target.com",
       response: "HTTP/1.1 200 OK\n\n<script>document.write(location.hash)</script>",
       note: "DOM XSS - hash value written directly to page without encoding"
     }
   },
+
   { id:"ssti", col:"injection", title:"Server-Side Template Injection", sub:"Template context and sandbox escape risks", modes:["greybox","whitebox"], severity:"high", tags:["templating"], owasp:["A05:2025","A06:2025"],
     example: {
       request: "GET /profile?name={{7*7}} HTTP/1.1\nHost: target.com",
@@ -1023,7 +1028,7 @@ const VECTORS = [
     }
   },
 
-  // ACCESS CONTROL
+  /* ACCESS CONTROL */
   { id:"idor", col:"access", title:"Insecure Direct Object References", sub:"Object-level authz across CRUD", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["authz"], owasp:["A01:2025"],
     example: {
       request: "GET /api/user/12345 HTTP/1.1\nHost: target.com\nAuthorization: Bearer token123",
@@ -1123,7 +1128,7 @@ const VECTORS = [
     }
   },
 
-  // API SECURITY
+  /* API SECURITY */
   { id:"ssrf", col:"api", title:"SSRF", sub:"URL fetch features and egress controls", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["review"], owasp:["A05:2025","A02:2025","A06:2025"],
     example: {
       request: "POST /api/fetch HTTP/1.1\nHost: target.com\n\n{\"url\":\"http://169.254.169.254/latest/meta-data/\"}",
@@ -1152,7 +1157,7 @@ const VECTORS = [
       note: "Deeply nested query causes DoS"
     }
   },
-  { id:"api-authz-consistency", col:"api", title:"API Authz Consistency", sub:"Mismatch between UI and API permissioning", modes:["greybox","whitebox"], severity:"high", tags:["review"], owasp:["A01:2025","A06:2025"],
+  { id:"api-authz-consistency", col:"api", title:"API Authz Consistency", sub:"Mismatch between UI and API permissioning", modes:["greybox","whitebox"], severity:"high", tags:["review"], owasp:["A01:2025","A06:2025","A02:2025"],
     example: {
       request: "GET /api/v2/admin/users HTTP/1.1\nHost: target.com\nAuthorization: Bearer user_token",
       response: "HTTP/1.1 200 OK\n\n[user list] (UI hides this endpoint)",
@@ -1216,7 +1221,7 @@ const VECTORS = [
     }
   },
 
-  // DATA SECURITY
+  /* DATA SECURITY */
   { id:"data-exposure", col:"data", title:"Sensitive Data Exposure", sub:"PII, tokens, secrets in responses", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["pii"], owasp:["A04:2025","A01:2025","A02:2025"],
     example: {
       request: "GET /api/user/profile HTTP/1.1\nHost: target.com\nAuthorization: Bearer token",
@@ -1274,7 +1279,7 @@ const VECTORS = [
     }
   },
 
-  // INFRASTRUCTURE
+  /* INFRASTRUCTURE */
   { id:"cache-poisoning", col:"infra", title:"Web Cache Poisoning", sub:"Cache keys, header trust, variants", modes:["blackbox","greybox"], severity:"high", tags:["cdn"], owasp:["A02:2025","A10:2025"],
     example: {
       request: "GET / HTTP/1.1\nHost: target.com\nX-Forwarded-Host: evil.com\n\n[unkeyed header]",
@@ -1362,29 +1367,29 @@ function normalizeText(s){ return (s || "").toLowerCase(); }
 
 function formatExample(example) {
   if (!example) return '';
-  
-  let html = '<h3>📋 Example</h3><div class="example-box">';
-  
+
+  let html = '<h3> Example</h3><div class="example-box">';
+
   if (example.request) {
     html += '<div class="example-request">';
-    html += '<strong>🔵 Request:</strong><br>';
+    html += '<strong> Request:</strong><br>';
     html += escapeHtml(example.request).replace(/\n/g, '<br>');
     html += '</div>';
   }
-  
+
   if (example.response) {
     html += '<div class="example-response">';
-    html += '<strong>🟣 Response:</strong><br>';
+    html += '<strong> Response:</strong><br>';
     html += escapeHtml(example.response).replace(/\n/g, '<br>');
     html += '</div>';
   }
-  
+
   if (example.note) {
     html += '<div class="example-note">';
-    html += '<strong>📝 Note:</strong> ' + escapeHtml(example.note);
+    html += '<strong> Note:</strong> ' + escapeHtml(example.note);
     html += '</div>';
   }
-  
+
   html += '</div>';
   return html;
 }
@@ -1427,7 +1432,7 @@ function openDrawer(vector){
     <p><strong>${escapeHtml(vector.title)}</strong></p>
     <p>${escapeHtml(vector.sub || "")}</p>
 
-    <h3>🔬 Testing methodology</h3>
+    <h3> Testing methodology</h3>
     <ul>
       <li>Identify relevant endpoints and preconditions</li>
       <li>Compare behavior across roles and tenants</li>
@@ -1435,7 +1440,7 @@ function openDrawer(vector){
       <li>Capture clear, minimal evidence and impact</li>
     </ul>
 
-    <h3>🛡️ Remediation themes</h3>
+    <h3> Remediation themes</h3>
     <ul>
       <li>Enforce authorization server-side and validate input at boundaries</li>
       <li>Harden configuration defaults and reduce exposed surfaces</li>
