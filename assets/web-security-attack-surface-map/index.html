@@ -454,13 +454,13 @@
 }
 
 .webmap-drawer h3{
-  margin-top:20px;
-  margin-bottom:10px;
-  font-size:13px;
+  margin-top:24px;
+  margin-bottom:12px;
+  font-size:14px;
   letter-spacing:1px;
   text-transform:uppercase;
   color:var(--blue);
-  font-weight:800;
+  font-weight:700;
 }
 
 .webmap-drawer ul{
@@ -484,14 +484,14 @@
 }
 
 .webmap-close{
-  margin-top:18px;
+  margin-top:30px;
   padding:12px 20px;
   border-radius:14px;
   border:none;
   background:linear-gradient(135deg, var(--red), #b91c1c);
   color:white;
   cursor:pointer;
-  font-weight:800;
+  font-weight:700;
   width:100%;
   font-size:14px;
   transition:all .2s ease;
@@ -526,27 +526,6 @@
     grid-template-columns: 1fr;
     width:auto;
   }
-}
-
-/* Example styling */
-.example-box{
-  background: rgba(0,0,0,.4);
-  border-left: 3px solid var(--blue);
-  padding: 12px;
-  margin: 10px 0 0 0;
-  border-radius: 10px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 12px;
-  white-space: pre-wrap;
-  overflow-x: auto;
-}
-
-.example-request{ color: #8b9bb5; }
-.example-response{
-  color: #a5b4fc;
-  margin-top: 8px;
-  border-top: 1px dashed rgba(255,255,255,.1);
-  padding-top: 8px;
 }
 </style>
 </head>
@@ -631,21 +610,6 @@
       </div>
 
       <div class="webmap-row">
-        <div class="webmap-dd" id="webmap-dd-owasp">
-          <button id="webmap-owasp-btn" class="webmap-dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
-            <span id="webmap-owasp-label" class="webmap-dd-label">OWASP Top 10 2025: All</span>
-            <span class="webmap-dd-caret" aria-hidden="true"></span>
-          </button>
-          <div class="webmap-dd-panel" role="listbox" aria-label="OWASP Top 10 2025">
-            <button class="webmap-dd-item" type="button" role="option" data-value="all" aria-selected="true">
-              <span>OWASP Top 10 2025: All</span>
-              <span class="webmap-dd-hint">No filter</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="webmap-row">
         <button id="webmap-reset" class="webmap-btn secondary" type="button">Reset Filters</button>
       </div>
     </div>
@@ -658,7 +622,7 @@
   </div>
 
   <div class="webmap-disclaimer" id="webmap-disclaimer">
-    Mode counts overlap. A single vector can be testable in multiple modes, so totals will not sum to the overall vector count.
+    Mode counts overlap. A single vector can be testable in multiple modes, so totals won’t sum to the overall vector count.
   </div>
 
   <div class="webmap-board" id="webmap-board">
@@ -678,7 +642,7 @@
   <button class="webmap-close" id="webmap-close-btn" type="button">Close Details</button>
 </div>
 
-<script>
+<script type="b52faef98c7b191a335e0cf6-text/javascript">
 const COLUMNS = [
   { key:"discovery", title:"DISCOVERY", cls:"discovery" },
   { key:"auth", title:"AUTHENTICATION", cls:"auth" },
@@ -689,274 +653,104 @@ const COLUMNS = [
   { key:"infra", title:"INFRASTRUCTURE", cls:"infrastructure" }
 ];
 
-/*
-OWASP Top 10 2025 mapping keys (used only for filtering and display).
-Reference pages exist for the 2025 list. :contentReference[oaicite:1]{index=1}
-*/
-const OWASP_2025 = [
-  { key:"A01:2025", name:"Broken Access Control" },
-  { key:"A02:2025", name:"Security Misconfiguration" },
-  { key:"A03:2025", name:"Software Supply Chain Failures" },
-  { key:"A04:2025", name:"Cryptographic Failures" },
-  { key:"A05:2025", name:"Injection" },
-  { key:"A06:2025", name:"Insecure Design" },
-  { key:"A07:2025", name:"Authentication Failures" },
-  { key:"A08:2025", name:"Software or Data Integrity Failures" },
-  { key:"A09:2025", name:"Security Logging and Alerting Failures" },
-  { key:"A10:2025", name:"Mishandling of Exceptional Conditions" }
-];
-
-/*
-Note on examples:
-They are written as "evidence style" snippets, not copy and paste exploitation payloads.
-This keeps the page useful for reporting and education without turning it into a payload library.
-*/
 const VECTORS = [
-  // Discovery
-  {
-    id:"recon", col:"discovery",
-    title:"Surface Mapping",
-    sub:"Endpoints, APIs, parameters, technologies",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"medium",
-    tags:["burp","crawler"],
-    owasp:["A02:2025","A06:2025"],
-    example:{
-      request:"GET /api/v1/users?id=1 HTTP/1.1\nHost: target.example\nAuthorization: Bearer [redacted]",
-      response:"HTTP/1.1 200 OK\nContent-Type: application/json\n\n{\"id\":1,\"name\":\"User\",\"role\":\"user\"}",
-      note:"Endpoint and parameter discovered. Review access control checks and rate limits."
-    }
-  },
-  {
-    id:"content-discovery", col:"discovery",
-    title:"Content Discovery",
-    sub:"Hidden pages, legacy routes, staging hints",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"medium",
-    tags:["crawler"],
-    owasp:["A02:2025","A06:2025"],
-    example:{
-      request:"GET /staging/ HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 200 OK\nContent-Type: text/html\n\n<html>Staging dashboard</html>",
-      note:"Unexpected environment exposure. Confirm access rules and deployment hygiene."
-    }
-  },
-  {
-    id:"api-discovery", col:"discovery",
-    title:"API Endpoint Discovery",
-    sub:"REST, GraphQL, Swagger, SOAP",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"high",
-    tags:["burp","postman"],
-    owasp:["A02:2025","A06:2025"],
-    example:{
-      request:"GET /openapi.json HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 200 OK\nContent-Type: application/json\n\n{\"paths\":{\"/admin/users\":{...}}}",
-      note:"API documentation exposed. Validate intended visibility and authorization coverage."
-    }
-  },
+  { id:"recon", col:"discovery", title:"Surface Mapping", sub:"Endpoints, APIs, parameters, technologies", modes:["blackbox","greybox","whitebox"], severity:"medium", tags:["burp","ffuf"] },
+  { id:"content-discovery", col:"discovery", title:"Content Discovery", sub:"Hidden pages, legacy routes, staging hints", modes:["blackbox","greybox","whitebox"], severity:"medium", tags:["crawler"] },
+  { id:"directory", col:"discovery", title:"Directory Brute Force", sub:"Hidden dirs, backups, admin panels", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["ffuf","dirsearch"] },
+  { id:"parameter-mining", col:"discovery", title:"Parameter Mining", sub:"Hidden params, alternate names, pollution risks", modes:["blackbox","greybox"], severity:"medium", tags:["burp"] },
+  { id:"tech-fingerprint", col:"discovery", title:"Tech Fingerprinting", sub:"Frameworks, versions, libraries", modes:["blackbox","greybox","whitebox"], severity:"low", tags:["whatweb"] },
+  { id:"asset-leaks", col:"discovery", title:"Client Asset Leakage", sub:"Source maps, debug bundles, secrets in JS", modes:["blackbox"], severity:"high", tags:["devtools"] },
+  { id:"robots-sitemap", col:"discovery", title:"Robots and Sitemap Review", sub:"Accidental exposure hints and paths", modes:["blackbox"], severity:"low", tags:["review"] },
+  { id:"api-discovery", col:"discovery", title:"API Endpoint Discovery", sub:"REST, GraphQL, Swagger, SOAP", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["burp","postman"] },
+  { id:"graphql-schema-discovery", col:"discovery", title:"GraphQL Schema Discovery", sub:"Introspection and schema leakage", modes:["blackbox","greybox"], severity:"high", tags:["graphql"] },
+  { id:"websocket-discovery", col:"discovery", title:"WebSocket Discovery", sub:"WS endpoints, message types, auth patterns", modes:["blackbox","greybox"], severity:"medium", tags:["burp"] },
 
-  // Authentication
-  {
-    id:"session-management", col:"auth",
-    title:"Session Management Gaps",
-    sub:"Cookie flags, expiry, logout invalidation",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"high",
-    tags:["devtools"],
-    owasp:["A07:2025","A02:2025"],
-    example:{
-      request:"GET /dashboard HTTP/1.1\nHost: target.example\nCookie: session=[redacted]",
-      response:"HTTP/1.1 200 OK\nSet-Cookie: session=[redacted]; Path=/; Max-Age=31536000",
-      note:"Long lived session and missing cookie hardening are common findings. Check Secure, HttpOnly, SameSite, rotation."
-    }
-  },
-  {
-    id:"missing-auth", col:"auth",
-    title:"Missing Authentication",
-    sub:"Critical actions reachable unauthenticated",
-    modes:["blackbox","greybox"],
-    severity:"critical",
-    tags:["test"],
-    owasp:["A01:2025","A07:2025"],
-    example:{
-      request:"GET /api/admin/users HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 200 OK\nContent-Type: application/json\n\n[{\"id\":1,\"email\":\"admin@...\"}]",
-      note:"Admin endpoint responding without authentication indicates a direct control failure."
-    }
-  },
-  {
-    id:"oauth-misconfig", col:"auth",
-    title:"OAuth and OIDC Weaknesses",
-    sub:"Redirect URI, PKCE, state, nonce, leakage",
-    modes:["blackbox","greybox"],
-    severity:"high",
-    tags:["burp"],
-    owasp:["A07:2025","A01:2025","A02:2025"],
-    example:{
-      request:"GET /oauth/callback?code=[redacted]&state=[value] HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 302 Found\nLocation: /dashboard",
-      note:"Focus on validation of state, redirect URI exactness, PKCE usage, and code leakage into logs or referrers."
-    }
-  },
+  { id:"brute-force", col:"auth", title:"Credential Brute Force", sub:"Rate limits, lockouts, enumeration", modes:["blackbox","greybox"], severity:"high", tags:["burp"] },
+  { id:"password-reset", col:"auth", title:"Password Reset Weaknesses", sub:"Token handling, link poisoning, UX flaws", modes:["blackbox","greybox"], severity:"high", tags:["review"] },
+  { id:"mfa-bypass", col:"auth", title:"MFA Weaknesses", sub:"Recovery flows, backup codes, step-up gaps", modes:["blackbox","greybox"], severity:"critical", tags:["review"] },
+  { id:"session-fixation", col:"auth", title:"Session Fixation", sub:"Rotation failures and adoption", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["burp"] },
+  { id:"session-management", col:"auth", title:"Session Management Gaps", sub:"Cookie flags, expiry, logout invalidation", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["devtools"] },
+  { id:"jwt-attacks", col:"auth", title:"JWT Security Issues", sub:"Alg allowlist, claim trust, key rotation", modes:["greybox","whitebox"], severity:"critical", tags:["jwt"] },
+  { id:"oauth-misconfig", col:"auth", title:"OAuth and OIDC Weaknesses", sub:"Redirect URI, PKCE, state, nonce, leakage", modes:["blackbox","greybox"], severity:"high", tags:["burp"] },
+  { id:"sso-misconfig", col:"auth", title:"SSO Integration Weaknesses", sub:"SAML/OIDC config and trust boundaries", modes:["greybox","whitebox"], severity:"high", tags:["review"] },
+  { id:"missing-auth", col:"auth", title:"Missing Authentication", sub:"Critical actions reachable unauthenticated", modes:["blackbox","greybox"], severity:"critical", tags:["test"] },
+  { id:"auth-bypass", col:"auth", title:"Authentication Bypass", sub:"Logic flaws, alternate flows, headers", modes:["blackbox","greybox"], severity:"critical", tags:["test"] },
+  { id:"oauth-mixup", col:"auth", title:"OAuth Mix-Up and Confusion", sub:"Issuer mixups and client confusion", modes:["greybox","whitebox"], severity:"high", tags:["oauth"] },
+  { id:"jwt-kid", col:"auth", title:"JWT Key ID Abuse", sub:"kid injection and JWKS trust pitfalls", modes:["greybox","whitebox"], severity:"high", tags:["jwt"] },
+  { id:"oauth-redirect-wildcards", col:"auth", title:"Redirect URI Wildcards", sub:"Loose redirect patterns and open redirects", modes:["blackbox","greybox"], severity:"high", tags:["oauth"] },
 
-  // Injection
-  {
-    id:"xss", col:"injection",
-    title:"Cross-Site Scripting",
-    sub:"Reflected, stored, DOM, CSP review",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"high",
-    tags:["csp"],
-    owasp:["A05:2025"],
-    example:{
-      request:"GET /search?q=[test-marker] HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 200 OK\n\n<div>Results for [test-marker]</div>",
-      note:"If the marker reflects into an HTML or JS context, validate proper output encoding and CSP coverage."
-    }
-  },
-  {
-    id:"sqli", col:"injection",
-    title:"SQL Injection",
-    sub:"Error, blind, time, second order",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"critical",
-    tags:["review"],
-    owasp:["A05:2025"],
-    example:{
-      request:"GET /products?id=[test-marker] HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 500 Internal Server Error\n\nDatabase error reference ID: 7f3a2...",
-      note:"Unexpected database errors can indicate unsafe query composition. Confirm with safe testing and parameterization review."
-    }
-  },
+  { id:"sqli", col:"injection", title:"SQL Injection", sub:"Error, blind, time, second-order", modes:["blackbox","greybox","whitebox"], severity:"critical", tags:["review"] },
+  { id:"nosql-injection", col:"injection", title:"NoSQL Injection", sub:"Operator injection and flexible filters", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["review"] },
+  { id:"xss", col:"injection", title:"Cross-Site Scripting (XSS)", sub:"Reflected, stored, DOM, CSP review", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["csp"] },
+  { id:"dom-xss", col:"injection", title:"DOM-based Vulnerabilities", sub:"Client-side sinks and unsafe DOM APIs", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["devtools"] },
+  { id:"ssti", col:"injection", title:"Server-Side Template Injection", sub:"Template context and sandbox escape risks", modes:["greybox","whitebox"], severity:"high", tags:["templating"] },
+  { id:"xxe", col:"injection", title:"XXE", sub:"XML entity resolution and external fetch", modes:["blackbox","greybox"], severity:"high", tags:["xml"] },
+  { id:"cmd-injection", col:"injection", title:"OS Command Injection", sub:"Unsafe process execution and shell usage", modes:["blackbox","greybox","whitebox"], severity:"critical", tags:["review"] },
+  { id:"code-injection", col:"injection", title:"Code Injection", sub:"Eval-like sinks and unsafe interpretation", modes:["greybox","whitebox"], severity:"critical", tags:["review"] },
+  { id:"path-traversal", col:"injection", title:"Path Traversal", sub:"Read or write outside intended dirs", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["files"] },
+  { id:"file-upload", col:"injection", title:"File Upload Vulnerabilities", sub:"Dangerous types, polyglots, storage abuse", modes:["blackbox","greybox"], severity:"high", tags:["files"] },
+  { id:"deserialization", col:"injection", title:"Insecure Deserialization", sub:"Gadget chains and unsafe object graphs", modes:["greybox","whitebox"], severity:"critical", tags:["review"] },
+  { id:"prototype-pollution", col:"injection", title:"Prototype Pollution", sub:"Client or server JS object poisoning", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["node"] },
+  { id:"hpp", col:"injection", title:"HTTP Parameter Pollution", sub:"Ambiguous parsing and override behavior", modes:["blackbox","greybox"], severity:"medium", tags:["burp"] },
+  { id:"crlf", col:"injection", title:"CRLF Injection", sub:"Header splitting and response manipulation", modes:["blackbox","greybox"], severity:"medium", tags:["headers"] },
+  { id:"open-redirect", col:"injection", title:"Open Redirect", sub:"Unvalidated redirects and phishing chains", modes:["blackbox","greybox"], severity:"medium", tags:["review"] },
+  { id:"request-splitting", col:"injection", title:"HTTP Response Splitting", sub:"Cache and header manipulation via CRLF", modes:["blackbox","greybox"], severity:"medium", tags:["headers"] },
+  { id:"json-injection", col:"injection", title:"JSON Injection", sub:"Unsafe serialization and script contexts", modes:["greybox","whitebox"], severity:"medium", tags:["review"] },
+  { id:"xpath-injection", col:"injection", title:"XPath Injection", sub:"Unsafe XML query construction", modes:["greybox","whitebox"], severity:"high", tags:["xml"] },
+  { id:"ldap-injection", col:"injection", title:"LDAP Injection", sub:"Directory query manipulation", modes:["greybox","whitebox"], severity:"high", tags:["review"] },
+  { id:"template-autoescape", col:"injection", title:"Template Auto-Escape Gaps", sub:"Unsafe contexts despite templating", modes:["greybox","whitebox"], severity:"high", tags:["templating"] },
 
-  // Access Control
-  {
-    id:"idor", col:"access",
-    title:"Insecure Direct Object References",
-    sub:"Object level authorization across CRUD",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"high",
-    tags:["authz"],
-    owasp:["A01:2025"],
-    example:{
-      request:"GET /api/user/12345 HTTP/1.1\nHost: target.example\nAuthorization: Bearer [user-token]",
-      response:"HTTP/1.1 200 OK\n\n{\"id\":12345,\"email\":\"other.user@...\"}",
-      note:"Data returned for a different object owner indicates missing object authorization checks."
-    }
-  },
-  {
-    id:"rate-limit", col:"access",
-    title:"Rate Limiting Gaps",
-    sub:"Enumeration and abuse controls",
-    modes:["blackbox","greybox"],
-    severity:"medium",
-    tags:["abuse"],
-    owasp:["A10:2025","A07:2025"],
-    example:{
-      request:"POST /api/reset-password HTTP/1.1 (repeated requests)\nHost: target.example\n\n{\"email\":\"victim@...\"}",
-      response:"HTTP/1.1 200 OK\n\n{\"sent\":true}",
-      note:"If the endpoint accepts high frequency requests, add throttling and abuse detection."
-    }
-  },
+  { id:"idor", col:"access", title:"Insecure Direct Object References", sub:"Object-level authz across CRUD", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["authz"] },
+  { id:"missing-authorization", col:"access", title:"Missing Authorization", sub:"Actions without proper permission checks", modes:["blackbox","greybox","whitebox"], severity:"critical", tags:["authz"] },
+  { id:"incorrect-authorization", col:"access", title:"Incorrect Authorization", sub:"Policy bypass due to flawed rules", modes:["greybox","whitebox"], severity:"critical", tags:["review"] },
+  { id:"priv-esc", col:"access", title:"Privilege Escalation", sub:"Vertical or horizontal escalation", modes:["greybox","whitebox"], severity:"critical", tags:["authz"] },
+  { id:"bola", col:"access", title:"BOLA", sub:"Broken object level authorization in APIs", modes:["blackbox","greybox"], severity:"critical", tags:["api"] },
+  { id:"bfla", col:"access", title:"BFLA", sub:"Broken function level authorization", modes:["blackbox","greybox"], severity:"high", tags:["api"] },
+  { id:"mass-assignment", col:"data", title:"Mass Assignment", sub:"Over-posting and writable field abuse", modes:["greybox","whitebox"], severity:"high", tags:["dto"] },
+  { id:"cors-misconfig", col:"access", title:"CORS Misconfiguration", sub:"Origin validation and credentials", modes:["blackbox","greybox"], severity:"medium", tags:["headers"] },
+  { id:"csrf", col:"access", title:"CSRF", sub:"Cross-site state changes", modes:["blackbox","greybox"], severity:"medium", tags:["cookies"] },
+  { id:"csrf-samesite", col:"access", title:"SameSite Strategy Gaps", sub:"CSRF via lax cookies and subdomains", modes:["blackbox","greybox"], severity:"medium", tags:["cookies"] },
+  { id:"clickjacking", col:"access", title:"Clickjacking", sub:"UI redress and framing policy gaps", modes:["blackbox"], severity:"medium", tags:["headers"] },
+  { id:"business-logic", col:"access", title:"Business Logic Vulnerabilities", sub:"Abuse flows, price, limits, sequencing", modes:["blackbox","greybox"], severity:"high", tags:["logic"] },
+  { id:"race-conditions", col:"access", title:"Race Conditions", sub:"Concurrent requests causing inconsistent state", modes:["blackbox","greybox"], severity:"high", tags:["timing"] },
+  { id:"rate-limit", col:"access", title:"Rate Limiting Gaps", sub:"Enumeration and abuse controls", modes:["blackbox","greybox"], severity:"medium", tags:["abuse"] },
 
-  // API Security
-  {
-    id:"api-schema-validation", col:"api",
-    title:"Schema Validation Gaps",
-    sub:"Missing type validation and coercion issues",
-    modes:["greybox","whitebox"],
-    severity:"high",
-    tags:["openapi"],
-    owasp:["A02:2025","A10:2025"],
-    example:{
-      request:"POST /api/user HTTP/1.1\nHost: target.example\nContent-Type: application/json\n\n{\"id\":\"not-an-integer\",\"email\":\"test@...\"}",
-      response:"HTTP/1.1 200 OK\n\n{\"id\":\"not-an-integer\"}",
-      note:"Weak validation can cause logic flaws, unexpected states, and downstream injection risks."
-    }
-  },
-  {
-    id:"http-host-header", col:"api",
-    title:"HTTP Host Header Attacks",
-    sub:"Poisoned links, reset poisoning, routing trust",
-    modes:["blackbox","greybox"],
-    severity:"high",
-    tags:["headers"],
-    owasp:["A02:2025","A01:2025"],
-    example:{
-      request:"GET /reset-password HTTP/1.1\nHost: unexpected.example",
-      response:"HTTP/1.1 200 OK\n\nPassword reset link generated with the received host value",
-      note:"If absolute links are built from Host without allowlisting, reset links and emails can be poisoned."
-    }
-  },
+  { id:"ssrf", col:"api", title:"SSRF", sub:"URL fetch features and egress controls", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["review"] },
+  { id:"ssrf-redirects", col:"api", title:"SSRF via Redirect Chains", sub:"Allowlist bypass and redirect policy gaps", modes:["blackbox","greybox"], severity:"high", tags:["ssrf"] },
+  { id:"graphql-attacks", col:"api", title:"GraphQL Weaknesses", sub:"Introspection, cost, resolver authz", modes:["blackbox","greybox"], severity:"high", tags:["graphql"] },
+  { id:"graphql-batching", col:"api", title:"GraphQL Batching and Cost Abuse", sub:"DoS via query depth, batching, complexity", modes:["blackbox","greybox"], severity:"medium", tags:["graphql"] },
+  { id:"api-authz-consistency", col:"api", title:"API Authz Consistency", sub:"Mismatch between UI and API permissioning", modes:["greybox","whitebox"], severity:"high", tags:["review"] },
+  { id:"api-schema-validation", col:"api", title:"Schema Validation Gaps", sub:"Missing type validation and coercion issues", modes:["greybox","whitebox"], severity:"high", tags:["openapi"] },
+  { id:"webhook-abuse", col:"api", title:"Webhook Manipulation", sub:"Signature, replay, allowlists", modes:["blackbox","greybox"], severity:"medium", tags:["integrations"] },
+  { id:"websockets", col:"api", title:"WebSockets Security", sub:"Auth, message validation, origin, replay", modes:["blackbox","greybox"], severity:"medium", tags:["ws"] },
+  { id:"websocket-csrf", col:"api", title:"WebSocket Cross-Site Abuse", sub:"Cross-site initiation and token misuse", modes:["blackbox","greybox"], severity:"medium", tags:["ws"] },
+  { id:"api-versioning", col:"api", title:"API Versioning Pitfalls", sub:"Old endpoints with weaker controls", modes:["blackbox","greybox"], severity:"medium", tags:["api"] },
+  { id:"http-host-header", col:"api", title:"HTTP Host Header Attacks", sub:"Poisoned links, reset poisoning, routing trust", modes:["blackbox","greybox"], severity:"high", tags:["headers"] },
+  { id:"oauth-token-leak", col:"api", title:"Token Leakage", sub:"Referrer, logs, URLs, browser storage", modes:["blackbox","greybox"], severity:"high", tags:["oauth"] },
+  { id:"web-llm-attacks", col:"api", title:"Web LLM Attacks", sub:"Prompt injection and data exfil via tools", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["ai"] },
 
-  // Data Security
-  {
-    id:"sensitive-data", col:"data",
-    title:"Sensitive Data Exposure",
-    sub:"PII, tokens, secrets in responses",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"high",
-    tags:["pii"],
-    owasp:["A04:2025","A01:2025"],
-    example:{
-      request:"GET /api/user/profile HTTP/1.1\nHost: target.example\nAuthorization: Bearer [redacted]",
-      response:"HTTP/1.1 200 OK\n\n{\"email\":\"user@...\",\"token\":\"[redacted]\"}",
-      note:"Confirm least privilege fields, masking, and transport plus storage protections."
-    }
-  },
-  {
-    id:"logging-alerting", col:"data",
-    title:"Logging and Alerting Gaps",
-    sub:"Missing audit trails for sensitive actions",
-    modes:["greybox","whitebox"],
-    severity:"high",
-    tags:["siem"],
-    owasp:["A09:2025"],
-    example:{
-      request:"POST /api/admin/role-change HTTP/1.1\nHost: target.example\n\n{\"userId\":123,\"role\":\"admin\"}",
-      response:"HTTP/1.1 200 OK\n\n{\"updated\":true}",
-      note:"Verify audit logs include who, what, when, where, and outcome, and that alerts trigger on high risk actions."
-    }
-  },
+  { id:"data-exposure", col:"data", title:"Sensitive Data Exposure", sub:"PII, tokens, secrets in responses", modes:["blackbox","greybox","whitebox"], severity:"high", tags:["pii"] },
+  { id:"excessive-data", col:"data", title:"Excessive Data Exposure", sub:"APIs return more fields than needed", modes:["blackbox","greybox"], severity:"high", tags:["api"] },
+  { id:"info-disclosure", col:"data", title:"Information Disclosure", sub:"Errors, debug endpoints, stack traces", modes:["blackbox","greybox"], severity:"medium", tags:["review"] },
+  { id:"log-injection", col:"data", title:"Log Injection", sub:"Log forging and parsing safety", modes:["greybox","whitebox"], severity:"medium", tags:["siem"] },
+  { id:"crypto-review", col:"data", title:"Crypto Review", sub:"Key handling, algorithms, misuse", modes:["whitebox"], severity:"high", tags:["review"] },
+  { id:"insecure-storage", col:"data", title:"Insecure Storage", sub:"Secrets in local storage, cookies, caches", modes:["blackbox","greybox"], severity:"medium", tags:["devtools"] },
+  { id:"cache-control", col:"data", title:"Cache Control Failures", sub:"Sensitive responses cached at edge", modes:["blackbox","greybox"], severity:"high", tags:["headers"] },
+  { id:"idempotency", col:"data", title:"Idempotency and Replay Issues", sub:"Duplicate processing and replayable actions", modes:["blackbox","greybox"], severity:"medium", tags:["api"] },
 
-  // Infrastructure
-  {
-    id:"security-headers", col:"infra",
-    title:"Security Headers",
-    sub:"CSP, HSTS, frame protections, isolation headers",
-    modes:["blackbox","greybox"],
-    severity:"medium",
-    tags:["headers"],
-    owasp:["A02:2025"],
-    example:{
-      request:"GET / HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 200 OK\nContent-Security-Policy: (missing)\nStrict-Transport-Security: (missing)",
-      note:"Missing headers increase the blast radius of other bugs like XSS and clickjacking."
-    }
-  },
-  {
-    id:"exception-handling", col:"infra",
-    title:"Mishandling of Exceptional Conditions",
-    sub:"Uncaught errors, verbose failures, unsafe fallbacks",
-    modes:["blackbox","greybox","whitebox"],
-    severity:"medium",
-    tags:["review"],
-    owasp:["A10:2025"],
-    example:{
-      request:"GET /api/items?id=invalid HTTP/1.1\nHost: target.example",
-      response:"HTTP/1.1 500 Internal Server Error\n\nUnhandled exception reference ID: 9c2d...",
-      note:"Unhandled exceptions should be turned into safe error responses with correlation IDs, and never leak internals."
-    }
-  }
+  { id:"cache-poisoning", col:"infra", title:"Web Cache Poisoning", sub:"Cache keys, header trust, variants", modes:["blackbox","greybox"], severity:"high", tags:["cdn"] },
+  { id:"cache-deception", col:"infra", title:"Web Cache Deception", sub:"Trick cache into storing sensitive content", modes:["blackbox","greybox"], severity:"high", tags:["cdn"] },
+  { id:"http-smuggling", col:"infra", title:"HTTP Request Smuggling", sub:"Front end and back end parsing mismatch", modes:["blackbox","greybox"], severity:"high", tags:["http"] },
+  { id:"tls-posture", col:"infra", title:"TLS and HSTS Posture", sub:"Downgrade risk and weak configs", modes:["blackbox","greybox"], severity:"medium", tags:["tls"] },
+  { id:"dns-attacks", col:"infra", title:"DNS and Rebinding Risks", sub:"Rebinding and trust boundaries", modes:["blackbox"], severity:"medium", tags:["dns"] },
+  { id:"subdomain-takeover", col:"infra", title:"Subdomain Takeover", sub:"Dangling DNS and cloud resources", modes:["blackbox","greybox"], severity:"high", tags:["dns"] },
+  { id:"security-headers", col:"infra", title:"Security Headers", sub:"CSP, HSTS, XFO, CORP, COOP, COEP", modes:["blackbox","greybox"], severity:"medium", tags:["headers"] },
+  { id:"reverse-proxy", col:"infra", title:"Reverse Proxy Misconfig", sub:"Bypass routes, auth offload gaps", modes:["greybox","whitebox"], severity:"high", tags:["nginx"] },
+  { id:"container-hardening", col:"infra", title:"Container Hardening Gaps", sub:"Root, caps, mounts, runtime policy", modes:["whitebox"], severity:"critical", tags:["k8s"] },
+  { id:"cloud-metadata", col:"infra", title:"Cloud Metadata Exposure", sub:"Instance credentials and boundary failures", modes:["greybox","whitebox"], severity:"critical", tags:["cloud"] }
 ];
 
-const state = {
-  q: "",
-  mode: "all",
-  severity: "all",
-  owasp: "all"
-};
+const state = { q:"", mode:"all", severity:"all" };
 
 function escapeHtml(s){
   return String(s ?? "")
@@ -985,26 +779,17 @@ function severityColor(sev){
   return "var(--green)";
 }
 
-function openDrawer(title, bodyHtml, sev, owaspKeys){
+function openDrawer(title, bodyHtml, sev){
   document.getElementById("webmap-drawer-title").innerText = title;
 
   const color = severityColor(sev);
   const cvss = severityToCvss(sev);
 
-  const owaspText = (owaspKeys || [])
-    .map(k => {
-      const hit = OWASP_2025.find(x => x.key === k);
-      return hit ? `${hit.key} ${hit.name}` : k;
-    })
-    .join(", ");
-
   document.getElementById("webmap-drawer-body").innerHTML = bodyHtml;
-
   document.getElementById("webmap-drawer-tools").innerHTML = `
     <strong>Severity:</strong>
     <span style="color:${color}; font-weight:800;">${escapeHtml((sev || "medium").toUpperCase())}</span><br>
     <strong>CVSS v3.1:</strong> ${escapeHtml(cvss)}<br>
-    <strong>OWASP Top 10 2025:</strong> ${escapeHtml(owaspText || "Not mapped")}<br>
     <strong>Note:</strong> Keep testing authorized and within scope. Focus on evidence, detection, and remediation.
   `;
 
@@ -1094,7 +879,6 @@ function applyFilters(){
   const q = normalizeText(state.q);
   const mode = state.mode;
   const severity = state.severity;
-  const owasp = state.owasp;
 
   const cards = [...document.querySelectorAll(".webmap-card")];
   cards.forEach(c => {
@@ -1102,23 +886,11 @@ function applyFilters(){
     const modeOk = mode === "all" || (c.dataset.modes || "").split(",").map(x => x.trim()).includes(mode);
     const sev = (c.dataset.severity || "all").toLowerCase();
     const severityOk = severity === "all" || sev === severity;
-
-    const owaspList = (c.dataset.owasp || "").split(",").map(x => x.trim()).filter(Boolean);
-    const owaspOk = owasp === "all" || owaspList.includes(owasp);
-
-    c.classList.toggle("hidden", !(textOk && modeOk && severityOk && owaspOk));
+    c.classList.toggle("hidden", !(textOk && modeOk && severityOk));
   });
 
   updateVisibleBadge();
   requestAnimationFrame(updateFitScale);
-}
-
-function formatExample(example){
-  if (!example) return "";
-  const req = example.request ? `<div class="example-request"><strong>Request:</strong>\n${escapeHtml(example.request)}</div>` : "";
-  const res = example.response ? `<div class="example-response"><strong>Response:</strong>\n${escapeHtml(example.response)}</div>` : "";
-  const note = example.note ? `<div style="margin-top:8px; color:var(--muted);"><strong>Note:</strong> ${escapeHtml(example.note)}</div>` : "";
-  return `<h3>Evidence example</h3><div class="example-box">${req}${res}${note}</div>`;
 }
 
 function render(){
@@ -1146,7 +918,6 @@ function render(){
       card.dataset.id = v.id;
       card.dataset.modes = (v.modes || []).join(",");
       card.dataset.severity = v.severity || "medium";
-      card.dataset.owasp = (v.owasp || []).join(",");
 
       const sevCls =
         v.severity === "critical" ? "severity-critical" :
@@ -1166,40 +937,20 @@ function render(){
       `;
 
       card.addEventListener("click", () => {
-        const owaspText = (v.owasp || [])
-          .map(k => {
-            const hit = OWASP_2025.find(x => x.key === k);
-            return hit ? `${hit.key} ${hit.name}` : k;
-          })
-          .join(", ");
-
         const body = `
           <p><strong>${escapeHtml(v.title)}</strong></p>
           <p>${escapeHtml(v.sub || "")}</p>
-
           <h3>Testing methodology</h3>
           <ul>
-            <li>Identify endpoints, preconditions, and roles</li>
-            <li>Compare behavior across tenants and permissions</li>
-            <li>Validate server side enforcement and safe errors</li>
-            <li>Capture minimal evidence with clear impact</li>
+            <li>Identify relevant endpoints and preconditions</li>
+            <li>Compare behavior across roles and tenants</li>
+            <li>Check for consistent validation and safe error handling</li>
+            <li>Capture clear, minimal proof and impact</li>
           </ul>
-
-          <h3>Remediation themes</h3>
-          <ul>
-            <li>Server side authorization and validation</li>
-            <li>Secure defaults and configuration hygiene</li>
-            <li>Strong session and token handling</li>
-            <li>Logging, alerting, and abuse controls</li>
-          </ul>
-
-          <h3>OWASP Top 10 2025 mapping</h3>
-          <p>${escapeHtml(owaspText || "Not mapped")}</p>
-
-          ${v.example ? formatExample(v.example) : ""}
+          <h3>Remediation</h3>
+          <p>Validate inputs, enforce authorization server-side, harden configs, and add monitoring.</p>
         `;
-
-        openDrawer(v.title, body, v.severity, v.owasp || []);
+        openDrawer(v.title, body, v.severity);
         location.hash = `#${encodeURIComponent(v.id)}`;
       });
 
@@ -1239,30 +990,6 @@ function updateFitScale(){
   board.style.setProperty("--fitHeight", contentHeight + "px");
 }
 
-function buildOwaspDropdown(){
-  const panel = document.querySelector("#webmap-dd-owasp .webmap-dd-panel");
-  if (!panel) return;
-
-  // Keep the first "all" item
-  const keep = panel.querySelector('[data-value="all"]');
-  panel.innerHTML = "";
-  if (keep) panel.appendChild(keep);
-
-  OWASP_2025.forEach(item => {
-    const btn = document.createElement("button");
-    btn.className = "webmap-dd-item";
-    btn.type = "button";
-    btn.setAttribute("role","option");
-    btn.dataset.value = item.key;
-    btn.setAttribute("aria-selected","false");
-    btn.innerHTML = `
-      <span>${escapeHtml(item.key)}</span>
-      <span class="webmap-dd-hint">${escapeHtml(item.name)}</span>
-    `;
-    panel.appendChild(btn);
-  });
-}
-
 document.addEventListener("click", () => closeAllDropdowns());
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape"){
@@ -1281,15 +1008,12 @@ document.getElementById("webmap-reset").addEventListener("click", () => {
   state.q = "";
   state.mode = "all";
   state.severity = "all";
-  state.owasp = "all";
 
   document.getElementById("webmap-mode-label").textContent = "All Testing Modes";
   document.getElementById("webmap-severity-label").textContent = "All Severities";
-  document.getElementById("webmap-owasp-label").textContent = "OWASP Top 10 2025: All";
 
   setSelected(document.getElementById("webmap-dd-mode"), "all");
   setSelected(document.getElementById("webmap-dd-severity"), "all");
-  setSelected(document.getElementById("webmap-dd-owasp"), "all");
 
   applyFilters();
 });
@@ -1298,8 +1022,6 @@ document.getElementById("webmap-overlay").addEventListener("click", () => webmap
 document.getElementById("webmap-close-btn").addEventListener("click", () => webmapClose());
 
 document.addEventListener("DOMContentLoaded", () => {
-  buildOwaspDropdown();
-
   initDropdown("webmap-dd-mode", "webmap-mode-label", (val) => {
     state.mode = val;
     applyFilters();
@@ -1307,11 +1029,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initDropdown("webmap-dd-severity", "webmap-severity-label", (val) => {
     state.severity = val;
-    applyFilters();
-  });
-
-  initDropdown("webmap-dd-owasp", "webmap-owasp-label", (val) => {
-    state.owasp = val;
     applyFilters();
   });
 
@@ -1331,5 +1048,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b52faef98c7b191a335e0cf6-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v67327c56f0bb4ef8b305cae61679db8f1769101564043" integrity="sha512-rdcWY47ByXd76cbCFzznIcEaCN71jqkWBBqlwhF1SY7KubdLKZiEGeP7AyieKZlGP9hbY/MhGrwXzJC/HulNyg==" data-cf-beacon='{"version":"2024.11.0","token":"dfb2d622855140f9be97047d0c2e2cc5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
