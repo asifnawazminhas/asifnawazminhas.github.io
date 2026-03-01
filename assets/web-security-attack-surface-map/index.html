@@ -517,7 +517,7 @@
   pointer-events:auto;
 }
 
-/* Example styling */
+/* Example styling - using CSS only, no images */
 .example-box {
   background: rgba(0,0,0,.4);
   border-left: 3px solid var(--blue);
@@ -545,6 +545,11 @@
   margin-top: 8px;
   color: var(--muted);
   font-style: italic;
+}
+
+/* Remove any image references that might be causing errors */
+img {
+  display: none;
 }
 
 /* On very small screens, do not force scale-fit (keep readable, allow vertical scroll) */
@@ -1358,25 +1363,25 @@ function normalizeText(s){ return (s || "").toLowerCase(); }
 function formatExample(example) {
   if (!example) return '';
   
-  let html = '<h3> Example</h3><div class="example-box">';
+  let html = '<h3>📋 Example</h3><div class="example-box">';
   
   if (example.request) {
     html += '<div class="example-request">';
-    html += '<strong> Request:</strong><br>';
+    html += '<strong>🔵 Request:</strong><br>';
     html += escapeHtml(example.request).replace(/\n/g, '<br>');
     html += '</div>';
   }
   
   if (example.response) {
     html += '<div class="example-response">';
-    html += '<strong> Response:</strong><br>';
+    html += '<strong>🟣 Response:</strong><br>';
     html += escapeHtml(example.response).replace(/\n/g, '<br>');
     html += '</div>';
   }
   
   if (example.note) {
     html += '<div class="example-note">';
-    html += '<strong> Note:</strong> ' + escapeHtml(example.note);
+    html += '<strong>📝 Note:</strong> ' + escapeHtml(example.note);
     html += '</div>';
   }
   
@@ -1430,7 +1435,7 @@ function openDrawer(vector){
       <li>Capture clear, minimal evidence and impact</li>
     </ul>
 
-    <h3> Remediation themes</h3>
+    <h3>🛡️ Remediation themes</h3>
     <ul>
       <li>Enforce authorization server-side and validate input at boundaries</li>
       <li>Harden configuration defaults and reduce exposed surfaces</li>
