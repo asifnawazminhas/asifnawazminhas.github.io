@@ -23,6 +23,8 @@ order: 4
 - <a href="https://exploit-notes.hdks.org/" target="_blank">Exploit Notes</a>: Quick exploit & payload references.
 - <a href="https://jwtauditor.com/" target="_blank">JWT Auditor</a>: Test JWT tokens for common security issues.
 - <a href="https://adsecurity.org/" target="_blank">adsecurity.org</a>: is a cybersecurity blog focused on securing Active Directory and Azure AD/Entra ID, detailing attack methods, defenses, and practical security tips.
+- <a href="https://queries.specterops.io/" target="_blank">BloodHound Queries For All</a>: BloodHound Query Library
+
 
 **Obfuscation, Evasion, & Bypass**
 - <a href="https://shaquibizhar.github.io/Amsi-bypass-generator/" target="_blank">AMSI Bypass Generator</a>: Auto-generate AMSI bypass payloads for Windows.
@@ -30,6 +32,10 @@ order: 4
 - <a href="https://argfuscator.net/" target="_blank">Argfuscator</a>: Argument obfuscation for command line payloads.
 - <a href="https://powershellforhackers.com/tools/revshell/" target="_blank">PowerShellForHackers</a>: Handy online tool to generate reverse shell when doing red teaming.
 
+## Security Maps
+- <a href="https://kypvas.github.io/red-team-map/" target="_blank">Red Team Map</a>: Red Team Operations Architecture Map
+- <a href="https://kypvas.github.io/ad_attack_architecture/" target="_blank">Active Directory Attack Map</a>: AD Map
+- <a href="https://www.asifnawazminhas.com/assets/web-security-attack-surface-map/" target="_blank">Web Security Attack Surface Map</a>: Web Security Map
 
 ---
 
