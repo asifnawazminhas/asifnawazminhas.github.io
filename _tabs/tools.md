@@ -47,7 +47,7 @@ order: 4
 - <a href="https://swisskyrepo.github.io/PayloadsAllTheThings/" target="_blank">Payloads All The Things</a>: Ultimate payload collection.
 - <a href="https://swisskyrepo.github.io/InternalAllTheThings/" target="_blank">Internal All The Things</a>: Focus on internal network/pivoting.
 - <a href="https://0day-archive.fullhunt.io/" target="_blank">0day today - Security Archive</a>: Underground security archive featuring latest exploits.
-- <a href="https://lolol.farm/" target="_blank"> lolol.farm is central index of LOTL related security projects. These projects document how everyday system components (Windows binaries, macOS tools, drivers, APIs, cloud services, etc.) can be misused by adversaries, and how defenders can detect or mitigate that misuse.
+- <a href="https://lolol.farm/" target="_blank">lolol.farm</a>: is central index of LOTL related security projects. These projects document how everyday system components (Windows binaries, macOS tools, drivers, APIs, cloud services, etc.) can be misused by adversaries, and how defenders can detect or mitigate that misuse.
 
 **Writeups, Labs & Practical Guides**
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>: Interactive hands-on web security labs.
