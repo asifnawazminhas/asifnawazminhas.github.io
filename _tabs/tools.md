@@ -42,12 +42,13 @@ order: 4
 ## Knowledge Bases, Cheatsheets & Guides
 
 **General References**
-- [OWASP](https://owasp.org/): Security community, standards, and tools.
-- [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/index.html): Practical advice for security testers.
-- [Payloads All The Things](https://swisskyrepo.github.io/PayloadsAllTheThings/): Ultimate payload collection.
-- [Internal All The Things](https://swisskyrepo.github.io/InternalAllTheThings/): Focus on internal network/pivoting.
-- [0day today - Security Archive](https://0day-archive.fullhunt.io/): Underground security archive featuring latest exploits.
-- [lolol.farm](https://lolol.farm/): Central index of LOTL-related security projects. These projects document how everyday system components can be misused by adversaries, and how defenders can detect or mitigate that misuse.
+
+- <a href="https://owasp.org/" target="_blank" rel="noopener">OWASP</a>: Security community, standards, and tools.
+- <a href="https://cheatsheetseries.owasp.org/index.html" target="_blank" rel="noopener">OWASP Cheat Sheet Series</a>: Practical advice for security testers.
+- <a href="https://swisskyrepo.github.io/PayloadsAllTheThings/" target="_blank" rel="noopener">Payloads All The Things</a>: Ultimate payload collection.
+- <a href="https://swisskyrepo.github.io/InternalAllTheThings/" target="_blank" rel="noopener">Internal All The Things</a>: Focus on internal network/pivoting.
+- <a href="https://0day-archive.fullhunt.io/" target="_blank" rel="noopener">0day today - Security Archive</a>: Underground security archive featuring latest exploits.
+- <a href="https://lolol.farm/" target="_blank" rel="noopener">lolol.farm</a>: Central index of LOTL related security projects. These projects document how everyday system components can be misused by adversaries and how defenders can detect or mitigate that misuse.
 
 **Writeups, Labs & Practical Guides**
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>: Interactive hands-on web security labs.
