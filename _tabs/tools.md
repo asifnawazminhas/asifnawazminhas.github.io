@@ -31,6 +31,7 @@ order: 4
 - <a href="https://amsibypass.com/" target="_blank">AMSI Bypass Generator</a>: AMSI Bypass Generator.
 - <a href="https://argfuscator.net/" target="_blank">Argfuscator</a>: Argument obfuscation for command line payloads.
 - <a href="https://powershellforhackers.com/tools/revshell/" target="_blank">PowerShellForHackers</a>: Handy online tool to generate reverse shell when doing red teaming.
+- <a href="https://pwnbase.org/tools" target="_blank">Pwnbase</a>: Offensive Security Platform for Pentesters
 
 ## Security Maps
 - <a href="https://kypvas.github.io/red-team-map/" target="_blank">Red Team Map</a>: Red Team Operations Architecture Map
