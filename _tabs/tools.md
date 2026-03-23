@@ -50,6 +50,7 @@ order: 4
 - <a href="https://swisskyrepo.github.io/InternalAllTheThings/" target="_blank" rel="noopener">Internal All The Things</a>: Focus on internal network/pivoting.
 - <a href="https://0day-archive.fullhunt.io/" target="_blank" rel="noopener">0day today - Security Archive</a>: Underground security archive featuring latest exploits.
 - <a href="https://lolol.farm/" target="_blank" rel="noopener">lolol.farm</a>: Central index of LOTL related security projects. These projects document how everyday system components can be misused by adversaries and how defenders can detect or mitigate that misuse.
+- <a href="https://lolad-project.github.io/" target="_blank" rel="noopener">lolAD</a>: Living Off The Land and Exploitation Active Directory
 
 **Writeups, Labs & Practical Guides**
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>: Interactive hands-on web security labs.
