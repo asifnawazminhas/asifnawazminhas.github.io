@@ -20,7 +20,7 @@ order: 4
 **Red Team & Post-Exploitation**
 - <a href="https://www.revshells.com/" target="_blank">RevShells</a>: Generate reverse shell commands for multiple languages.
 - <a href="https://arttoolkit.github.io/" target="_blank">Art Toolkit</a>: Useful red team resource.
-- <a href="https://exploit-notes.hdks.org/" target="_blank">Exploit Notes</a>: Quick exploit & payload references.
+- <a href="https://exploitnotes.org/" target="_blank">Exploit Notes</a>: Quick exploit & payload references.
 - <a href="https://jwtauditor.com/" target="_blank">JWT Auditor</a>: Test JWT tokens for common security issues.
 - <a href="https://adsecurity.org/" target="_blank">adsecurity.org</a>: is a cybersecurity blog focused on securing Active Directory and Azure AD/Entra ID, detailing attack methods, defenses, and practical security tips.
 - <a href="https://queries.specterops.io/" target="_blank">BloodHound Queries For All</a>: BloodHound Query Library
