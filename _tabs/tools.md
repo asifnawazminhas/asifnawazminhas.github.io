@@ -38,6 +38,18 @@ order: 4
 - <a href="https://kypvas.github.io/ad_attack_architecture/" target="_blank">Active Directory Attack Map</a>: AD Map
 - <a href="https://www.asifnawazminhas.com/assets/web-security-attack-surface-map/" target="_blank">Web Security Attack Surface Map</a>: Web Security Map
 
+
+### Bug bounty related
+
+- <a href="https://hackermd-toolkit.netlify.app/" target="_blank">BugHunt Toolkit</a>: BugHunt Toolkit
+
+### POC's
+
+- <a href="https://watchstack.io/intel/poc-search" target="_blank">WatchStack.io</a>: PoC Search Engine
+- <a href="https://sploitus.com/" target="_blank">Sploitus </a>: Exploit & Hacktool Search Engine
+- <a href="https://www.exploit-db.com/" target="_blank">exploit-db </a>: Exploit database
+
+
 ---
 
 ## Knowledge Bases, Cheatsheets & Guides
