@@ -42,12 +42,25 @@ order: 4
 ### Bug bounty related
 
 - <a href="https://hackermd-toolkit.netlify.app/" target="_blank">BugHunt Toolkit</a>: BugHunt Toolkit
+- <a href="https://bugbounty-commands.vercel.app/" target="_blank">HackByte</a>: Generate personalized security reconnaissance commands for your target domains
+- <a href="https://moe-code-22.github.io/Endpoint-Buster/" target="_blank">Fast Endpoint Buster</a>: Uncover potential endpoints
+- <a href="https://www.bugbountyhunting.com/" target="_blank">Bug bounty hunting</a>: Bug Bounty Hunting Search Engine
+
+
 
 ### POC's
 
 - <a href="https://watchstack.io/intel/poc-search" target="_blank">WatchStack.io</a>: PoC Search Engine
 - <a href="https://sploitus.com/" target="_blank">Sploitus </a>: Exploit & Hacktool Search Engine
 - <a href="https://www.exploit-db.com/" target="_blank">exploit-db </a>: Exploit database
+
+### Dork search
+
+- <a href="https://h6nt3r.github.io/reconengines/" target="_blank">All in one dorks!</a>: Recon engine
+- <a href="https://taksec.github.io/google-dorks-bug-bounty/" target="_blank">Google dorks for bug bounty</a>: TakSec google dorks
+- <a href="https://h6nt3r.github.io/reconengine/" target="_blank">Recon Engine </a>: Recone engine
+- <a href="https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/" target="_blank">Search engine for bug bounty hunters </a>: Search engine for bug bounty hunters
+- <a href="https://abhijithb200.github.io/investigator/" target="_blank">Investigator </a> Investigator - A recon tool
 
 
 ---
