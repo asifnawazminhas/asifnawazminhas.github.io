@@ -46,7 +46,15 @@ order: 4
 - <a href="https://moe-code-22.github.io/Endpoint-Buster/" target="_blank">Fast Endpoint Buster</a>: Uncover potential endpoints
 - <a href="https://www.bugbountyhunting.com/" target="_blank">Bug bounty hunting</a>: Bug Bounty Hunting Search Engine
 
+### Windows privesc
+- <a href="https://docs.specterops.io/ghostpack-docs/SharpUp-mdx/checks/alwaysinstallelevated" target="_blank">Ghostpack-docs</a>: Ghostpack - alwaysinstallelevated docs
+- <a href="https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/windows-privilege-escalation/">Windows-privesc</a>: Windows privilege escalation
 
+### Linux privesc
+- <a href="https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/linux-privilege-escalation/">Linux-privesc</a>: Linux privilege escalation
+
+### NXC
+- <a href="https://www.netexec.wiki/smb-protocol/generate-hosts-file">NXC</a>: NetExec
 
 ### POC's
 
