@@ -17,6 +17,7 @@ Just a passionate penetration tester and security researcher from the Netherland
   **University:** Windesheim University of Applied Sciences, 2008-2011  
 
 ## Certifications
+- <a href="https://credentials.offsec.com/0efe3aa1-6299-4800-a706-6c7ef79c5f6c#acc.JH1g5xBR" target="_blank">OffSec Experienced Penetration Tester (OSEP)</a> 
 - <a href="https://www.credential.net/0f2a3465-2fa6-4402-b526-6f372b35bd93?trk=public_profile_see-credential#acc.Bnhq091G" target="_blank">OffSec Certified Professional (OSCP)</a>
 - <a href="https://api.eu.badgr.io/public/assertions/p2xxJx0DQU2ffXblBNslLg" target="_blank">Certified Red Team Operator (CRTO)</a>
 - <a href="https://www.credly.com/badges/15539bb2-b697-4cef-8c7a-699f2700255d?trk=public_profile_see-credential" target="_blank">Certified Information Systems Security Professional (CISSP)</a>
