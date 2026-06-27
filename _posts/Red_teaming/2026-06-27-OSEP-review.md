@@ -5,17 +5,11 @@ categories: [Red-teaming]
 tags: [OSEP, OffSec, Red Team, Active Directory, Evasion, Windows Security]
 pin: false
 description: The OffSec Experienced Penetration Tester (OSEP) certification validates advanced offensive security skills in realistic enterprise environments.
+image: /assets/img/OSEP-pen300.png
 ---
 
 > The OffSec Experienced Penetration Tester (OSEP) certification is designed for offensive security professionals who want to move beyond traditional penetration testing. Rather than simply gaining initial access, the course emphasises operating in hardened enterprise environments, bypassing modern security controls, maintaining stealth, and achieving objectives while simulating realistic adversary behaviour.
 {: .prompt-danger }
-
-<div style="text-align:center; margin: 2rem 0;">
-  <img src="{{ '/assets/img/OSEP.png' | relative_url }}"
-       alt="OffSec OSEP Badge"
-       style="max-width:450px; width:100%; height:auto;">
-</div>
-
 
 ## Overview
 
