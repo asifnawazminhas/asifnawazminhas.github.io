@@ -21,7 +21,7 @@ If you've completed OSCP, PEN-300 feels like the natural next step. While PEN-20
 
 PEN-300 is a significant step up from OSCP. It introduces more advanced offensive techniques, including process injection, custom shellcode runners, application control and antivirus evasion, advanced lateral movement, and operating through command-and-control (C2) frameworks. The focus is no longer just on compromising systems, but on operating effectively within realistic enterprise environments while adapting to common defensive controls.
 
-I thoroughly enjoyed the course from start to finish. Every chapter introduced something new and never felt repetitive. Almost every topic is accompanied by a dedicated lab where you can immediately apply the concepts, experiment with payloads, and become familiar with the techniques before moving on.
+**I thoroughly enjoyed the course from start to finish. Every chapter introduced something new and never felt repetitive**. Almost every topic is accompanied by a dedicated lab where you can immediately apply the concepts, experiment with payloads, and become familiar with the techniques before moving on.
 
 Although the course material clearly states that PEN-300 is an advanced penetration testing course rather than a dedicated red teaming course, I believe it provides an excellent foundation for both penetration testers and red team operators. While the course does not focus heavily on modern EDR evasion, it does teach numerous techniques for bypassing common security controls and operating effectively in hardened enterprise environments.
 
@@ -31,7 +31,7 @@ OffSec also positions OSEP as a certification that bridges advanced penetration 
 
 <a href="https://www.offsec.com/blog/red-teaming-vs-pentesting/" target="_blank" rel="noopener noreferrer">Red Teaming vs Penetration Testing</a>
 
-Before moving on to the syllabus, it's worth understanding where PEN-300 fits within the broader OffSec training path. Following the 200-level (foundational) courses, OffSec offers three advanced 300-level courses: <a href="https://www.offsec.com/courses/pen-300/" target="_blank" rel="noopener noreferrer">PEN-300 (Evasion Techniques and Breaching Defenses)</a>, <a href="https://www.offsec.com/courses/web-300/" target="_blank" rel="noopener noreferrer">WEB-300 (Advanced Web Attacks and Exploitation)</a>, and <a href="https://www.offsec.com/courses/exp-300/" target="_blank" rel="noopener noreferrer">EXP-300 (Windows User Mode Exploit Development)</a>. These courses lead to the OSEP, OSWE, and OSED certifications respectively. Successfully earning all three certifications automatically awards the <a href="https://www.offsec.com/certificates/osce3/" target="_blank" rel="noopener noreferrer">OSCE³ (OffSec Certified Expert 3)</a> certification.
+Before moving on to the syllabus, it's worth understanding where PEN-300 fits within the broader OffSec training path. Following the 200-level (foundational) courses, OffSec offers three advanced 300-level courses: <a href="https://www.offsec.com/courses/pen-300/" target="_blank" rel="noopener noreferrer">**PEN-300** (Evasion Techniques and Breaching Defenses)</a>, <a href="https://www.offsec.com/courses/web-300/" target="_blank" rel="noopener noreferrer">**WEB-300** (Advanced Web Attacks and Exploitation)</a>, and <a href="https://www.offsec.com/courses/exp-300/" target="_blank" rel="noopener noreferrer">**EXP-300** (Windows User Mode Exploit Development)</a>. These courses lead to the **OSEP**, **OSWE**, and **OSED** certifications respectively. Successfully earning all three certifications automatically awards the <a href="https://www.offsec.com/certificates/osce3/" target="_blank" rel="noopener noreferrer">OSCE³ (OffSec Certified Expert 3)</a> certification.
 
 
 ## Who Should Take PEN-300?
@@ -119,9 +119,9 @@ Whether your goal is to become a stronger penetration tester or prepare for real
 
 ## Final Thoughts
 
-Compared to the OSCP, PEN-300 goes significantly deeper into advanced offensive techniques, payload development, Active Directory, bypassing common security controls, and operating within hardened enterprise environments. While OSCP teaches you how to compromise systems, PEN-300 teaches you how to operate effectively within enterprise environments once you've gained access.
+Compared to the OSCP, PEN-300 goes significantly deeper into advanced offensive techniques, payload development, Active Directory, bypassing common security controls, and operating within hardened enterprise environments. **While OSCP teaches you how to compromise systems, PEN-300 teaches you how to operate effectively within enterprise environments once you've gained access**.
 
-For me, this was one of the most enjoyable and practical offensive security courses I've completed. Much of what I learned can be applied directly during real-world penetration tests, making it one of the most valuable certifications I've earned so far.
+**For me, this was one of the most enjoyable and practical offensive security courses I've completed**. Much of what I learned can be applied directly during real-world penetration tests, making it one of the most valuable certifications I've earned so far.
 
 ## Additional Resources 
 
