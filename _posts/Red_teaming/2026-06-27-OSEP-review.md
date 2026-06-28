@@ -131,7 +131,7 @@ During my preparation, I came across many excellent blogs, cheat sheets, and ref
 - <a href="https://www.emmanuelsolis.com/osep.html" target="_blank" rel="noopener noreferrer">OSEP Notes - Emmanuel Solis</a>
 - <a href="https://steffinstanly.gitbook.io/osep-notes/osep/privilege-escalation" target="_blank" rel="noopener noreferrer">Steffin Stanly OSEP Notes</a>
 - <a href="https://commandmgr.com/" target="_blank" rel="noopener noreferrer">Command Manager</a>
-- <a href="https://github.com/Extravenger/OSEPlayground" target="_blank" rel="noopener noreferrer">OSE Playground</a>
+- <a href="https://github.com/Extravenger/OSEPlayground" target="_blank" rel="noopener noreferrer">OSEP Playground</a>
 - <a href="https://ippsec.rocks/" target="_blank" rel="noopener noreferrer">IppSec</a>
 - <a href="https://0xdf.gitlab.io/" target="_blank" rel="noopener noreferrer">0xdf</a>
 - <a href="https://www.revshells.com/" target="_blank" rel="noopener noreferrer">Reverse Shells</a>
