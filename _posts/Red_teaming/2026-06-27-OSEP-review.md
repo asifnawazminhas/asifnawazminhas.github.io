@@ -25,7 +25,7 @@ I thoroughly enjoyed the course from start to finish. Every chapter introduced s
 
 Although the course material clearly states that PEN-300 is an advanced penetration testing course rather than a dedicated red teaming course, I believe it provides an excellent foundation for both penetration testers and red team operators. While the course does not focus heavily on modern EDR evasion, it does teach numerous techniques for bypassing common security controls and operating effectively in hardened enterprise environments.
 
-In my personal opinion, OffSec offers some of the best hands-on offensive security training available today. That doesn't take anything away from other excellent platforms such as Hack The Box, TryHackMe, PortSwigger Web Security Academy, or Zero-Point Security, all of which have their own strengths. For me, however, OffSec's emphasis on hands-on learning, realistic enterprise scenarios, and understanding the underlying techniques makes it my preferred training provider.
+**In my personal opinion, OffSec offers some of the best hands-on offensive security training available today.** That doesn't take anything away from other excellent platforms such as Hack The Box, TryHackMe, PortSwigger Web Security Academy, or Zero-Point Security, all of which have their own strengths. For me, however, OffSec's emphasis on hands-on learning, realistic enterprise scenarios, and understanding the underlying techniques makes it my preferred training provider.
 
 OffSec also positions OSEP as a certification that bridges advanced penetration testing and realistic red team operations:
 
