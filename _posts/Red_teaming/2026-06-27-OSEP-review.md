@@ -60,8 +60,6 @@ Unlike some of the older OffSec courses, the PEN-300 course material is delivere
 
 Take your own notes while progressing through the course. Save useful commands, code snippets, and payloads. Once you've completed the modules, move on to the challenge labs.
 
-Take your own notes while progressing through the course. Save useful commands, code snippets, and payloads. Once you've completed the modules, move on to the challenge labs.
-
 One of PEN-300's biggest strengths is how it teaches you to operate in hardened enterprise environments. Rather than relying on publicly available tools, the course encourages you to understand the underlying techniques, develop your own payloads where appropriate, and adapt your approach to different defensive controls.
 
 When I started the course, I had only a basic understanding of Active Directory and Windows payload development. By the end, I felt comfortable writing my own C# payloads, modifying Office macros, and understanding why techniques work rather than simply relying on existing tools.
