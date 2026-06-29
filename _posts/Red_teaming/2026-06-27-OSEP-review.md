@@ -56,6 +56,10 @@ The official syllabus is available here:
 
 <a href="https://www.offsec.com/documentation/PEN300-Syllabus.pdf" target="_blank" rel="noopener noreferrer">Official PEN-300 Syllabus</a>
 
+Unlike some of the older OffSec courses, the PEN-300 course material is delivered through a modern web-based learning platform rather than as a single PDF. I personally found the web interface easy to navigate, and it allows OffSec to keep the content up to date. If you prefer studying offline, you can request and download the complete course material as a PDF once.
+
+Take your own notes while progressing through the course. Save useful commands, code snippets, and payloads. Once you've completed the modules, move on to the challenge labs.
+
 Take your own notes while progressing through the course. Save useful commands, code snippets, and payloads. Once you've completed the modules, move on to the challenge labs.
 
 One of PEN-300's biggest strengths is how it teaches you to operate in hardened enterprise environments. Rather than relying on publicly available tools, the course encourages you to understand the underlying techniques, develop your own payloads where appropriate, and adapt your approach to different defensive controls.
