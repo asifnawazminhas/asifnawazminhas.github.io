@@ -13,15 +13,15 @@ image: /assets/img/console-output.png
 
 ## Overview
 
-While working through red team labs, I noticed I was repeatedly creating the same payload download and execution commands whenever I needed to host files. Rather than rebuilding those commands every time, I decided to extend the original **wwwtree** with functionality that automates this process and is equally useful during authorised penetration tests and other security assessments.
+While working through red team labs, I noticed I was repeatedly creating the same payload download and execution commands whenever I needed to host files. Rather than manually rebuilding those commands each time, I decided to extend the original **wwwtree** with functionality that automates the process while remaining equally useful during authorised penetration tests and other security assessments.
 
 The original **wwwtree** is an excellent utility for quickly exposing a directory over HTTP. My goal was not to replace it, but to build upon its solid foundation by automatically generating commonly used payload delivery methods for every hosted file.
 
-The result is **wwwtree-redteam**.
+The result is **wwwtree-redteam**, an enhanced version of **wwwtree** that automatically generates multiple payload delivery methods for every hosted file.
 
 The tool hosts an entire payload directory over HTTP or HTTPS and automatically generates multiple payload delivery methods for each hosted file. These commands are available directly in the terminal and through an interactive HTML portal, allowing operators to quickly select and copy the most appropriate delivery method for the target environment.
 
-Some of the functionality includes:
+Some of the enhancements over the original project include:
 
 - Automatic payload discovery
 - Windows PowerShell commands
@@ -33,6 +33,16 @@ Some of the functionality includes:
 - HTTPS support
 - Download logging
 - One-click copy buttons
+
+## Console Output
+
+The terminal automatically generates multiple payload delivery methods for every hosted file, allowing operators to quickly copy the most appropriate command.
+
+![Console Output](/assets/img/console-output.png)
+
+## Interactive HTML Payload Portal
+
+The same commands are also available through an interactive HTML interface with one-click copy functionality.
 
 ## GitHub Repositories
 
@@ -50,4 +60,19 @@ https://github.com/t3l3machus/wwwtree
 
 ## Acknowledgements
 
-A special thank you to **Panagiotis Chartas (t3l3machus)** for creating the original **wwwtree**, which served as the foundation for this project. The original project is a lightweight and useful utility for quickly hosting files over HTTP, and this extension builds upon that foundation by adding automated payload delivery methods and an interactive operator interface.
+This project builds upon the excellent **wwwtree**, created by **Panagiotis Chartas (t3l3machus)**.
+
+Many thanks for creating such a useful utility and making it available to the community. Without the original project, **wwwtree-redteam** would not have been possible.
+
+## Conclusion
+
+Although **wwwtree-redteam** started as a small quality-of-life improvement for my own workflow, I hope others find it equally useful during red team labs, authorised penetration tests, and other security assessments.
+
+If you have ideas for additional payload delivery methods, feature requests, or improvements, feel free to open an issue or submit a pull request on GitHub.
+
+You can find the project here:
+
+<a href="https://github.com/asifnawazminhas/wwwtree-redteam" target="_blank" rel="noopener noreferrer">
+https://github.com/asifnawazminhas/wwwtree-redteam
+</a>
+
