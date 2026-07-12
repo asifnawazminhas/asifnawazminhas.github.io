@@ -81,10 +81,17 @@ If you're preparing for OSWP, these are a few recommendations I would give:
 ---
 
 ## Certification
+You can verify my OSWP certification by clicking on the certificate below.
 
-You can verify my OSWP certification here:
-
-- <a href="https://credentials.offsec.com/b3df742c-e02b-4465-8cee-ab14c2b554f9#acc.vTKa08Sr" target="_blank">Verify my OSWP certification</a>
+<p align="center">
+  <a href="https://credentials.offsec.com/b3df742c-e02b-4465-8cee-ab14c2b554f9#acc.vTKa08Sr"
+     target="_blank"
+     rel="noopener noreferrer">
+    <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/188036359"
+         alt="OSWP Certificate"
+         style="max-width:100%; height:auto;">
+  </a>
+</p>
 
 ---
 
