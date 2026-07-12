@@ -52,13 +52,15 @@ The following resources were particularly useful:
 
 - <a href="https://r4ulcl.com/posts/walkthrough-wifichallenge-lab-2.0/" target="_blank">WiFi Challenge Lab Walkthrough</a>
 
+- <a href="https://github.com/r4ulcl/WiFiChallengeLab-docker/releases" target="_blank">WiFi Challenge Lab Docker</a>
+
 - <a href="https://zeyadazima.com/notes/oswplaybook/" target="_blank">OSWP Playbook</a>
 
 - <a href="https://brandonrussell.io/OSWP-Notes/Introduction.html" target="_blank">Brandon Russell's OSWP Notes</a>
 
 - <a href="https://www.emmanuelsolis.com/oswp.html" target="_blank">Emmanuel Solis OSWP Notes</a>
 
-- <a href="https://notes.incendium.rocks/pentesting-notes/wireless-networks/wpa-enterpise-wpa-mgt" target="_blank">WPA Enterprise Notes</a>
+- <a href="https://notes.incendium.rocks/pentesting-notes/wireless-networks/" target="_blank">Wireless Networks Notes by Remco van der Meer</a>
 
 These resources complemented the official course material by providing additional explanations and practical examples that helped me better understand many of the concepts covered throughout the course.
   
