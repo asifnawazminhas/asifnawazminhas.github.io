@@ -5,7 +5,7 @@ categories: [Certifications]
 tags: [OSWP, OffSec, WiFi, Wireless Security, WPA2, WPA Enterprise, WPS]
 pin: false
 description: The OffSec Wireless Professional (OSWP) certification validates practical wireless penetration testing skills, including WPA/WPA2, WPA Enterprise, WPS, and wireless network attacks.
-image: /assets/img/oswp.png
+image: /assets/img/oswp3.png
 ---
 
 ## Introduction
