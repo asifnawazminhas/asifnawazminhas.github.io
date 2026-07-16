@@ -23,6 +23,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.credly.com/badges/15539bb2-b697-4cef-8c7a-699f2700255d?trk=public_profile_see-credential" target="_blank">Certified Information Systems Security Professional (CISSP)</a>
 - <a href="https://www.credential.net/d354e55c-d333-4347-9ddf-5e9d44cca4c4?trk=public_profile_see-credential#acc.YxfV3PiU" target="_blank">OffSec Web Assessor (OSWA)</a>
 - <a href="https://www.credly.com/badges/b75ea7b9-55ff-4f43-a526-9077388491b6/public_url?trk=public_profile_see-credential" target="_blank">Certified Information Security Manager (CISM)</a>
+- <a href="https://www.credly.com/badges/17dc9c81-a06c-44cc-950c-5a216a220e69" target="_blank">ATT&CK Purple Teaming Methodology Certification</a>
 - <a href="https://credentials.offsec.com/b3df742c-e02b-4465-8cee-ab14c2b554f9#acc.vTKa08Sr" target="_blank">OffSec Wireless Professional (OSWP)</a>
 - <a href="https://www.credential.net/91d1ae8c-1040-4530-a0dc-fe0352e003e9#gs.heo06q" target="_blank">Certified Red Team Professional (CRTP)</a>
 - <a href="https://aspen.eccouncil.org/VerifyBadge?type=certification&a=2lRukjKr7UUZduuSqj0TbmTVi+5o1PGgbCuiL97m6ug=&trk=public_profile_see-credential" target="_blank">Certified Ethical Hacker (CEH)</a>
