@@ -28,5 +28,5 @@ This repository contains the source code for my personal website and blog, built
 
 ## License
 
-Content © 2025 [Asif Nawaz Minhas](https://asifnawazminhas.com) — Licensed under the [MIT License](LICENSE).  
+Content © 2026 [Asif Nawaz Minhas](https://asifnawazminhas.com) — Licensed under the [MIT License](LICENSE).  
 Theme © [Cotes Chung](https://github.com/cotes2020) — Licensed under MIT.
