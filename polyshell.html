@@ -66,6 +66,14 @@
             border: 1px solid #2a4a6a;
             font-family: 'Fira Code', monospace;
         }
+        .tag a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+        .tag a:hover {
+            text-decoration: underline;
+            color: #60a5fa;
+        }
         .input-area {
             padding: 32px;
             background: #0d1525;
@@ -211,6 +219,14 @@
             border-top: 1px solid #1a2a44;
             font-family: 'Fira Code', monospace;
         }
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: #93c5fd;
+        }
         .flash {
             animation: flash 600ms ease;
         }
@@ -239,6 +255,13 @@
             opacity: 0.4;
             cursor: not-allowed;
             transform: none !important;
+        }
+        .credit-link {
+            color: #4a5a7a;
+            transition: color 0.3s;
+        }
+        .credit-link:hover {
+            color: #60a5fa;
         }
         @media (max-width: 768px) {
             .input-row {
@@ -272,7 +295,7 @@
         </div>
         <div style="margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap;">
             <span class="tag">v2.8 Lab</span>
-            <span class="tag">ArgFuscator Fixed</span>
+            <span class="tag"><a href="https://argfuscator.net/" target="_blank" rel="noopener noreferrer">ArgFuscator ↗</a></span>
         </div>
     </div>
     <div class="input-area">
@@ -336,7 +359,10 @@
     </div>
 
     <footer>
-        Authorized Lab Use Only • For educational red team exercises
+        Authorized Lab Use Only • For educational red team exercises<br>
+        <span style="font-size: 0.7rem; color: #3a4a5a; margin-top: 4px; display: inline-block;">
+            ArgFuscator technique inspired by <a href="https://argfuscator.net/" target="_blank" rel="noopener noreferrer">argfuscator.net</a>
+        </span>
     </footer>
 </div>
 
