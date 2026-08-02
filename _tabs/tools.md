@@ -37,6 +37,9 @@ order: 4
 - <a href="https://www.asifnawazminhas.com/assets/web-security-attack-surface-map/" target="_blank">Web Security Attack Surface Map</a>: Web Security Map
 
 
+## Threat modeling
+- <a href="https://app.precogly.org/" target="_blank">OWASP Precogly is the open-source alternative to commercial threat modeling tools</a>: Precology
+
 ### Bug bounty related
 
 - <a href="https://hackermd-toolkit.netlify.app/" target="_blank">BugHunt Toolkit</a>: BugHunt Toolkit
