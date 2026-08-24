@@ -48,6 +48,16 @@ order: 4
 - <a href="https://moe-code-22.github.io/Endpoint-Buster/" target="_blank">Fast Endpoint Buster</a>: Uncover potential endpoints
 - <a href="https://www.bugbountyhunting.com/" target="_blank">Bug bounty hunting</a>: Bug Bounty Hunting Search Engine
 
+### Subdomains
+
+- <a href="https://crt.name/v1/search?apex=example.com" target="_blank">Subdomain Enumeration via Certificate Transparency</a>: crt.name
+- <a href="https://submap.net/" target="_blank">Enterprise subdomain discovery platform</a>: submap
+- <a href="https://subdomainfinder.c99.nl/" target="_blank">Subdomain finder c99</a>: subdomainfinder.c99
+- <a href="https://www.merklemap.com/" target="_blank">A tool to search for domains using wildcards</a>: merklemap
+- <a href="https://subdomains.whoisxmlapi.com/" target="_blank">WhoisXMLAPI is a comprehensive resource for obtaining whois records for both domains and IP addresses</a>: whoisxmlapi
+- <a href="https://profundis.io/" target="_blank">Cybersecurity Search Engine for Asset Discovery</a>: profundis
+- <a href="https://cloud.projectdiscovery.io/assets/domain/example.com" target="_blank">ProjectDiscovery</a>: ProjectDiscovery
+
 ### Windows privesc
 - <a href="https://docs.specterops.io/ghostpack-docs/SharpUp-mdx/checks/alwaysinstallelevated" target="_blank">Ghostpack-docs</a>: Ghostpack - alwaysinstallelevated docs
 - <a href="https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/windows-privilege-escalation/">Windows-privesc</a>: Windows privilege escalation
