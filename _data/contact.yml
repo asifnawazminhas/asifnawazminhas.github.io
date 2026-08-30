@@ -1,7 +1,7 @@
-#  The contact options.
+# The contact options.
 
 - type: github
-  icon: "fab fa-github"          # Font Awesome brands
+  icon: "fab fa-github"
   url: "https://github.com/asifnawazminhas"
   noblank: false
 
@@ -10,38 +10,40 @@
   url: "https://www.linkedin.com/in/asifminhasnl/"
   noblank: false
 
-#- type: twitter
-#  icon: "fa-brands fa-x-twitter"
+- type: notes
+  icon: "fas fa-book"
+  url: "https://notes.asifnawazminhas.com"
+  noblank: false
 
-#- type: email
-#  icon: "fas fa-envelope"
-#  noblank: true # open link in current tab
+# - type: twitter
+#   icon: "fa-brands fa-x-twitter"
 
-#- type: rss
-#  icon: "fas fa-rss"
-#  noblank: true
-# Uncomment and complete the url below to enable more contact options
-#
+# - type: email
+#   icon: "fas fa-envelope"
+#   noblank: true
+
+# - type: rss
+#   icon: "fas fa-rss"
+#   noblank: true
+
+# Uncomment and complete the URL below to enable more contact options.
+
 # - type: mastodon
-#   icon: 'fab fa-mastodon'   # icons powered by <https://fontawesome.com/>
-#   url:  ''                  # Fill with your Mastodon account page, rel="me" will be applied for verification
-#
-# - type: linkedin
-#   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
-#   url:  ''                  # Fill with your Linkedin homepage
-#
+#   icon: "fab fa-mastodon"
+#   url: ""
+
 # - type: stack-overflow
-#   icon: 'fab fa-stack-overflow'
-#   url:  ''                  # Fill with your stackoverflow homepage
-#
+#   icon: "fab fa-stack-overflow"
+#   url: ""
+
 # - type: bluesky
-#   icon: 'fa-brands fa-bluesky'
-#   url: ''                   # Fill with your Bluesky profile link
-#
+#   icon: "fa-brands fa-bluesky"
+#   url: ""
+
 # - type: reddit
-#   icon: 'fa-brands fa-reddit'
-#   url: ''                   # Fill with your Reddit profile link
-#
+#   icon: "fa-brands fa-reddit"
+#   url: ""
+
 # - type: threads
-#   icon: 'fa-brands fa-threads'
-#   url: ''                   # Fill with your Threads profile link
+#   icon: "fa-brands fa-threads"
+#   url: ""
