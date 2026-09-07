@@ -25,6 +25,7 @@ order: 4
 - <a href="https://adsecurity.org/" target="_blank">adsecurity.org</a>: is a cybersecurity blog focused on securing Active Directory and Azure AD/Entra ID, detailing attack methods, defenses, and practical security tips.
 - <a href="https://queries.specterops.io/" target="_blank">BloodHound Queries For All</a>: BloodHound Query Library
 - <a href="https://emvee-nl.github.io/RedCourier/" target="_blank">Red Courier</a>: Red Courier - Delivering files right through the open window
+- <a href="https://amsi.fail/" target="_blank">Generate obfuscated PowerShell snippets that break or disable AMSI for the current process.</a>: amsi.fail
 
 
 **Obfuscation, Evasion, & Bypass**
