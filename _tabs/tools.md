@@ -41,6 +41,9 @@ order: 4
 ## Threat modeling
 - <a href="https://app.precogly.org/" target="_blank">OWASP Precogly is the open-source alternative to commercial threat modeling tools</a>: Precology
 
+## Website Reconnaissance and Fingerprinting Tools
+- <a href="https://web-check.xyz/" target="_blank">Web Check is the all-in-one OSINT and security tool, for revealing the inner workings of any website.</a>: web-check
+
 ### Bug bounty related
 
 - <a href="https://hackermd-toolkit.netlify.app/" target="_blank">BugHunt Toolkit</a>: BugHunt Toolkit
