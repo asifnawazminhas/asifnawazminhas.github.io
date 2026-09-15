@@ -16,6 +16,10 @@
   icon: "fas fa-terminal"
   url: "https://studio.asifnawazminhas.com"
 
+- type: about
+  icon: "fas fa-user-shield"
+  url: "https://about.asifnawazminhas.com"
+
 # - type: twitter
 #   icon: "fa-brands fa-x-twitter"
 
