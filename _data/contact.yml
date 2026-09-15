@@ -3,17 +3,18 @@
 - type: github
   icon: "fab fa-github"
   url: "https://github.com/asifnawazminhas"
-  noblank: false
 
 - type: linkedin
   icon: "fab fa-linkedin"
   url: "https://www.linkedin.com/in/asifminhasnl/"
-  noblank: false
 
 - type: notes
   icon: "fas fa-book"
   url: "https://notes.asifnawazminhas.com"
-  noblank: false
+
+- type: studio
+  icon: "fas fa-terminal"
+  url: "https://studio.asifnawazminhas.com"
 
 # - type: twitter
 #   icon: "fa-brands fa-x-twitter"
