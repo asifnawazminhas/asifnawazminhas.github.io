@@ -12,6 +12,10 @@
   icon: "fas fa-book"
   url: "https://notes.asifnawazminhas.com"
 
+- type: oneliners
+  icon: "fas fa-code"
+  url: "https://oneliners.asifnawazminhas.com"
+
 - type: studio
   icon: "fas fa-terminal"
   url: "https://studio.asifnawazminhas.com"
