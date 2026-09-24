@@ -123,8 +123,6 @@ order: 4
 
 ## AI, Red/Purple Teaming & Prompt Security
 
-- <a href="https://chatgpt.com/g/g-RUHY05lkN-rt-red-teaming" target="_blank">Red Teaming - ChatGPT</a>: ChatGPT GPT for red teaming.
-- <a href="https://chatgpt.com/g/g-k11N973rt-pt-purple-teaming-cyber-defense-and-offensive" target="_blank">Purple Teaming: Cyber Defense and Offensive AI - ChatGPT</a>: ChatGPT GPT for purple teaming.
 - <a href="https://github.com/Azure/PyRIT" target="_blank">Azure PyRIT</a>: Adversarial AI red teaming tool by Microsoft.
 - <a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank">Awesome LLM</a>: Curated list of LLM (large language model) resources.
 - <a href="https://gandalf.lakera.ai/baseline" target="_blank">Gandalf Game</a>: Gamified prompt injection challenge.
