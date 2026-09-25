@@ -7,7 +7,7 @@ toc: true
 pin: false
 description: "A practical tmux reference for penetration testing, reconnaissance, long running scans, remote VPS workflows, panes, windows, sessions and process monitoring."
 image:
-  path: /assets/img/posts/tmux/tmux.png
+  path: /assets/img/tmux.png
   alt: "tmux security testing workflow with multiple terminal panes"
 ---
 
