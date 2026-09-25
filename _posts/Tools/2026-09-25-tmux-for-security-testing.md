@@ -13,7 +13,7 @@ image:
 
 ## Introduction
 
-![tmux security testing workflow](/assets/img/posts/tmux/tmux.png)
+![tmux security testing workflow](/assets/img/tmux.png)
 
 `tmux` is a terminal multiplexer that allows multiple terminal sessions, windows and panes to run inside a single terminal.
 
@@ -622,11 +622,11 @@ Example:
 ```text
 Session: assessment-a
     |
-    └── Nuclei workflow A
+    +--> Nuclei workflow A
 
 Session: assessment-b
     |
-    └── Nuclei workflow B
+    +--> Nuclei workflow B
 ```
 
 Check running processes:
