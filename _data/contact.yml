@@ -16,6 +16,10 @@
   icon: "fas fa-code"
   url: "https://oneliners.asifnawazminhas.com"
 
+- type: ai
+  icon: "fas fa-brain"
+  url: "https://ai.asifnawazminhas.com"
+
 - type: studio
   icon: "fas fa-terminal"
   url: "https://studio.asifnawazminhas.com"
