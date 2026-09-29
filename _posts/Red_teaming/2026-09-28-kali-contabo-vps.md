@@ -1,6 +1,6 @@
 ---
 title: "Setting Up Kali Linux on a Contabo VPS"
-date: 2026-09-28 06:00:00 +0200
+date: 2026-09-28 04:00:00 +0200
 categories: [Red-teaming]
 tags: [kali linux, contabo, vps, red teaming, penetration testing, xrdp, ssh, offensive security]
 pin: false
