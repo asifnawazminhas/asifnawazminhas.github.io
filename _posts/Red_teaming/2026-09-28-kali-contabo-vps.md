@@ -56,7 +56,7 @@ The end result is a remotely accessible Kali Linux workstation that can be used 
 25. [Useful Verification Commands](#useful-verification-commands)
 26. [Recommended SSH Hardening](#recommended-ssh-hardening)
 27. [Final Architecture](#final-architecture)
-28. [Conclusion](#conclusion)
+28. [Final Result](#final-result)
 
 ---
 
