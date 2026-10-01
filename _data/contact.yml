@@ -12,6 +12,10 @@
   icon: "fas fa-book"
   url: "https://notes.asifnawazminhas.com"
 
+- type: cyberdict
+  icon: "fas fa-book-open"
+  url: "https://cyberdict.asifnawazminhas.com/"
+
 - type: oneliners
   icon: "fas fa-code"
   url: "https://oneliners.asifnawazminhas.com"
