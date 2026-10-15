@@ -58,6 +58,7 @@ Just a passionate penetration tester and security researcher from the Netherland
 - <a href="https://www.eur.nl/campus/locaties/campus-woudestein/beveiliging-veiligheid/informatiebeveiliging/hall-fame" target="_blank"> Responsible Disclosure Hall of Fame - EUR [2025]</a>
 - <a href="https://www.uu.nl/organisatie/it/hall-of-fame-verantwoorde-openbaarmaking" target="_blank"> Responsible Disclosure Hall of Fame - UU [2025]</a>
 - <a href="https://www.uu.nl/organisatie/it/hall-of-fame-verantwoorde-openbaarmaking" target="_blank"> Responsible Disclosure Hall of Fame - UU [2026]</a>
+- <a href="https://www.surf.nl/agenda/doe-mee-met-halon-en-hack-een-onderwijsinstelling/halon-hall-of-fame" target="_blank"> SURF: Halon Hall of Fame - [2026]</a>
 
 - I have been honoured to receive multiple letters of appreciation from organisations for responsibly disclosing vulnerabilities, contributing to the enhancement of their security posture. 
 - Discovered and reported 68 CVEs, leading to improved security in widely-used open-source software.
