@@ -131,4 +131,5 @@ order: 4
 - <a href="https://gpa.43z.one/" target="_blank">GPT Prompt Attack</a>: Test your prompt injection skills.
 - <a href="https://gpt.43z.one/" target="_blank">GTP Game</a>: LLM security challenge.
 - <a href="https://tensortrust.ai" target="_blank">TensorTrust AI</a>: Prompt injection attack/defense simulation game.
+- <a href="https://www.purpledex.dev/" target="_blank">purpledex</a>: Purpledex - Offensive Security & Detection Engineering
 
