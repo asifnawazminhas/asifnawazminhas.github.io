@@ -24,10 +24,6 @@
   icon: "fas fa-shield-halved"
   url: "https://ai.asifnawazminhas.com"
 
-- type: studio
-  icon: "fas fa-terminal"
-  url: "https://studio.asifnawazminhas.com"
-
 - type: about
   icon: "fas fa-user-shield"
   url: "https://about.asifnawazminhas.com"
