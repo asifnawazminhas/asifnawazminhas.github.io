@@ -8,9 +8,17 @@
   icon: "fab fa-linkedin"
   url: "https://www.linkedin.com/in/asifminhasnl/"
 
+- type: main-website
+  icon: "fas fa-globe"
+  url: "https://www.asifnawazminhas.com/"
+
 - type: notes
   icon: "fas fa-book"
   url: "https://notes.asifnawazminhas.com"
+
+- type: aihackbins
+  icon: "fas fa-robot"
+  url: "https://aihackbins.org/"
 
 - type: cyberdict
   icon: "fas fa-book-open"
@@ -20,7 +28,7 @@
   icon: "fas fa-code"
   url: "https://oneliners.asifnawazminhas.com"
 
-- type: website
+- type: ai-tools
   icon: "fas fa-shield-halved"
   url: "https://ai.asifnawazminhas.com"
 
@@ -38,25 +46,3 @@
 # - type: rss
 #   icon: "fas fa-rss"
 #   noblank: true
-
-# Uncomment and complete the URL below to enable more contact options.
-
-# - type: mastodon
-#   icon: "fab fa-mastodon"
-#   url: ""
-
-# - type: stack-overflow
-#   icon: "fab fa-stack-overflow"
-#   url: ""
-
-# - type: bluesky
-#   icon: "fa-brands fa-bluesky"
-#   url: ""
-
-# - type: reddit
-#   icon: "fa-brands fa-reddit"
-#   url: ""
-
-# - type: threads
-#   icon: "fa-brands fa-threads"
-#   url: ""
