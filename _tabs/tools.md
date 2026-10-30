@@ -102,7 +102,8 @@ order: 4
 - <a href="https://lolol.farm/" target="_blank" rel="noopener">lolol.farm</a>: Central index of LOTL related security projects. These projects document how everyday system components can be misused by adversaries and how defenders can detect or mitigate that misuse.
 - <a href="https://lolad-project.github.io/" target="_blank" rel="noopener">lolAD</a>: Living Off The Land and Exploitation Active Directory
 - <a href="https://anshu19981.github.io/Pentestcheatsheet/" target="_blank" rel="noopener">Pentestcheatsheet</a>: Pentestcheatsheet
-- <a href="https://webhacklist.com/" target="_blank" rel="noopener">webhacklist</a>: Web Hacking Techniques Index 
+- <a href="https://webhacklist.com/" target="_blank" rel="noopener">webhacklist</a>: Web Hacking Techniques Index
+- <a href="https://karrab7.com/articles/Active-Directory-Pentesting-Methodology" target="_blank" rel="noopener">AD Pentesting</a>: AD Pentesting Methodology
 
 **Writeups, Labs & Practical Guides**
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>: Interactive hands-on web security labs.
