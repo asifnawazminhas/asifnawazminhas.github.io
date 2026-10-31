@@ -1,3 +1,4 @@
+
 # The Site Configuration
 
 # Import the theme
@@ -19,7 +20,9 @@ title: Asif Nawaz Minhas # the main title
 tagline: Sharing my journey in cybersecurity, red teaming, and AI # it will display as the subtitle
 
 description: >-
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Personal cybersecurity blog covering penetration testing, red teaming,
+  vulnerability research, AI security, security tools, and practical
+  offensive security techniques.
 
 # Fill in the protocol & hostname for your site.
 # It should not end with a '/'.
@@ -40,7 +43,6 @@ social:
     - https://www.linkedin.com/in/asifminhasnl/
     - https://github.com/asifnawazminhas
     - https://notes.asifnawazminhas.com
-    - https://studio.asifnawazminhas.com
     - https://about.asifnawazminhas.com
 
 # Site Verification Settings
@@ -70,7 +72,7 @@ analytics:
 
   matomo:
     id: # fill in your Matomo ID
-    domain: # fill in your Matomo domain
+    domain: # fill in your Matomo ID
 
   cloudflare:
     id: # fill in your Cloudflare Web Analytics token
@@ -133,8 +135,8 @@ comments:
 
   # Giscus
   giscus:
-    repo:
     repo_id:
+    repo:
     category:
     category_id:
     mapping:
