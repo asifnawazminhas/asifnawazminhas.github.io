@@ -7,7 +7,7 @@ order: 5
 permalink: /events/
 ---
 
-![Cybersecurity Events Banner](/assets/img/cybersecconf.png){: .w-100 .rounded-3 }
+![Cybersecurity Events Banner](/assets/img/cybersecconf.png)
 
 A collection of cybersecurity conferences, hacking events, security research gatherings, and community meetups from around the world.
 
@@ -18,12 +18,15 @@ These events provide opportunities to explore the latest developments in offensi
 Discover upcoming cybersecurity conferences, community events, and Call for Papers (CFP) opportunities.
 
 ### [Cybersecurity Conferences](https://events.pt.community/){:target="_blank" rel="noopener noreferrer"}
+
 Global cybersecurity event calendar featuring upcoming conferences, CFP deadlines, and community gatherings.
 
 ### [OWASP Events](https://owasp.org/events){:target="_blank" rel="noopener noreferrer"}
+
 Application security conferences, chapter meetings, Global AppSec events, and community activities.
 
 ### [BSides](https://bsides.org/){:target="_blank" rel="noopener noreferrer"}
+
 Global community-driven security conferences organised by local cybersecurity communities.
 
 ---
@@ -33,18 +36,23 @@ Global community-driven security conferences organised by local cybersecurity co
 Major international conferences covering offensive security, vulnerability research, exploit development, threat intelligence, and emerging cybersecurity technologies.
 
 ### [Black Hat](https://blackhat.com/upcoming.html){:target="_blank" rel="noopener noreferrer"}
+
 International information security conferences featuring technical research, briefings, and specialised training.
 
 ### [DEF CON](https://defcon.org/){:target="_blank" rel="noopener noreferrer"}
+
 One of the world's most recognised hacker conferences, featuring security research, hacking villages, workshops, and competitions.
 
 ### [Chaos Computer Club (CCC)](https://www.ccc.de/en/home){:target="_blank" rel="noopener noreferrer"}
+
 European hacker community known for the Chaos Communication Congress and events focused on technology, privacy, and security research.
 
 ### [Hack In The Box (HITB)](https://conference.hitb.org/){:target="_blank" rel="noopener noreferrer"}
+
 Technical security conferences featuring offensive security research, exploit development, and hands-on training.
 
 ### [GISEC Global](https://gisec.ae/){:target="_blank" rel="noopener noreferrer"}
+
 International cybersecurity exhibition and conference in the Middle East, covering enterprise security, threat intelligence, and emerging technologies.
 
 ---
@@ -54,21 +62,25 @@ International cybersecurity exhibition and conference in the Middle East, coveri
 Cybersecurity conferences and events particularly relevant to security professionals, researchers, and the hacking community in the Netherlands and Belgium.
 
 ### [ONE Conference](https://one-conference.nl/){:target="_blank" rel="noopener noreferrer"}
+
 **Location:** Netherlands
 
 International cybersecurity conference focused on knowledge sharing, collaboration, and developments in cybersecurity.
 
 ### [BruCON](https://www.brucon.org/){:target="_blank" rel="noopener noreferrer"}
+
 **Location:** Belgium
 
 Community-driven security conference featuring technical presentations, security research, workshops, and training.
 
 ### [OrangeCon](https://orangecon.nl/){:target="_blank" rel="noopener noreferrer"}
+
 **Location:** Netherlands
 
 Cybersecurity conference bringing together security professionals, researchers, and the Dutch cybersecurity community.
 
 ### [Cybersec Netherlands](https://www.cybersec-netherlands.com/){:target="_blank" rel="noopener noreferrer"}
+
 **Location:** Netherlands
 
 Cybersecurity event focused on industry developments, security solutions, and professional networking.
