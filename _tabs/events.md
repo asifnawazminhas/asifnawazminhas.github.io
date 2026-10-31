@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: Events
@@ -5,7 +6,6 @@ icon: fas fa-calendar-alt
 order: 5
 permalink: /events/
 ---
-
 
 ![Cybersecurity Events Banner](/assets/img/cybersecconf.png){: .w-100 .rounded-3 }
 
@@ -17,34 +17,61 @@ These events provide opportunities to explore the latest developments in offensi
 
 Discover upcoming cybersecurity conferences, community events, and Call for Papers (CFP) opportunities.
 
-| Resource | Description |
-|:---------|:------------|
-| [Cybersecurity Conferences](https://events.pt.community/) | Global cybersecurity event calendar featuring upcoming conferences, CFP deadlines, and community gatherings. |
-| [OWASP Events](https://owasp.org/events) | Application security conferences, chapter meetings, Global AppSec events, and community activities. |
-| [BSides](https://bsides.org/) | Global community-driven security conferences organised by local cybersecurity communities. |
+### [Cybersecurity Conferences](https://events.pt.community/){:target="_blank" rel="noopener noreferrer"}
+Global cybersecurity event calendar featuring upcoming conferences, CFP deadlines, and community gatherings.
+
+### [OWASP Events](https://owasp.org/events){:target="_blank" rel="noopener noreferrer"}
+Application security conferences, chapter meetings, Global AppSec events, and community activities.
+
+### [BSides](https://bsides.org/){:target="_blank" rel="noopener noreferrer"}
+Global community-driven security conferences organised by local cybersecurity communities.
+
+---
 
 ## International Cybersecurity Conferences
 
 Major international conferences covering offensive security, vulnerability research, exploit development, threat intelligence, and emerging cybersecurity technologies.
 
-| Conference | Description |
-|:-----------|:------------|
-| [Black Hat](https://blackhat.com/upcoming.html) | International information security conferences featuring technical research, briefings, and specialised training. |
-| [DEF CON](https://defcon.org/) | One of the world's most recognised hacker conferences, featuring security research, hacking villages, workshops, and competitions. |
-| [Chaos Computer Club (CCC)](https://www.ccc.de/en/home) | European hacker community known for the Chaos Communication Congress and events focused on technology, privacy, and security research. |
-| [Hack In The Box (HITB)](https://conference.hitb.org/) | Technical security conferences featuring offensive security research, exploit development, and hands-on training. |
-| [GISEC Global](https://gisec.ae/) | International cybersecurity exhibition and conference in the Middle East, covering enterprise security, threat intelligence, and emerging technologies. |
+### [Black Hat](https://blackhat.com/upcoming.html){:target="_blank" rel="noopener noreferrer"}
+International information security conferences featuring technical research, briefings, and specialised training.
+
+### [DEF CON](https://defcon.org/){:target="_blank" rel="noopener noreferrer"}
+One of the world's most recognised hacker conferences, featuring security research, hacking villages, workshops, and competitions.
+
+### [Chaos Computer Club (CCC)](https://www.ccc.de/en/home){:target="_blank" rel="noopener noreferrer"}
+European hacker community known for the Chaos Communication Congress and events focused on technology, privacy, and security research.
+
+### [Hack In The Box (HITB)](https://conference.hitb.org/){:target="_blank" rel="noopener noreferrer"}
+Technical security conferences featuring offensive security research, exploit development, and hands-on training.
+
+### [GISEC Global](https://gisec.ae/){:target="_blank" rel="noopener noreferrer"}
+International cybersecurity exhibition and conference in the Middle East, covering enterprise security, threat intelligence, and emerging technologies.
+
+---
 
 ## Netherlands & Belgium
 
 Cybersecurity conferences and events particularly relevant to security professionals, researchers, and the hacking community in the Netherlands and Belgium.
 
-| Conference | Location | Description |
-|:-----------|:---------|:------------|
-| [ONE Conference](https://one-conference.nl/) | Netherlands | International cybersecurity conference focused on knowledge sharing, collaboration, and developments in cybersecurity. |
-| [BruCON](https://www.brucon.org/) | Belgium | Community-driven security conference featuring technical presentations, security research, workshops, and training. |
-| [OrangeCon](https://orangecon.nl/) | Netherlands | Cybersecurity conference bringing together security professionals, researchers, and the Dutch cybersecurity community. |
-| [Cybersec Netherlands](https://www.cybersec-netherlands.com/) | Netherlands | Cybersecurity event focused on industry developments, security solutions, and professional networking. |
+### [ONE Conference](https://one-conference.nl/){:target="_blank" rel="noopener noreferrer"}
+**Location:** Netherlands
+
+International cybersecurity conference focused on knowledge sharing, collaboration, and developments in cybersecurity.
+
+### [BruCON](https://www.brucon.org/){:target="_blank" rel="noopener noreferrer"}
+**Location:** Belgium
+
+Community-driven security conference featuring technical presentations, security research, workshops, and training.
+
+### [OrangeCon](https://orangecon.nl/){:target="_blank" rel="noopener noreferrer"}
+**Location:** Netherlands
+
+Cybersecurity conference bringing together security professionals, researchers, and the Dutch cybersecurity community.
+
+### [Cybersec Netherlands](https://www.cybersec-netherlands.com/){:target="_blank" rel="noopener noreferrer"}
+**Location:** Netherlands
+
+Cybersecurity event focused on industry developments, security solutions, and professional networking.
 
 ---
 
@@ -62,10 +89,10 @@ Presenting research, sharing practical experiences, or demonstrating new securit
 
 Explore the following resources to discover upcoming conferences and potential speaking opportunities:
 
-- [Cybersecurity Conferences](https://events.pt.community/) for upcoming cybersecurity events and CFP opportunities.
-- [Black Hat Upcoming Events](https://blackhat.com/upcoming.html) for international conferences and technical briefings.
-- [OWASP Events](https://owasp.org/events) for application security conferences and community participation.
-- [BSides](https://bsides.org/) for community-driven conferences and local speaking opportunities.
+- [Cybersecurity Conferences](https://events.pt.community/){:target="_blank" rel="noopener noreferrer"} for upcoming cybersecurity events and CFP opportunities.
+- [Black Hat Upcoming Events](https://blackhat.com/upcoming.html){:target="_blank" rel="noopener noreferrer"} for international conferences and technical briefings.
+- [OWASP Events](https://owasp.org/events){:target="_blank" rel="noopener noreferrer"} for application security conferences and community participation.
+- [BSides](https://bsides.org/){:target="_blank" rel="noopener noreferrer"} for community-driven conferences and local speaking opportunities.
 
 ---
 
