@@ -9,7 +9,7 @@ permalink: /events/
 
 ![Cybersecurity Events Banner](/assets/img/cybersecconf.png){: .w-100 .rounded-3 }
 
-A curated collection of cybersecurity conferences, hacking events, security research gatherings, and community meetups from around the world.
+A collection of cybersecurity conferences, hacking events, security research gatherings, and community meetups from around the world.
 
 These events provide opportunities to explore the latest developments in offensive security, penetration testing, red teaming, vulnerability research, AI security, and defensive security.
 
@@ -69,4 +69,4 @@ Explore the following resources to discover upcoming conferences and potential s
 
 ---
 
-*This page is maintained as a reference collection of cybersecurity events and conference resources. Event details are subject to change. Always consult the official conference websites for the latest information.*
+*This page provides an overview of cybersecurity conferences and community events worldwide. Event details may change, so always consult the official websites for the latest information.*
