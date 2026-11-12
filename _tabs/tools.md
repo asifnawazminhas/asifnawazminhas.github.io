@@ -77,6 +77,7 @@ order: 4
 - <a href="https://watchstack.io/intel/poc-search" target="_blank">WatchStack.io</a>: PoC Search Engine
 - <a href="https://sploitus.com/" target="_blank">Sploitus </a>: Exploit & Hacktool Search Engine
 - <a href="https://www.exploit-db.com/" target="_blank">exploit-db </a>: Exploit database
+- <a href="https://1dayexploit.com/blog/" target="_blank">Research - 1dayexploit </a>: 1dayexploit pocs and blog
 
 ### Dork search
 
