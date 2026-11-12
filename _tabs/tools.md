@@ -104,6 +104,7 @@ order: 4
 - <a href="https://anshu19981.github.io/Pentestcheatsheet/" target="_blank" rel="noopener">Pentestcheatsheet</a>: Pentestcheatsheet
 - <a href="https://webhacklist.com/" target="_blank" rel="noopener">webhacklist</a>: Web Hacking Techniques Index
 - <a href="https://karrab7.com/articles/Active-Directory-Pentesting-Methodology" target="_blank" rel="noopener">AD Pentesting</a>: AD Pentesting Methodology
+- <a href="https://cases.rootsec.nl/" target="_blank" rel="noopener">Rootsec Cases</a>: Echte aanvallen, zelf naspelen
 
 **Writeups, Labs & Practical Guides**
 - <a href="https://portswigger.net/web-security/all-labs" target="_blank">PortSwigger Web Security Labs</a>: Interactive hands-on web security labs.
