@@ -79,7 +79,7 @@ order: 4
 - <a href="https://www.exploit-db.com/" target="_blank">exploit-db </a>: Exploit database
 - <a href="https://1dayexploit.com/blog/" target="_blank">Research - 1dayexploit </a>: 1dayexploit pocs and blog
 - <a href="https://pocindex.io/" target="_blank">POC index </a>: Public proof-of-concept exploits, indexed by CVE.
-
+- <a href="https://hexbrainai.com/" target="_blank">hexbrainai </a>: An interactive map of publicly disclosed HackerOne bug bounty reports, grouped by vulnerability class, weakness and program.
 ### Dork search
 
 - <a href="https://h6nt3r.github.io/reconengines/" target="_blank">All in one dorks!</a>: Recon engine
