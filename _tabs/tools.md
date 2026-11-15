@@ -78,6 +78,7 @@ order: 4
 - <a href="https://sploitus.com/" target="_blank">Sploitus </a>: Exploit & Hacktool Search Engine
 - <a href="https://www.exploit-db.com/" target="_blank">exploit-db </a>: Exploit database
 - <a href="https://1dayexploit.com/blog/" target="_blank">Research - 1dayexploit </a>: 1dayexploit pocs and blog
+- <a href="https://pocindex.io/" target="_blank">POC index </a>: Public proof-of-concept exploits, indexed by CVE.
 
 ### Dork search
 
